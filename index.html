@@ -451,7 +451,7 @@ tfoot td { border: 1px solid #0f2e47; }
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('home', this)">Home</button><button class="tab-btn" onclick="switchTab('week1', this)">Week 1</button><button class="tab-btn" onclick="switchTab('week2', this)">Week 2</button><button class="tab-btn" onclick="switchTab('week3', this)">Week 3</button><button class="tab-btn" onclick="switchTab('week4', this)">Week 4</button><button class="tab-btn" onclick="switchTab('week5', this)">Week 5</button><button class="tab-btn" onclick="switchTab('week6', this)">Week 6</button><button class="tab-btn" onclick="switchTab('week7', this)">Week 7</button><button class="tab-btn" onclick="switchTab('week8', this)">Week 8</button><button class="tab-btn" onclick="switchTab('week9', this)">Week 9</button><button class="tab-btn" onclick="switchTab('week10', this)">Week 10</button><button class="tab-btn" onclick="switchTab('week11', this)">Week 11</button><button class="tab-btn" onclick="switchTab('week12', this)">Week 12</button>
-    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">EXAM</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
+    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
   </div>
   
   <div id="home" class="tab-content active">
@@ -717,7 +717,7 @@ tfoot td { border: 1px solid #0f2e47; }
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
-    <p class="note">Enter each learner's exam scores. Total and Grand Total calculate automatically.</p>
+    
     <div class="table-scroll">
     <table class="week-table exam-table">
       <thead>
@@ -745,7 +745,7 @@ tfoot td { border: 1px solid #0f2e47; }
   <div id="misc" class="tab-content">
     <h2>Miscellaneous</h2>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
-    <p class="note">Attach related files here &mdash; e.g. Application Form, Class List, or any other document. Files are kept with this dashboard when you use Save (.json) and restored with Load / Import.</p>
+    
     <div class="misc-upload-row">
       <input type="text" id="misc-doc-label" class="misc-label-input" placeholder="Document name (e.g. Application Form, Class List)">
       <label class="action-btn load-btn" style="margin:0;">&#128193; Choose File
