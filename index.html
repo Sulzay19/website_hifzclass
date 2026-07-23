@@ -865,7 +865,7 @@ const data = {};
 for (let w = 1; w <= NUM_WEEKS; w++) {
   data[w] = [];
   for (let r = 0; r < NUM_LEARNERS; r++) {
-    data[w].push({ sabaq: [0,0,0,0,0], sabaqDhor: [0,0,0,0,0], dhor: [0,0,0,0,0] });
+    data[w].push({ sabaq: [null,null,null,null,null], sabaqDhor: [null,null,null,null,null], dhor: [null,null,null,null,null] });
   }
 }
 const learners = [];
@@ -1063,7 +1063,7 @@ function onGradeChange(row, val) {
 
 function onDayChange(week, row, cat, day, val) {
   const num = parseFloat(val);
-  data[week][row][cat][day] = isNaN(num) ? 0 : num;
+  data[week][row][cat][day] = (val === "" || isNaN(num)) ? null : num;
   recalcWeek(week);
   recalcSummary();
 }
@@ -1776,7 +1776,7 @@ function applyLoadedState(state) {
         CATS.forEach(cat => {
           const vals = state.data[w][r][cat] || [0,0,0,0,0];
           vals.forEach((v, d) => {
-            data[w][r][cat][d] = (v === null || v === undefined) ? 0 : v;
+            data[w][r][cat][d] = (v === null || v === undefined) ? null : v;
             const input = document.querySelector(
               `.day-input[data-week="${w}"][data-row="${r}"][data-cat="${cat}"][data-day="${d}"]`
             );
