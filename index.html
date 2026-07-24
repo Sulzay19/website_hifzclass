@@ -202,7 +202,7 @@ tfoot td { border: 1px solid #0f2e47; }
   border: 1px solid #b3b3b3;
   min-width: 220px;
 }
-.learner-report { max-width: 640px; }
+.learner-report { max-width: 100%; }
 .report-card {
   border: 1px solid #c7d7ea;
   border-radius: 8px;
@@ -229,26 +229,33 @@ tfoot td { border: 1px solid #0f2e47; }
 .rc-row .rc-value { font-weight: bold; color: #1F4E78; }
 .rc-empty { color: #999; font-style: italic; padding: 10px 0; }
 .rc-weeks-section {
-  max-height: 360px;
-  overflow-y: auto;
-  margin-bottom: 6px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
   border-bottom: 2px solid #c7d7ea;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
 }
-.rc-week-block { border-bottom: 1px dashed #dbe5f1; }
-.rc-week-block:last-child { border-bottom: none; }
+.rc-week-block {
+  border: 1px solid #dbe5f1;
+  border-radius: 6px;
+  overflow: hidden;
+}
 .rc-week-title {
   font-weight: bold;
   color: #fff;
   background: #1F4E78;
-  padding: 4px 10px;
-  font-size: 12px;
-  margin-top: 4px;
-  border-radius: 3px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  border-radius: 0;
 }
-.rc-week-block .rc-row { padding: 5px 4px; font-size: 12.5px; }
-@media print {
-  .rc-weeks-section { max-height: none; overflow: visible; }
+.rc-week-block .rc-row { padding: 5px 10px; font-size: 12.5px; }
+.rc-summary-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0 24px;
 }
+.rc-summary-section .rc-row { padding: 8px 0; }
 
 @media print {
   body { background: #fff; padding: 0; }
@@ -1021,14 +1028,16 @@ function renderLearnerReport(rowIndex) {
         <div class="rc-weeks-section">
           ${weekRowsHtml}
         </div>
-        <div class="rc-row"><span class="rc-label">Term Sabaq Target (pages)</span><span class="rc-value">${escapeHtml(termSabaqTarget)}</span></div>
-        <div class="rc-row"><span class="rc-label">Sabaq Given (pages)</span><span class="rc-value">${escapeHtml(sabaqGiven)}</span></div>
-        <div class="rc-row"><span class="rc-label">% of Sabaq to Term Target</span><span class="rc-value">${escapeHtml(pctOfTarget)}</span></div>
-        <div class="rc-row"><span class="rc-label">Year Juz Target</span><span class="rc-value">${escapeHtml(yearJuzTarget)}</span></div>
-        <div class="rc-row"><span class="rc-label">Term Juz Target</span><span class="rc-value">${escapeHtml(termJuzTarget)}</span></div>
-        <div class="rc-row"><span class="rc-label">Term Juz Done</span><span class="rc-value">${escapeHtml(termJuzDone)}</span></div>
-        <div class="rc-row"><span class="rc-label">Total Juz Memorized (of 30)</span><span class="rc-value">${escapeHtml(totalJuzMemorized)}</span></div>
-        <div class="rc-row"><span class="rc-label">Remaining Juz to Complete 30</span><span class="rc-value">${escapeHtml(remainingJuz)}</span></div>
+        <div class="rc-summary-section">
+          <div class="rc-row"><span class="rc-label">Term Sabaq Target (pages)</span><span class="rc-value">${escapeHtml(termSabaqTarget)}</span></div>
+          <div class="rc-row"><span class="rc-label">Sabaq Given (pages)</span><span class="rc-value">${escapeHtml(sabaqGiven)}</span></div>
+          <div class="rc-row"><span class="rc-label">% of Sabaq to Term Target</span><span class="rc-value">${escapeHtml(pctOfTarget)}</span></div>
+          <div class="rc-row"><span class="rc-label">Year Juz Target</span><span class="rc-value">${escapeHtml(yearJuzTarget)}</span></div>
+          <div class="rc-row"><span class="rc-label">Term Juz Target</span><span class="rc-value">${escapeHtml(termJuzTarget)}</span></div>
+          <div class="rc-row"><span class="rc-label">Term Juz Done</span><span class="rc-value">${escapeHtml(termJuzDone)}</span></div>
+          <div class="rc-row"><span class="rc-label">Total Juz Memorized (of 30)</span><span class="rc-value">${escapeHtml(totalJuzMemorized)}</span></div>
+          <div class="rc-row"><span class="rc-label">Remaining Juz to Complete 30</span><span class="rc-value">${escapeHtml(remainingJuz)}</span></div>
+        </div>
       </div>
     </div>
   `;
