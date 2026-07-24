@@ -228,6 +228,27 @@ tfoot td { border: 1px solid #0f2e47; }
 .rc-row .rc-label { color: #555; }
 .rc-row .rc-value { font-weight: bold; color: #1F4E78; }
 .rc-empty { color: #999; font-style: italic; padding: 10px 0; }
+.rc-weeks-section {
+  max-height: 360px;
+  overflow-y: auto;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #c7d7ea;
+}
+.rc-week-block { border-bottom: 1px dashed #dbe5f1; }
+.rc-week-block:last-child { border-bottom: none; }
+.rc-week-title {
+  font-weight: bold;
+  color: #fff;
+  background: #1F4E78;
+  padding: 4px 10px;
+  font-size: 12px;
+  margin-top: 4px;
+  border-radius: 3px;
+}
+.rc-week-block .rc-row { padding: 5px 4px; font-size: 12.5px; }
+@media print {
+  .rc-weeks-section { max-height: none; overflow: visible; }
+}
 
 @media print {
   body { background: #fff; padding: 0; }
@@ -950,11 +971,26 @@ function renderLearnerReport(rowIndex) {
   const name = nameInput ? nameInput.value.trim() : "(unnamed)";
   const grade = gradeInput && gradeInput.value.trim() ? gradeInput.value.trim() : "-";
 
-  // --- Week 1 category totals, read straight from the Week 1 table's total cells ---
-  const w1SabaqTotal = document.getElementById(`tot-w1-${r}-sabaq`);
-  const w1SabaqDhorTotal = document.getElementById(`tot-w1-${r}-sabaqDhor`);
-  const w1DhorTotal = document.getElementById(`tot-w1-${r}-dhor`);
-  const w1Grand = document.getElementById(`grand-w1-${r}`);
+  // --- Per-week category totals, read straight from each Week table's total cells ---
+  const getText = (id) => {
+    const el = document.getElementById(id);
+    return el ? el.textContent.trim() : "0";
+  };
+  let weekRowsHtml = "";
+  for (let w = 1; w <= NUM_WEEKS; w++) {
+    const sabaq = getText(`tot-w${w}-${r}-sabaq`);
+    const sabaqDhor = getText(`tot-w${w}-${r}-sabaqDhor`);
+    const dhor = getText(`tot-w${w}-${r}-dhor`);
+    const grand = getText(`grand-w${w}-${r}`);
+    weekRowsHtml += `
+        <div class="rc-week-block">
+          <div class="rc-week-title">Week ${w}</div>
+          <div class="rc-row"><span class="rc-label">Sabaq Total</span><span class="rc-value">${sabaq}</span></div>
+          <div class="rc-row"><span class="rc-label">Sabaq Dhor Total</span><span class="rc-value">${sabaqDhor}</span></div>
+          <div class="rc-row"><span class="rc-label">Dhor Total</span><span class="rc-value">${dhor}</span></div>
+          <div class="rc-row"><span class="rc-label">Grand Total</span><span class="rc-value">${grand}</span></div>
+        </div>`;
+  }
 
   // --- Targets & progress, read straight from the Summary table row's cells ---
   const getSummaryVal = (field) => {
@@ -982,10 +1018,9 @@ function renderLearnerReport(rowIndex) {
         <div class="rc-grade">Grade: ${escapeHtml(grade)}</div>
       </div>
       <div class="report-card-body">
-        <div class="rc-row"><span class="rc-label">Week 1 &ndash; Sabaq Total</span><span class="rc-value">${w1SabaqTotal ? w1SabaqTotal.textContent : "0"}</span></div>
-        <div class="rc-row"><span class="rc-label">Week 1 &ndash; Sabaq Dhor Total</span><span class="rc-value">${w1SabaqDhorTotal ? w1SabaqDhorTotal.textContent : "0"}</span></div>
-        <div class="rc-row"><span class="rc-label">Week 1 &ndash; Dhor Total</span><span class="rc-value">${w1DhorTotal ? w1DhorTotal.textContent : "0"}</span></div>
-        <div class="rc-row"><span class="rc-label">Week 1 &ndash; Grand Total</span><span class="rc-value">${w1Grand ? w1Grand.textContent : "0"}</span></div>
+        <div class="rc-weeks-section">
+          ${weekRowsHtml}
+        </div>
         <div class="rc-row"><span class="rc-label">Term Sabaq Target (pages)</span><span class="rc-value">${escapeHtml(termSabaqTarget)}</span></div>
         <div class="rc-row"><span class="rc-label">Sabaq Given (pages)</span><span class="rc-value">${escapeHtml(sabaqGiven)}</span></div>
         <div class="rc-row"><span class="rc-label">% of Sabaq to Term Target</span><span class="rc-value">${escapeHtml(pctOfTarget)}</span></div>
