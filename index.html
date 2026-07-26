@@ -580,6 +580,7 @@ input[readonly] {
         <input type="file" accept=".json,.xlsx,.xls,.csv,.docx,.pdf,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" id="load-input" onchange="handleLoadFile(event)">
       </label>
       <button class="action-btn" onclick="doShare()">&#128257; Share</button>
+      <button class="action-btn" style="background:#FFF2CC;" onclick="startNewTerm()">&#128197; Start New Term</button>
     </div>
     <p id="file-link-status" style="text-align:center;color:#d9e4ef;font-size:12px;font-style:italic;margin:6px 0 0;">Not linked to a file yet - click "Open Daily File" once to choose (or create) the one file you'll reuse every day.</p>
     </div>
@@ -1924,6 +1925,95 @@ function doShare() {
   } else {
     alert(text);
   }
+}
+
+// ===== Start New Term =====
+// Archives the current term (downloads a dated .json backup, same as
+// Save) then clears everything that is specific to a single term -
+// the Week 1-12 daily entries, the term-only targets (Term Sabaq
+// Target / Term Juz Target), the EXAM tab, and the Misc Docs list -
+// while keeping the class roster (Name & Grade) and the two fields
+// meant to carry across the whole year: Year Juz Target and Total
+// Juz Memorized.
+function startNewTerm() {
+  const meta = getMeta();
+  const currentTermLabel = (meta.term && meta.term.trim()) ? meta.term.trim() : "current term";
+
+  const ok1 = confirm(
+    `Start a new term?\n\nThis will:\n` +
+    `\u2022 Download a backup of "${currentTermLabel}" as a .json file\n` +
+    `\u2022 Clear all Week 1-12 daily entries, the EXAM tab, and Misc Docs\n` +
+    `\u2022 Clear each learner's Term Sabaq Target and Term Juz Target\n` +
+    `\u2022 KEEP each learner's Name, Grade, Year Juz Target, and Total Juz Memorized\n\n` +
+    `This cannot be undone inside the dashboard (only from the backup file). Continue?`
+  );
+  if (!ok1) return;
+
+  // 1) Archive the current term to a downloaded .json backup.
+  const state = { meta, learners, data, exam: collectExamData(), miscDocs };
+  const safeName = currentTermLabel.replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "") || "term";
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `HifzDashboard_${safeName}_backup.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+
+  const ok2 = confirm(`Backup for "${currentTermLabel}" downloaded. Click OK to clear the dashboard for the new term (make sure the download finished / was saved somewhere safe first).`);
+  if (!ok2) return;
+
+  // 2) Clear Week 1-12 daily entries.
+  for (let w = 1; w <= NUM_WEEKS; w++) {
+    for (let r = 0; r < NUM_LEARNERS; r++) {
+      CATS.forEach(cat => {
+        data[w][r][cat] = [null, null, null, null, null];
+        for (let d = 0; d < 5; d++) {
+          const input = document.querySelector(`.day-input[data-week="${w}"][data-row="${r}"][data-cat="${cat}"][data-day="${d}"]`);
+          if (input) input.value = "";
+        }
+      });
+    }
+    recalcWeek(w);
+  }
+
+  // 3) Clear term-only targets, keep yearJuzTarget & totalJuzMemorized.
+  for (let r = 0; r < NUM_LEARNERS; r++) {
+    ["termSabaqTarget", "termJuzTarget"].forEach(field => {
+      learners[r][field] = null;
+      const input = document.querySelector(`.target-input[data-row="${r}"][data-field="${field}"]`);
+      if (input) input.value = "";
+    });
+  }
+
+  // 4) Clear EXAM tab.
+  const blankExam = [];
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    blankExam.push({ name: "", grade: "", paras: "", hifz100: "", hifz70: "", target20: "", dhor10: "", tajweed: "", dua: "", attendance: "", status: "" });
+  }
+  applyExamData(blankExam);
+  // EXAM name/grade are meant to mirror the roster, so re-sync them now that they've been blanked.
+  for (let r = 0; r < NUM_LEARNERS; r++) {
+    if (learners[r].name) onNameChange(r, learners[r].name);
+    if (learners[r].grade) onGradeChange(r, learners[r].grade);
+  }
+
+  // 5) Clear Misc Docs.
+  miscDocs = [];
+  renderMiscDocs();
+
+  recalcSummary();
+
+  // 6) Prompt for the new term label.
+  const newTerm = prompt("New term label (e.g. \"Term 4 2026\"):", "");
+  if (newTerm !== null && newTerm.trim()) {
+    document.getElementById("report-term").value = newTerm.trim();
+    syncWeekHeaderBoxes();
+  }
+
+  alert("Dashboard cleared and ready for the new term. Roster names/grades and Year Juz Target / Total Juz Memorized were kept.");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
