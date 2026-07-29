@@ -788,14 +788,14 @@
         "sabaq": [
           0,
           0.5,
-          null,
+          1,
           null,
           null
         ],
         "sabaqDhor": [
           6,
           6,
-          null,
+          6,
           null,
           null
         ],
@@ -810,14 +810,14 @@
       {
         "sabaq": [
           4,
-          null,
+          0,
           null,
           null,
           null
         ],
         "sabaqDhor": [
           3,
-          null,
+          0,
           null,
           null,
           null
@@ -857,7 +857,7 @@
         "sabaq": [
           2,
           0,
-          null,
+          3,
           null,
           null
         ],
@@ -887,14 +887,14 @@
         "sabaqDhor": [
           7,
           6,
-          null,
+          7,
           null,
           null
         ],
         "dhor": [
           7,
           7,
-          null,
+          7,
           null,
           null
         ]
@@ -903,21 +903,21 @@
         "sabaq": [
           0,
           1,
-          null,
+          1,
           null,
           null
         ],
         "sabaqDhor": [
           8,
           6,
-          null,
+          6,
           null,
           null
         ],
         "dhor": [
           2,
           5,
-          null,
+          4,
           null,
           null
         ]
@@ -1025,14 +1025,14 @@
         "sabaqDhor": [
           7,
           6,
-          null,
+          6,
           null,
           null
         ],
         "dhor": [
           10,
           6,
-          null,
+          6,
           null,
           null
         ]
@@ -1140,14 +1140,14 @@
         "sabaqDhor": [
           7,
           7,
-          null,
+          7,
           null,
           null
         ],
         "dhor": [
           14,
           14,
-          null,
+          14,
           null,
           null
         ]
@@ -1163,14 +1163,14 @@
         "sabaqDhor": [
           7,
           0,
-          null,
+          7,
           null,
           null
         ],
         "dhor": [
           4,
           0,
-          null,
+          0,
           null,
           null
         ]
@@ -1186,14 +1186,14 @@
         "sabaqDhor": [
           7,
           7,
-          null,
+          7,
           null,
           null
         ],
         "dhor": [
           14,
           14,
-          null,
+          14,
           null,
           null
         ]
@@ -1209,14 +1209,14 @@
         "sabaqDhor": [
           0,
           0,
-          null,
+          0,
           null,
           null
         ],
         "dhor": [
           4,
           5,
-          null,
+          0,
           null,
           null
         ]
@@ -1232,14 +1232,14 @@
         "sabaqDhor": [
           7,
           7,
-          null,
+          7,
           null,
           null
         ],
         "dhor": [
           14,
           14,
-          null,
+          21,
           null,
           null
         ]
@@ -1248,21 +1248,21 @@
         "sabaq": [
           0.5,
           0,
-          null,
+          0.5,
           null,
           null
         ],
         "sabaqDhor": [
           0,
           0,
-          null,
+          0,
           null,
           null
         ],
         "dhor": [
           0,
           0,
-          null,
+          21,
           null,
           null
         ]
@@ -1271,21 +1271,21 @@
         "sabaq": [
           0,
           0.3,
-          null,
+          0.2,
           null,
           null
         ],
         "sabaqDhor": [
           0,
           0,
-          null,
+          0,
           null,
           null
         ],
         "dhor": [
           14,
           14,
-          null,
+          14,
           null,
           null
         ]
@@ -7135,7 +7135,6 @@
     {
       "name": "Rehan Mohsinbhai Patel",
       "grade": "Grade 8",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7148,7 +7147,6 @@
     {
       "name": "Mohammed Taha Moosa",
       "grade": "Grade 8",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7161,7 +7159,6 @@
     {
       "name": "Syed Ali Gilani",
       "grade": "Grade 8",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7174,7 +7171,6 @@
     {
       "name": "Muhammad Dawood",
       "grade": "Grade 8",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7187,7 +7183,6 @@
     {
       "name": "Afeef Ali",
       "grade": "Grade 8",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7200,7 +7195,6 @@
     {
       "name": "Zahir Kedir Moreta",
       "grade": "Grade 7",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7213,7 +7207,6 @@
     {
       "name": "Bilal Aboobaker Mottiar",
       "grade": "Grade 7",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7226,7 +7219,6 @@
     {
       "name": "Mohammed Kedir Moreta",
       "grade": "Grade 6",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7239,7 +7231,6 @@
     {
       "name": "Umair Iqbal Mohamed",
       "grade": "Grade 6",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7252,7 +7243,6 @@
     {
       "name": "Chaudrey Zayyan Ahmad",
       "grade": "Grade 6",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7265,7 +7255,6 @@
     {
       "name": "Musab Anwar Yasin",
       "grade": "Grade 5",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7278,7 +7267,6 @@
     {
       "name": "Syed Azlan Haider Gilani",
       "grade": "Grade 5",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7291,7 +7279,6 @@
     {
       "name": "Sulaiman Dawood",
       "grade": "Grade 5",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7304,7 +7291,6 @@
     {
       "name": "Yahya Cassim",
       "grade": "Grade 5",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7317,7 +7303,6 @@
     {
       "name": "Ahmed Ali",
       "grade": "Grade 5",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7330,7 +7315,6 @@
     {
       "name": "Hussain Rehman",
       "grade": "Grade 4",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7343,7 +7327,6 @@
     {
       "name": "Mikaeel Patel",
       "grade": "Grade 4",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7356,7 +7339,6 @@
     {
       "name": "Thlotlego L. Ntokwe",
       "grade": "Grade 4",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7369,7 +7351,6 @@
     {
       "name": "Abu Bakr Munshi",
       "grade": "Grade 4",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7382,7 +7363,6 @@
     {
       "name": "Umair Mohamad",
       "grade": "Grade 4",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7395,7 +7375,6 @@
     {
       "name": "Muhammad Hamza",
       "grade": "Grade 3",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7408,7 +7387,6 @@
     {
       "name": "Usamah Suleiman Hamido",
       "grade": "Grade 1",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7421,7 +7399,6 @@
     {
       "name": "",
       "grade": "",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7434,7 +7411,6 @@
     {
       "name": "",
       "grade": "",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
@@ -7447,7 +7423,6 @@
     {
       "name": "",
       "grade": "",
-      "paras": "",
       "hifz100": "",
       "hifz70": "",
       "target20": "",
