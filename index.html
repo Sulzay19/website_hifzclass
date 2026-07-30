@@ -145,9 +145,8 @@ table.week-table thead th {
   font-size: 12px;
   border-radius: 3px;
 }
-.name-input { font-size: 15px; font-weight: bold; }
-.name-sync, .grade-sync { color: #000; font-size: 12px; font-weight: bold; }
-.name-sync { font-size: 15px; }
+.name-input, .grade-input { font-size: 15px; font-weight: bold; color: #000; }
+.name-sync, .grade-sync { color: #000; font-size: 15px; font-weight: bold; }
 .day-col input {
   width: 42px;
   text-align: center;
@@ -225,11 +224,11 @@ tfoot td { border: 1px solid #0f2e47; }
   justify-content: space-between;
   padding: 9px 0;
   border-bottom: 1px solid #eef3fa;
-  font-size: 13px;
+  font-size: 15px;
 }
 .rc-row:last-child { border-bottom: none; }
 .rc-row .rc-label { color: #555; }
-.rc-row .rc-value { font-weight: bold; color: #1F4E78; }
+.rc-row .rc-value { font-weight: bold; color: #000; font-size: 15px; }
 .rc-empty { color: #999; font-style: italic; padding: 10px 0; }
 .rc-section-title {
   margin: 20px 0 8px;
@@ -244,13 +243,15 @@ tfoot td { border: 1px solid #0f2e47; }
 .rc-weeks-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 6px;
 }
 .rc-weeks-table th, .rc-weeks-table td {
   border: 1px solid #dbe4f0;
   padding: 6px 8px;
   text-align: center;
+  font-weight: bold;
+  color: #000;
 }
 .rc-weeks-table thead th {
   background: #1F4E78;
@@ -304,20 +305,20 @@ tfoot td { border: 1px solid #0f2e47; }
 .erpt-info-row:last-child { margin-bottom: 0; }
 .erpt-info-label { font-weight: bold; width: 170px; flex-shrink: 0; font-size: 13.5px; }
 .erpt-info-row input {
-  flex: 1; font-family: inherit; font-size: 13.5px; padding: 6px 8px;
-  background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; color: #1a1a1a;
+  flex: 1; font-family: inherit; font-size: 15px; font-weight: bold; padding: 6px 8px;
+  background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; color: #000;
 }
 .erpt-info-row input[readonly] { background: #f6efe0; }
 .erpt-info-row input.short { flex: none; width: 200px; }
 .erpt-name-value { font-size: 17px !important; font-weight: bold; }
-.erpt-table { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 12.5px; }
+.erpt-table { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 15px; }
 .erpt-table th, .erpt-table td { border: 1px solid var(--erpt-gold); padding: 7px 8px; }
 .erpt-table th { background: #f6efe0; color: var(--erpt-green); font-weight: bold; text-align: center; }
-.erpt-table td.rowlabel { font-weight: bold; background: #faf8f3; width: 24%; }
+.erpt-table td.rowlabel { font-weight: bold; background: #faf8f3; width: 24%; color: #000; }
 .erpt-table td.cell { padding: 3px; text-align: center; }
 .erpt-table td.cell input {
-  width: 100%; text-align: center; font-family: inherit; font-size: 12.5px;
-  padding: 5px 3px; background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; color: #1a1a1a;
+  width: 100%; text-align: center; font-family: inherit; font-size: 15px; font-weight: bold;
+  padding: 5px 3px; background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; color: #000;
 }
 .erpt-table td.cell input[readonly] { background: #f6efe0; font-weight: bold; }
 .erpt-comments-label { font-weight: bold; margin-bottom: 8px; font-size: 13.5px; }
@@ -328,8 +329,8 @@ tfoot td { border: 1px solid #0f2e47; }
 .erpt-signatures { display: flex; justify-content: space-between; gap: 18px; margin-top: 8px; }
 .erpt-sig { flex: 1; text-align: center; }
 .erpt-sig input {
-  width: 100%; font-family: inherit; font-size: 13px; padding: 6px 8px;
-  background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; margin-bottom: 6px; color: #1a1a1a;
+  width: 100%; font-family: inherit; font-size: 15px; font-weight: bold; padding: 6px 8px;
+  background: #fff; border: 1px solid #c9c9c9; border-radius: 2px; margin-bottom: 6px; color: #000;
 }
 .erpt-sig label { font-size: 12px; color: #333; }
 
@@ -522,7 +523,9 @@ tfoot td { border: 1px solid #0f2e47; }
   border: 1px solid #ccc;
   padding: 3px 4px;
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
   border-radius: 3px;
 }
 .exam-table select {
@@ -530,12 +533,14 @@ tfoot td { border: 1px solid #0f2e47; }
   border: 1px solid #ccc;
   padding: 3px 2px;
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
   border-radius: 3px;
 }
 .exam-table .exam-name-col { min-width: 130px; text-align: left !important; }
 .exam-table .exam-narrow { width: 62px; }
-.exam-table .exam-computed { font-weight: bold; background: #E2EFDA; color: #000; }
+.exam-table .exam-computed { font-weight: bold; background: #E2EFDA; color: #000; font-size: 15px; }
 .exam-table .exam-grand { font-weight: bold; background: #8E7CC3; color: #fff; }
 .back-to-home {
   display: inline-block;

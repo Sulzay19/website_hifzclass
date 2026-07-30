@@ -881,7 +881,7 @@
           0,
           2,
           0,
-          null,
+          2.5,
           null
         ],
         "sabaqDhor": [
@@ -7433,5 +7433,931 @@
       "status": ""
     }
   ],
-  "miscDocs": []
+  "miscDocs": [],
+  "examReportData": {
+    "0": {
+      "terms": {
+        "1": [
+          null,
+          "0.75 para",
+          "16",
+          null,
+          null,
+          null,
+          null,
+          null,
+          "53"
+        ],
+        "2": [
+          null,
+          "1 para",
+          "17",
+          null,
+          null,
+          null,
+          null,
+          null,
+          "51"
+        ],
+        "3": [
+          null,
+          "0.27",
+          "17.27",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "1": {
+      "terms": {
+        "1": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "41"
+        ],
+        "2": [
+          null,
+          "2.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "40"
+        ],
+        "3": [
+          null,
+          "0.50",
+          "24.00",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "2": {
+      "terms": {
+        "1": [
+          null,
+          "1.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "57"
+        ],
+        "2": [
+          null,
+          "2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "44"
+        ],
+        "3": [
+          null,
+          "0.71",
+          "23.21",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "3": {
+      "terms": {
+        "1": [
+          null,
+          "1.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "70"
+        ],
+        "2": [
+          null,
+          "2.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "71"
+        ],
+        "3": [
+          null,
+          "0.82",
+          "24.82",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "4": {
+      "terms": {
+        "1": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "63"
+        ],
+        "2": [
+          null,
+          "2.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "67"
+        ],
+        "3": [
+          null,
+          "0.94",
+          "24.69",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "5": {
+      "terms": {
+        "1": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "58"
+        ],
+        "2": [
+          null,
+          "1.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "56"
+        ],
+        "3": [
+          null,
+          "0.71",
+          "11.71",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "6": {
+      "terms": {
+        "1": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "53"
+        ],
+        "2": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "51"
+        ],
+        "3": [
+          null,
+          "0.27",
+          "8.27",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "7": {
+      "terms": {
+        "1": [
+          null,
+          "2.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "73"
+        ],
+        "2": [
+          null,
+          "2.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "79"
+        ],
+        "3": [
+          null,
+          "1.01",
+          "19.76",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "8": {
+      "terms": {
+        "1": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "61"
+        ],
+        "2": [
+          null,
+          "1.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "56"
+        ],
+        "3": [
+          null,
+          "0.20",
+          "9.20",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "9": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "50"
+        ],
+        "2": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "45"
+        ],
+        "3": [
+          null,
+          "0.03",
+          "4.53",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "10": {
+      "terms": {
+        "1": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "67"
+        ],
+        "2": [
+          null,
+          "1.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "69"
+        ],
+        "3": [
+          null,
+          "0.38",
+          "12.88",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "11": {
+      "terms": {
+        "1": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "55"
+        ],
+        "2": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "68"
+        ],
+        "3": [
+          null,
+          "0.50",
+          "7.00",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "12": {
+      "terms": {
+        "1": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "48"
+        ],
+        "2": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "52"
+        ],
+        "3": [
+          null,
+          "0.46",
+          "6.46",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "13": {
+      "terms": {
+        "1": [
+          null,
+          "1",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "70"
+        ],
+        "2": [
+          null,
+          "1.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "74"
+        ],
+        "3": [
+          null,
+          "0.18",
+          "12.18",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "14": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "61"
+        ],
+        "2": [
+          null,
+          "0.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "54"
+        ],
+        "3": [
+          null,
+          "0.06",
+          "0.81",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "15": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "72"
+        ],
+        "2": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "75"
+        ],
+        "3": [
+          null,
+          "0.20",
+          "1.45",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "16": {
+      "terms": {
+        "1": [
+          null,
+          "1.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "75"
+        ],
+        "2": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "61"
+        ],
+        "3": [
+          null,
+          "0.14",
+          "2.39",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "17": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "73"
+        ],
+        "2": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "76"
+        ],
+        "3": [
+          null,
+          "0.28",
+          "1.53",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "18": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "63"
+        ],
+        "2": [
+          null,
+          "0.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "6"
+        ],
+        "3": [
+          null,
+          "0.06",
+          "0.81",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "19": {
+      "terms": {
+        "1": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "62"
+        ],
+        "2": [
+          null,
+          "0.75",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "75"
+        ],
+        "3": [
+          null,
+          "0.16",
+          "1.41",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "20": {
+      "terms": {
+        "1": [
+          null,
+          "0.25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "92"
+        ],
+        "2": [
+          null,
+          "0.5",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "90"
+        ],
+        "3": [
+          null,
+          "0.07",
+          "0.82",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    },
+    "21": {
+      "terms": {
+        "3": [
+          null,
+          "0.05",
+          "0.55",
+          null,
+          "",
+          null,
+          "",
+          "",
+          ""
+        ]
+      },
+      "totals": [],
+      "comments": "",
+      "reopens": "",
+      "sigUstaadh": "",
+      "sigHod": "",
+      "sigParent": ""
+    }
+  }
 }
