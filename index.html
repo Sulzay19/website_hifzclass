@@ -715,6 +715,7 @@ select {
       </label>
       <button class="action-btn" onclick="doShare()">&#128257; Share</button>
       <button class="action-btn" style="background:#FFF2CC;" onclick="startNewTerm()">&#128260; Start New Term</button>
+      <button class="action-btn" style="background:#F8D7DA;color:#842029;" onclick="clearRoster()" title="Wipe every learner for a brand-new class (e.g. a new year) - not for a new term with the same learners">&#128465; Clear Roster (New Class)</button>
     </div>
     <p id="file-link-status" style="text-align:center;color:#d9e4ef;font-size:12px;font-style:italic;margin:6px 0 0;">Not linked to a file yet - click "Open Daily File" once to choose (or create) the one file you'll reuse every day.</p>
     </div>
@@ -1072,6 +1073,62 @@ for (let r = 0; r < NUM_LEARNERS; r++) {
   });
 }
 
+// ===== Exam Term Report (Hifz Report) persistent store =====
+// Keyed by learner row -> term (1-4), so each term's report figures stay
+// filled in as the year progresses through "Start New Term", instead of
+// being recalculated fresh (and lost) every time the sheet re-renders.
+// examReportData[r] = {
+//   terms: { 1: [v0..v8], 2: [...], 3: [...], 4: [...] }, // per-term column values (index = report row)
+//   totals: [v0..v8],                                      // shared "Total" column values
+//   comments, reopens, sigUstaadh, sigHod, sigParent        // free-text fields
+// }
+let examReportData = {};
+function getExamReportRow(r) {
+  if (!examReportData[r]) {
+    examReportData[r] = { terms: {}, totals: [], comments: "", reopens: "", sigUstaadh: "", sigHod: "", sigParent: "" };
+  }
+  if (!examReportData[r].terms) examReportData[r].terms = {};
+  if (!examReportData[r].totals) examReportData[r].totals = [];
+  return examReportData[r];
+}
+// Fired on every keystroke in an editable Hifz Report field, so manually
+// typed data (other terms, Average Daily figures, comments, signatures)
+// is captured immediately rather than being wiped on the next re-render.
+function onExamReportFieldInput(r, kind, key, val) {
+  const store = getExamReportRow(r);
+  if (kind === "term") {
+    const [t, i] = key.split(":").map(Number);
+    if (!store.terms[t]) store.terms[t] = [];
+    store.terms[t][i] = val;
+  } else if (kind === "total") {
+    store.totals[Number(key)] = val;
+  } else {
+    store[key] = val;
+  }
+}
+// Snapshots every learner's live-computed Term figures (Ajzaa done, Total
+// Ajzaa, Attendance, Tajweed, Dua, Hifz/Quran) for the CURRENT term into
+// the persistent store. Called on Save and before Start New Term, so a
+// term's Hifz Report data is preserved even if nobody opened the Exam Term
+// Report tab for every learner before moving on.
+function captureAllCurrentTermAutoValues() {
+  const termIdx = getCurrentTermIndex();
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const nameEl = document.getElementById(`exam-name-${r}`);
+    if (!nameEl || !nameEl.value.trim()) continue;
+    const gv = id => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+    const gt = id => { const el = document.getElementById(id); return el ? el.textContent.trim() : ""; };
+    const store = getExamReportRow(r);
+    if (!store.terms[termIdx]) store.terms[termIdx] = [];
+    store.terms[termIdx][1] = gt(`sum-termjuzdone-${r}`);
+    store.terms[termIdx][2] = gt(`sum-totaljuz-${r}`);
+    store.terms[termIdx][4] = gv(`exam-attendance-${r}`);
+    store.terms[termIdx][6] = gv(`exam-tajweed-${r}`);
+    store.terms[termIdx][7] = gv(`exam-dua-${r}`);
+    store.terms[termIdx][8] = gt(`exam-total-${r}`);
+  }
+}
+
 function switchTab(tabId, btn) {
   document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
@@ -1316,10 +1373,26 @@ function buildExamReportSheetHtml(rowIndex) {
   const hifzQuran = gt(`exam-total-${r}`);
   const attendance = gv(`exam-attendance-${r}`);
 
-  // Each row: label + which value (if any) auto-fills the current term
-  // column, and whether that same value also auto-fills the Total column.
-  // "Ajzaa (Paras) for exams" is intentionally left without an `auto` value
-  // so it stays blank/editable for manual entry.
+  // Persistent store for this learner - holds every term's figures (auto
+  // and manually-typed) so Term 1-4 all stay filled in as the year
+  // progresses, instead of being recalculated fresh (and lost) on render.
+  const store = getExamReportRow(r);
+  if (!store.terms[termIdx]) store.terms[termIdx] = [];
+  // Immediately archive this term's live auto values into the store, so
+  // they're captured even if the user never presses Save before switching
+  // learners/terms.
+  store.terms[termIdx][1] = termJuzDone;
+  store.terms[termIdx][2] = totalJuzMemorized;
+  store.terms[termIdx][4] = attendance;
+  store.terms[termIdx][6] = tajweed;
+  store.terms[termIdx][7] = dua;
+  store.terms[termIdx][8] = hifzQuran;
+
+  // Each row: label + which value (if any) auto-fills the CURRENT term
+  // column live from the Exam/Summary tabs. Every other term column (and
+  // rows with no auto value, like "Average Daily Sabaq") is backed by the
+  // persistent store above, so typed-in figures for past/future terms
+  // survive switching learners, saving, and reloading.
   const rowsDef = [
     { label: "Average Daily Sabaq" },
     { label: "Ajzaa (Paras) completed in the Term", auto: termJuzDone },
@@ -1337,14 +1410,27 @@ function buildExamReportSheetHtml(rowIndex) {
     let cells = "";
     for (let t = 1; t <= 4; t++) {
       const hasAuto = t === termIdx && row.auto !== undefined && row.auto !== "";
-      const val = hasAuto ? escapeHtml(row.auto) : "";
-      cells += `<td class="cell"><input type="text" name="er_row${i}_t${t}" value="${val}"${hasAuto ? " readonly" : ""}></td>`;
+      let val;
+      if (hasAuto) {
+        val = row.auto;
+      } else {
+        const stored = store.terms[t] ? store.terms[t][i] : undefined;
+        val = (stored === undefined || stored === null) ? "" : stored;
+      }
+      const safeVal = escapeHtml(val);
+      cells += `<td class="cell"><input type="text" name="er_row${i}_t${t}" value="${safeVal}"${hasAuto ? " readonly" : ""} oninput="onExamReportFieldInput(${r}, 'term', '${t}:${i}', this.value)"></td>`;
     }
-    const hasAutoTotal = row.autoTotal !== undefined && row.autoTotal !== "";
-    const totalVal = hasAutoTotal ? escapeHtml(row.autoTotal) : "";
-    cells += `<td class="cell"><input type="text" name="er_row${i}_total" value="${totalVal}"${hasAutoTotal ? " readonly" : ""}></td>`;
+    const storedTotal = store.totals[i];
+    const totalVal = escapeHtml((storedTotal === undefined || storedTotal === null) ? "" : storedTotal);
+    cells += `<td class="cell"><input type="text" name="er_row${i}_total" value="${totalVal}" oninput="onExamReportFieldInput(${r}, 'total', '${i}', this.value)"></td>`;
     rowsHtml += `<tr><td class="rowlabel">${escapeHtml(row.label)}</td>${cells}</tr>`;
   });
+
+  const reopensVal = escapeHtml(store.reopens || "");
+  const commentsVal = escapeHtml(store.comments || "");
+  const sigUstaadhVal = escapeHtml(store.sigUstaadh || "");
+  const sigHodVal = escapeHtml(store.sigHod || "");
+  const sigParentVal = escapeHtml(store.sigParent || "");
 
   return `
     <div class="erpt-sheet">
@@ -1362,7 +1448,7 @@ function buildExamReportSheetHtml(rowIndex) {
           <div class="erpt-info-row"><div class="erpt-info-label">Grade:</div><input type="text" class="short" value="${escapeHtml(grade)}" readonly></div>
           <div class="erpt-info-row"><div class="erpt-info-label">Term:</div><input type="text" class="short" value="${escapeHtml(meta.term || "")}" readonly></div>
           <div class="erpt-info-row"><div class="erpt-info-label">Date:</div><input type="text" class="short" value="${escapeHtml(formatDateLong(meta.date))}" readonly></div>
-          <div class="erpt-info-row"><div class="erpt-info-label">Hifz Class Re-opens:</div><input type="text" name="er_reopens" class="short" placeholder="e.g. 23 January 2026"></div>
+          <div class="erpt-info-row"><div class="erpt-info-label">Hifz Class Re-opens:</div><input type="text" name="er_reopens" class="short" placeholder="e.g. 23 January 2026" value="${reopensVal}" oninput="onExamReportFieldInput(${r}, 'field', 'reopens', this.value)"></div>
         </div>
         <table class="erpt-table">
           <thead>
@@ -1371,11 +1457,11 @@ function buildExamReportSheetHtml(rowIndex) {
           <tbody>${rowsHtml}</tbody>
         </table>
         <div class="erpt-comments-label">General Comments:</div>
-        <textarea name="er_comments"></textarea>
+        <textarea name="er_comments" oninput="onExamReportFieldInput(${r}, 'field', 'comments', this.value)">${commentsVal}</textarea>
         <div class="erpt-signatures">
-          <div class="erpt-sig"><input type="text" name="er_sig_ustaadh"><label>Ustaadh's Signature</label></div>
-          <div class="erpt-sig"><input type="text" name="er_sig_hod"><label>HOD's Signature</label></div>
-          <div class="erpt-sig"><input type="text" name="er_sig_parent"><label>Parent's Signature</label></div>
+          <div class="erpt-sig"><input type="text" name="er_sig_ustaadh" value="${sigUstaadhVal}" oninput="onExamReportFieldInput(${r}, 'field', 'sigUstaadh', this.value)"><label>Ustaadh's Signature</label></div>
+          <div class="erpt-sig"><input type="text" name="er_sig_hod" value="${sigHodVal}" oninput="onExamReportFieldInput(${r}, 'field', 'sigHod', this.value)"><label>HOD's Signature</label></div>
+          <div class="erpt-sig"><input type="text" name="er_sig_parent" value="${sigParentVal}" oninput="onExamReportFieldInput(${r}, 'field', 'sigParent', this.value)"><label>Parent's Signature</label></div>
         </div>
       </div>
     </div>
@@ -1387,7 +1473,12 @@ function buildExamReportSheetHtml(rowIndex) {
 // masthead, tabs, and this tab's own buttons/dropdown, leaving just the
 // Hifz Report sheet to fill the printed/PDF page.
 function printExamReport() {
-  document.title = "Hifz_Report";
+  const select = document.getElementById("examreport-select");
+  const r = select ? select.value : "";
+  const nameEl = r !== "" ? document.getElementById(`exam-name-${r}`) : null;
+  const learnerName = nameEl && nameEl.value.trim() ? sanitizeForFilename(nameEl.value) : "Learner";
+  const ty = termYearLabel();
+  document.title = ty ? `Hifz_Report_${learnerName}_${ty}` : `Hifz_Report_${learnerName}`;
   document.body.classList.add("printing-examreport");
   window.print();
 }
@@ -1421,7 +1512,8 @@ function printAllExamReports() {
     .map(r => `<div class="erpt-print-page">${buildExamReportSheetHtml(r)}</div>`)
     .join("");
 
-  document.title = "Hifz_Reports_All";
+  const ty = termYearLabel();
+  document.title = ty ? `Hifz_Reports_All_${ty}` : `Hifz_Reports_All`;
   document.body.classList.add("printing-examreport", "printing-examreport-all");
   window.print();
 }
@@ -1621,13 +1713,20 @@ function startNewTerm() {
   const ok = confirm(
     "Start a new term?\n\n" +
     "This will:\n" +
+    "- Archive this term's Hifz Report figures (Ajzaa done, Attendance, Tajweed, Dua, Hifz/Quran) so they stay on record under this term's column\n" +
     "- Add this term's pages into each learner's Total Juz Memorized, and carry that forward as the new starting point\n" +
     "- Clear all Week 1-12 daily entries for a fresh term\n" +
-    "- Clear Term Sabaq Target and Term Juz Target (Year Juz Target is kept)\n\n" +
-    "Please make sure you've clicked \"Save (.json)\" to back up this term's records first.\n\n" +
+    "- Clear Term Sabaq Target and Term Juz Target (Year Juz Target is kept)\n" +
+    "- Clear the Exam tab's marks so the next term's exam starts blank\n\n" +
+    "Please make sure you've clicked \"Save (.json)\" to back up this term's records first, and remember to update the Term field above (e.g. to \"Term 2 2026\") once you continue.\n\n" +
     "Continue?"
   );
   if (!ok) return;
+
+  // Archive this term's Hifz Report figures into the persistent store
+  // BEFORE anything is cleared or the Term field is changed, so Term 1-4
+  // data keeps accumulating correctly as the year progresses.
+  captureAllCurrentTermAutoValues();
 
   for (let r = 0; r < NUM_LEARNERS; r++) {
     let sabaqGiven = 0;
@@ -1657,9 +1756,101 @@ function startNewTerm() {
     }
   }
 
+  // Clear this term's Exam tab marks (Name/Grade untouched) so the next
+  // term's exam results start from a blank sheet - the figures that were
+  // just entered have already been archived into the Hifz Report above.
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    ["exam-hifz100", "exam-hifz70", "exam-target20", "exam-dhor10", "exam-tajweed", "exam-dua", "exam-attendance"].forEach(prefix => {
+      const el = document.getElementById(`${prefix}-${r}`);
+      if (el) el.value = "";
+    });
+    const statusEl = document.getElementById(`exam-status-${r}`);
+    if (statusEl) statusEl.value = "";
+  }
+  recalcAllExam();
+  syncExamParas();
+
   for (let w = 1; w <= NUM_WEEKS; w++) recalcWeek(w);
   recalcSummary();
-  alert("New term started. Each learner's Total Juz Memorized has been carried forward as their new Prior Juz Memorized baseline, and the weekly grid is now clear.");
+  alert("New term started. Each learner's Total Juz Memorized has been carried forward as their new Prior Juz Memorized baseline, this term's Hifz Report figures have been archived, and the weekly grid + Exam tab are now clear. Don't forget to update the Term field above for the new term.");
+}
+
+// Wipes every learner for a brand-new class (e.g. starting a new academic
+// year with a different group of students) - unlike Start New Term, this
+// also erases names/grades, all Exam tab marks, every archived Hifz Report
+// term (1-4), and uploaded Misc documents. It does NOT touch the Date/Term
+// fields or any linked daily file, so the same dashboard file can keep
+// being used going forward.
+function clearRoster() {
+  const ok = confirm(
+    "Clear the roster for a brand-new class?\n\n" +
+    "This will permanently erase, for every learner:\n" +
+    "- Names, grades and targets\n" +
+    "- All Week 1-12 daily entries\n" +
+    "- All Exam tab marks\n" +
+    "- Every saved Hifz Report term (1-4) on record\n" +
+    "- Any uploaded Misc documents\n\n" +
+    "This is for starting with a completely new class of learners (e.g. a new year) - " +
+    "if you're keeping the SAME learners and just moving to the next term, use \"Start New Term\" instead.\n\n" +
+    "Please make sure you've clicked \"Save (.json)\" to back up this class's records first, since this cannot be undone.\n\n" +
+    "Continue?"
+  );
+  if (!ok) return;
+  const confirmText = prompt('This cannot be undone. Type CLEAR (in capitals) to confirm wiping the roster:');
+  if (confirmText !== "CLEAR") {
+    alert("Roster was not cleared - the confirmation text didn't match.");
+    return;
+  }
+
+  for (let r = 0; r < NUM_LEARNERS; r++) {
+    learners[r] = { name: "", grade: "", termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null };
+
+    const nameInput = document.querySelector(`.name-input[data-row="${r}"]`);
+    const gradeInput = document.querySelector(`.grade-input[data-row="${r}"]`);
+    if (nameInput) nameInput.value = "";
+    if (gradeInput) gradeInput.value = "";
+    onNameChange(r, "");
+    onGradeChange(r, "");
+
+    ["termSabaqTarget", "yearJuzTarget", "termJuzTarget", "priorJuzMemorized"].forEach(field => {
+      const input = document.querySelector(`.target-input[data-row="${r}"][data-field="${field}"]`);
+      if (input) input.value = "";
+    });
+
+    for (let w = 1; w <= NUM_WEEKS; w++) {
+      CATS.forEach(cat => {
+        for (let d = 0; d < 5; d++) {
+          data[w][r][cat][d] = null;
+          const input = document.querySelector(
+            `.day-input[data-week="${w}"][data-row="${r}"][data-cat="${cat}"][data-day="${d}"]`
+          );
+          if (input) input.value = "";
+        }
+      });
+    }
+  }
+
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    ["exam-hifz100", "exam-hifz70", "exam-target20", "exam-dhor10", "exam-tajweed", "exam-dua", "exam-attendance"].forEach(prefix => {
+      const el = document.getElementById(`${prefix}-${r}`);
+      if (el) el.value = "";
+    });
+    const statusEl = document.getElementById(`exam-status-${r}`);
+    if (statusEl) statusEl.value = "";
+  }
+
+  examReportData = {};
+  miscDocs = [];
+  renderMiscDocs();
+
+  for (let w = 1; w <= NUM_WEEKS; w++) recalcWeek(w);
+  recalcAllExam();
+  syncExamParas();
+  recalcSummary();
+  populateLearnerDropdown();
+  populateExamReportDropdown();
+
+  alert("Roster cleared. Ready for a new class - enter names on Week 1 (or use \"Load / Import\" to bring in a roster file) to get started.");
 }
 
 function loadExampleRow() {
@@ -1761,10 +1952,33 @@ async function saveWithPicker(content, filename, mime) {
   return true;
 }
 
+// Turns free text (e.g. "Term 2 2026") into a safe filename fragment -
+// strips characters that aren't allowed in filenames and collapses
+// whitespace into underscores.
+function sanitizeForFilename(str) {
+  return (str || "").toString().trim().replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, "_");
+}
+
+// Builds the "Term X YYYY" (or just a year, if only the Date field is set)
+// portion used in save/download/PDF filenames, so backups from different
+// terms don't collide and are easy to tell apart at a glance.
+function termYearLabel() {
+  const meta = getMeta();
+  const term = meta.term && meta.term.trim();
+  if (term) return sanitizeForFilename(term);
+  const d = new Date(meta.date);
+  if (!isNaN(d.getTime())) return String(d.getFullYear());
+  return "";
+}
+
 function fileLabel() {
-  // Kept constant (not date-based) so the daily save file always has the
-  // same name and can be reliably re-opened/overwritten every day.
-  return `Hifz_Dashboard`;
+  // Stays constant for as long as the Term field doesn't change, so the
+  // linked daily file can be reliably re-opened/overwritten every day
+  // during a term - then automatically picks up a fresh, distinctly-named
+  // label (e.g. "Hifz_Dashboard_Term2_2026") once the Term field is
+  // updated for a new term, which is exactly when a fresh backup is wanted.
+  const ty = termYearLabel();
+  return ty ? `Hifz_Dashboard_${ty}` : `Hifz_Dashboard`;
 }
 
 // ===== Miscellaneous documents (Application Form, Class List, etc.) =====
@@ -2060,7 +2274,11 @@ async function openDailyFile() {
 // If the user starts a brand-new dashboard (no file linked yet), create
 // the file for the first time via Save, and remember it from then on.
 async function doSave() {
-  const state = { meta: getMeta(), learners, data, exam: collectExamData(), miscDocs };
+  // Snapshot every learner's current-term Hifz Report figures before
+  // saving, so Term 1-4 data keeps accumulating even if nobody opened the
+  // Exam Term Report tab for a particular learner this session.
+  captureAllCurrentTermAutoValues();
+  const state = { meta: getMeta(), learners, data, exam: collectExamData(), miscDocs, examReportData };
   const content = JSON.stringify(state, null, 2);
   const filename = `${fileLabel()}_save.json`;
 
@@ -2338,7 +2556,13 @@ function applyLoadedState(state) {
     miscDocs = state.miscDocs;
     renderMiscDocs();
   }
+  // Restore each learner's Hifz Report data (Term 1-4 figures, comments,
+  // signatures) so previously-completed terms stay filled in after a
+  // reload instead of only showing whatever term is currently active.
+  examReportData = state.examReportData || {};
   recalcSummary();
+  populateLearnerDropdown();
+  populateExamReportDropdown();
 }
 
 function doShare() {
