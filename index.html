@@ -169,6 +169,18 @@ table.week-table thead th {
   background: #fffaf0;
 }
 .const-col { font-weight: bold; background: #e8e8e8; }
+/* The Summary tab's computed number cells (Sabaq Given, Term Juz Done, %
+   of Target, Total Juz Memorized, Remaining Juz) were inheriting the
+   table's base 12px, while the editable target inputs next to them use
+   the browser's larger default input font - making some numbers look
+   noticeably smaller than others in the same row. Bump both to a shared,
+   larger size so every number in the Summary tab reads the same. */
+#summary-table .target-input,
+#summary-table td.total-col,
+#summary-table td.const-col,
+#summary-table td.foot-total {
+  font-size: 15px;
+}
 .class-total-label {
   background: #1F4E78; color: #fff; font-weight: bold; text-align: center;
 }
@@ -401,6 +413,34 @@ tfoot td { border: 1px solid #0f2e47; }
   }
   body.printing-examreport-all .erpt-print-page:last-child {
     page-break-after: auto;
+  }
+
+  /* When printing/downloading a single page (any Week tab, Summary, or
+     Exam) via that page's own Print/Download button, hide every dashboard
+     chrome element and every other tab, and let just that one table fill
+     the printed/PDF page - same one-page-only behaviour as the Exam Term
+     Report's own print button above. */
+  body.printing-single-page .masthead,
+  body.printing-single-page .tabs,
+  body.printing-single-page .action-row,
+  body.printing-single-page .legend,
+  body.printing-single-page #file-link-status,
+  body.printing-single-page .container > .tab-content:not(.active) {
+    display: none !important;
+  }
+  body.printing-single-page .container {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  body.printing-single-page .tab-content.active {
+    display: block !important;
+    page-break-after: auto !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+  body.printing-single-page .tab-content.active .page-action-btn,
+  body.printing-single-page .tab-content.active .back-to-home {
+    display: none !important;
   }
 }
 
@@ -733,6 +773,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table" id="week1-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -749,6 +790,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -765,6 +807,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -781,6 +824,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -797,6 +841,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -813,6 +858,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -829,6 +875,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -845,6 +892,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -861,6 +909,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -877,6 +926,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -893,6 +943,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -909,6 +960,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table">
       <thead><tr><th rowspan="2">No.</th><th rowspan="2">Name</th><th rowspan="2">Grade</th><th colspan="6" style="background:#C6E0B4;color:#000;">SABAQ</th><th colspan="6" style="background:#BDD7EE;color:#000;">SABAQ DHOR</th><th colspan="6" style="background:#FFE699;color:#000;">DHOR</th><th rowspan="2" class="grand-header">GRAND<br>TOTAL</th></tr><tr><th style="background:#C6E0B4;">Mon</th><th style="background:#C6E0B4;">Tue</th><th style="background:#C6E0B4;">Wed</th><th style="background:#C6E0B4;">Thu</th><th style="background:#C6E0B4;">Fri</th><th style="background:#548235;color:#fff;">Total</th><th style="background:#BDD7EE;">Mon</th><th style="background:#BDD7EE;">Tue</th><th style="background:#BDD7EE;">Wed</th><th style="background:#BDD7EE;">Thu</th><th style="background:#BDD7EE;">Fri</th><th style="background:#2E75B6;color:#fff;">Total</th><th style="background:#FFE699;">Mon</th><th style="background:#FFE699;">Tue</th><th style="background:#FFE699;">Wed</th><th style="background:#FFE699;">Thu</th><th style="background:#FFE699;">Fri</th><th style="background:#BF8F00;color:#fff;">Total</th></tr></thead>
@@ -925,7 +977,7 @@ select {
       <div class="whb-item"><span class="whb-label">Term</span><span class="whb-value whb-term-display">&nbsp;</span></div>
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
-    
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table" id="summary-table">
       <thead>
@@ -985,7 +1037,7 @@ select {
       <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
     </div>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
-    
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     <div class="table-scroll">
     <table class="week-table exam-table">
       <thead>
@@ -1537,6 +1589,10 @@ window.addEventListener("afterprint", () => {
       if (sheetEl) sheetEl.innerHTML = examReportRestore.html;
       examReportRestore = null;
     }
+  }
+  if (document.body.classList.contains("printing-single-page")) {
+    document.body.classList.remove("printing-single-page");
+    document.title = fileLabel();
   }
 });
 
@@ -2152,6 +2208,20 @@ function renderMiscDocs() {
 
 function doDownload() {
   document.title = `${fileLabel()}`;
+  window.print();
+}
+
+// Prints/downloads only the currently-open page (a Week tab, Summary, or
+// Exam) instead of the whole dashboard. Toggles a body class that the
+// print CSS uses to hide the masthead, tabs, and every other tab's
+// content, leaving just the active table to fill the printed/PDF page.
+function printCurrentPage() {
+  const active = document.querySelector(".tab-content.active");
+  const heading = active ? active.querySelector("h2") : null;
+  const pageLabel = heading ? sanitizeForFilename(heading.textContent) : "Page";
+  const ty = termYearLabel();
+  document.title = ty ? `Hifz_${pageLabel}_${ty}` : `Hifz_${pageLabel}`;
+  document.body.classList.add("printing-single-page");
   window.print();
 }
 
