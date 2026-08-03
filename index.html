@@ -142,11 +142,15 @@ table.week-table thead th {
   border: 1px solid #ccc;
   padding: 3px 4px;
   font-family: Arial, sans-serif;
-  font-size: 12px;
   border-radius: 3px;
 }
-.name-input, .grade-input { font-size: 15px; font-weight: bold; color: #000; }
-.name-sync, .grade-sync { color: #000; font-size: 15px; font-weight: bold; }
+.name-input, .grade-input,
+.name-sync, .grade-sync {
+  font-family: Arial, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: bold;
+  color: #000;
+}
 .day-col input {
   width: 42px;
   text-align: center;
@@ -154,10 +158,11 @@ table.week-table thead th {
   border-radius: 3px;
   padding: 3px 2px;
   font-family: Arial, sans-serif;
+  font-size: 13px;
 }
-.total-col { font-weight: bold; color: #000; }
+.total-col { font-weight: bold; color: #000; font-size: 13px; }
 .grand-header { background: #674EA7 !important; color: #fff; }
-.grand-col { font-weight: bold; background: #8E7CC3; color: #fff; }
+.grand-col { font-weight: bold; background: #8E7CC3; color: #fff; font-size: 13px; }
 .target-col { min-width: 90px; background: #FFF2CC; }
 .target-input {
   width: 100%;
