@@ -6,98 +6,67 @@
 <title>Shk Suleiman Hifz Class Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
 :root {
-  --accent-1: #6b5df8;
-  --accent-2: #7d71f7;
-  --accent-3: #aaa0f0;
-  --accent-deep: #4e3fe0;
-  --sidebar-grad: linear-gradient(160deg, #6b5df8 0%, #7d71f7 55%, #8f7ef9 100%);
-  --card-radius: 22px;
+  --brand: #0052CC;
+  --brand-dark: #003D99;
+  --brand-light: #4A98FF;
+  --brand-pale: #C5DEFF;
+  --brand-tint: #EAF2FF;
+  --surface: #ffffff;
+  --page-bg: #F6F6F6;
+  --ink: #121212;
+  --ui-font: 'Inter', Arial, Helvetica, sans-serif;
 }
 body {
-  font-family: 'Poppins', Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at 8% 8%, rgba(170,238,220,0.55) 0%, rgba(170,238,220,0) 40%),
-    radial-gradient(circle at 92% 12%, rgba(255,196,236,0.5) 0%, rgba(255,196,236,0) 45%),
-    radial-gradient(circle at 15% 92%, rgba(190,178,251,0.5) 0%, rgba(190,178,251,0) 45%),
-    #f4f2fd;
-  background-attachment: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-bg);
   margin: 0;
-  padding: 24px;
-  color: #24213b;
+  padding: 20px;
+  color: #222;
 }
 .container {
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  gap: 22px;
-}
-.sidebar-col {
-  flex: 0 0 250px;
-  width: 250px;
-  position: sticky;
-  top: 24px;
-}
-.main-col {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.masthead {
-  background: var(--sidebar-grad);
-  color: #fff;
-  padding: 26px 20px 18px;
-  border-radius: var(--card-radius) var(--card-radius) 0 0;
-  text-align: center;
-  position: relative;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0,82,204,0.06), 0 12px 32px rgba(0,82,204,0.10);
   overflow: hidden;
 }
-.masthead::before {
-  content: "";
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
+.masthead {
+  background: linear-gradient(135deg, var(--brand) 0%, #0047b3 100%);
+  color: #fff;
+  padding: 22px 24px;
+  border-radius: 16px 16px 0 0;
+  text-align: center;
+  font-family: var(--ui-font);
 }
-.masthead::after {
-  content: "";
-  position: absolute;
-  bottom: -50px; left: -30px;
-  width: 110px; height: 110px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-}
-.masthead h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: .01em; position: relative; }
-.masthead p { margin: 6px 0 0; font-size: 12px; font-style: italic; color: #e5e1ff; position: relative; }
+.masthead h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.masthead p { margin: 6px 0 0; font-size: 13px; font-style: italic; color: var(--brand-pale); font-family: 'Lora', Georgia, serif; }
 .meta-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin-top: 16px;
-  position: relative;
+  gap: 18px;
+  margin-top: 14px;
 }
 .meta-row label {
-  font-size: 11px;
-  font-weight: 600;
-  color: #e5e1ff;
+  font-size: 12px;
+  color: #DCEBFF;
   display: flex;
   flex-direction: column;
   gap: 4px;
   text-align: left;
 }
 .meta-row input, .meta-row select {
-  font-family: 'Poppins', Arial, sans-serif;
-  font-size: 12px;
-  padding: 7px 9px;
-  border-radius: 999px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  padding: 5px 6px;
+  border-radius: 4px;
   border: none;
-  min-width: 120px;
-  text-align: center;
+  min-width: 130px;
 }
 .action-row {
   display: flex;
@@ -107,22 +76,22 @@ body {
   margin-top: 14px;
 }
 .action-btn {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  color: #fff;
+  background: #fff;
+  color: #0052CC;
   border: none;
   border-radius: 999px;
-  padding: 10px 18px;
-  font-family: 'Poppins', Arial, sans-serif;
+  padding: 9px 18px;
+  font-family: var(--ui-font);
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 4px 12px rgba(107,93,248,0.28);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
-.action-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(107,93,248,0.38); }
+.action-btn:hover { background: #DCEBFF; transform: translateY(-1px); }
 .load-btn { position: relative; overflow: hidden; }
 .load-btn input[type="file"] {
   position: absolute;
@@ -133,52 +102,40 @@ body {
 }
 .tabs {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
-  background: linear-gradient(180deg, #7d71f7 0%, #6b5df8 100%);
-  padding: 14px 14px 20px;
-  border-radius: 0 0 var(--card-radius) var(--card-radius);
-  max-height: calc(100vh - 220px);
-  overflow-y: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #EAF2FF;
+  padding: 12px 16px;
+  border-bottom: 1px solid #C5DEFF;
 }
-.tabs::-webkit-scrollbar { width: 6px; }
-.tabs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 999px; }
 .tab-btn {
   flex: none;
-  width: 100%;
   min-width: 0;
-  padding: 9px 16px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 18px;
+  background: #fff;
+  border: 1px solid #C5DEFF;
   border-radius: 999px;
   cursor: pointer;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: var(--ui-font);
   font-weight: 600;
   font-size: 13px;
-  color: #f1eefe;
-  text-align: left;
+  color: #0052CC;
   transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0,82,204,0.08);
 }
-.tab-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.4); }
+.tab-btn:hover { background: #DCEBFF; border-color: #0052CC; }
 .tab-btn.active {
-  background: #fff;
-  color: var(--accent-deep);
-  border-color: #fff;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  background: #0052CC;
+  color: #fff;
+  border-color: #0052CC;
+  box-shadow: 0 2px 8px rgba(0,82,204,0.35);
 }
-.tab-content {
-  display: none;
-  background: #fff;
-  padding: 24px;
-  border-radius: var(--card-radius);
-  box-shadow: 0 10px 30px rgba(107,93,248,0.12);
-  border: 1px solid #ece9fc;
-}
+.tab-content { display: none; background: #fff; padding: 16px; border-radius: 0 0 16px 16px; }
 .tab-content.active { display: block; }
-.tab-content h2 { color: var(--accent-deep); margin-top: 0; font-weight: 700; }
+.tab-content h2 { color: #0052CC; margin-top: 0; font-family: var(--ui-font); font-weight: 700; letter-spacing: -0.01em; }
 .note { font-size: 12px; color: #777; font-style: italic; margin: 4px 0 12px; }
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; border-radius: 10px; }
 table.week-table {
   border-collapse: collapse;
   width: 100%;
@@ -186,12 +143,12 @@ table.week-table {
   min-width: 1260px;
 }
 table.week-table th, table.week-table td {
-  border: 1px solid #b3b3b3;
+  border: 1px solid #C5DEFF;
   padding: 4px 3px;
   text-align: center;
 }
 table.week-table thead th {
-  background: linear-gradient(135deg, #6b5df8, #7d71f7);
+  background: #0052CC;
   color: #fff;
   font-size: 12px;
   position: sticky;
@@ -232,7 +189,7 @@ table.day-table thead th:nth-child(2),
 table.day-table thead th:nth-child(3) {
   position: sticky;
   z-index: 3;
-  background: linear-gradient(135deg, #6b5df8, #7d71f7);
+  background: #0052CC;
 }
 table.day-table thead th:nth-child(1) { left: 0; }
 table.day-table thead th:nth-child(2) { left: 36px; }
@@ -247,8 +204,8 @@ table.day-table thead th:nth-child(3) { left: 206px; box-shadow: 2px 0 4px rgba(
   font-size: 13px;
 }
 .total-col { font-weight: bold; color: #000; font-size: 13px; }
-.grand-header { background: #8B5CF6 !important; color: #fff; }
-.grand-col { font-weight: bold; background: #A78BFA; color: #fff; font-size: 13px; }
+.grand-header { background: #0052CC !important; color: #fff; }
+.grand-col { font-weight: bold; background: #4A98FF; color: #fff; font-size: 13px; }
 .target-col { min-width: 90px; background: #FFF2CC; }
 .target-input {
   width: 100%;
@@ -273,22 +230,22 @@ table.day-table thead th:nth-child(3) { left: 206px; box-shadow: 2px 0 4px rgba(
   font-size: 15px;
 }
 .class-total-label {
-  background: linear-gradient(135deg, #6b5df8, #7d71f7); color: #fff; font-weight: bold; text-align: center;
+  background: #0052CC; color: #fff; font-weight: bold; text-align: center;
 }
 .foot-day, .foot-total, .foot-grand {
-  background: linear-gradient(135deg, #6b5df8, #7d71f7); color: #fff; font-weight: bold;
+  background: #0052CC; color: #fff; font-weight: bold;
 }
-tfoot td { border: 1px solid #4e3fe0; }
-.avg-col { font-weight: bold; background: #e3defc; }
+tfoot td { border: 1px solid #03173D; }
+.avg-col { font-weight: bold; background: #d9d9d9; }
 .juz-col { font-weight: bold; }
 .legend {
   margin-top: 16px;
   font-size: 12px;
-  color: #555;
-  background: #f7f5fe;
-  border: 1px solid #e1d9fc;
-  padding: 12px 16px;
-  border-radius: 14px;
+  color: #666;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  padding: 10px 14px;
+  border-radius: 6px;
 }
 
 .learner-select-row {
@@ -297,7 +254,7 @@ tfoot td { border: 1px solid #4e3fe0; }
   gap: 10px;
   margin: 10px 0 20px;
 }
-.learner-select-row label { font-weight: bold; color: #5B4FE9; }
+.learner-select-row label { font-weight: bold; color: #0052CC; }
 .learner-select-row select {
   font-family: Arial, sans-serif;
   font-size: 14px;
@@ -309,24 +266,25 @@ tfoot td { border: 1px solid #4e3fe0; }
 .learner-report { width: 100%; max-width: none; }
 .report-card {
   width: 100%;
-  border: 1px solid #d6cdfb;
-  border-radius: 8px;
+  border: 1px solid #C5DEFF;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(31,78,120,0.15);
+  box-shadow: 0 4px 16px rgba(0,82,204,0.12);
 }
 .report-card-header {
-  background: #5B4FE9;
+  background: linear-gradient(135deg, #0052CC 0%, #0047b3 100%);
   color: #fff;
   padding: 14px 18px;
+  font-family: var(--ui-font);
 }
-.report-card-header h3 { margin: 0; font-size: 22px; }
-.report-card-header .rc-grade { font-size: 13px; color: #e3defc; margin-top: 4px; }
+.report-card-header h3 { margin: 0; font-size: 22px; font-weight: 700; }
+.report-card-header .rc-grade { font-size: 13px; color: #DCEBFF; margin-top: 4px; }
 .report-card-body { padding: 4px 18px 18px; }
 .rc-row {
   display: flex;
   justify-content: space-between;
   padding: 9px 0;
-  border-bottom: 1px solid #f1eefe;
+  border-bottom: 1px solid #EAF2FF;
   font-size: 15px;
 }
 .rc-row:last-child { border-bottom: none; }
@@ -337,10 +295,10 @@ tfoot td { border: 1px solid #4e3fe0; }
   margin: 20px 0 8px;
   font-size: 13px;
   font-weight: bold;
-  color: #5B4FE9;
+  color: #0052CC;
   text-transform: uppercase;
   letter-spacing: .04em;
-  border-bottom: 2px solid #5B4FE9;
+  border-bottom: 2px solid #0052CC;
   padding-bottom: 4px;
 }
 .rc-weeks-table {
@@ -350,22 +308,22 @@ tfoot td { border: 1px solid #4e3fe0; }
   margin-bottom: 6px;
 }
 .rc-weeks-table th, .rc-weeks-table td {
-  border: 1px solid #dbe4f0;
+  border: 1px solid #D7E8FF;
   padding: 6px 8px;
   text-align: center;
   font-weight: bold;
   color: #000;
 }
 .rc-weeks-table thead th {
-  background: #5B4FE9;
+  background: #0052CC;
   color: #fff;
   font-weight: bold;
 }
-.rc-weeks-table tbody tr:nth-child(even) { background: #f5f8fc; }
+.rc-weeks-table tbody tr:nth-child(even) { background: #F6FAFF; }
 .rc-weeks-table tfoot td {
   font-weight: bold;
-  background: #f1eefe;
-  color: #5B4FE9;
+  background: #EAF2FF;
+  color: #0052CC;
 }
 .rc-summary-grid {
   display: grid;
@@ -439,7 +397,7 @@ tfoot td { border: 1px solid #4e3fe0; }
 
 @media print {
   body { background: #fff; padding: 0; }
-  .container { max-width: 100%; display: block; }
+  .container { max-width: 100%; }
   .action-row, .tabs, .legend, #file-link-status { display: none !important; }
   .masthead { border-radius: 0; }
   .tab-content {
@@ -553,13 +511,13 @@ tfoot td { border: 1px solid #4e3fe0; }
   justify-content: center;
   min-height: 520px;
   padding: 40px 20px;
-  border-radius: 0 0 8px 8px;
-  background-color: #0d2c47;
+  border-radius: 0 0 16px 16px;
+  background-color: #04295C;
   background-image:
     radial-gradient(circle at 20% 20%, rgba(212,175,55,0.10) 0, transparent 45%),
     radial-gradient(circle at 80% 80%, rgba(212,175,55,0.10) 0, transparent 45%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='1' stroke-opacity='0.35'%3E%3Cpath d='M60 0 L90 30 L60 60 L30 30 Z'/%3E%3Cpath d='M60 60 L90 90 L60 120 L30 90 Z'/%3E%3Cpath d='M0 60 L30 30 L60 60 L30 90 Z'/%3E%3Cpath d='M60 60 L90 30 L120 60 L90 90 Z'/%3E%3Ccircle cx='60' cy='60' r='6'/%3E%3Ccircle cx='0' cy='0' r='6'/%3E%3Ccircle cx='120' cy='0' r='6'/%3E%3Ccircle cx='0' cy='120' r='6'/%3E%3Ccircle cx='120' cy='120' r='6'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(135deg, #0d2c47 0%, #1a4166 40%, #0b2338 100%);
+    linear-gradient(135deg, #04295C 0%, #0052CC 40%, #03173D 100%);
   background-repeat: repeat, repeat, repeat, no-repeat;
   background-size: auto, auto, 120px 120px, cover;
   overflow: hidden;
@@ -593,7 +551,7 @@ tfoot td { border: 1px solid #4e3fe0; }
   font-family: 'Amiri', 'Traditional Arabic', serif;
   font-size: 30px;
   line-height: 1.9;
-  color: #5B4FE9;
+  color: #0052CC;
   direction: rtl;
   margin: 0 0 18px;
 }
@@ -681,37 +639,37 @@ tfoot td { border: 1px solid #4e3fe0; }
 .exam-table .exam-name-col { min-width: 130px; text-align: left !important; }
 .exam-table .exam-narrow { width: 62px; }
 .exam-table .exam-computed { font-weight: bold; background: #E2EFDA; color: #000; font-size: 15px; }
-.exam-table .exam-grand { font-weight: bold; background: #A78BFA; color: #fff; }
+.exam-table .exam-grand { font-weight: bold; background: #4A98FF; color: #fff; }
 .back-to-home {
   display: inline-block;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #6b5df8, #7d71f7);
+  background: #0052CC;
   color: #fff;
   border: none;
   border-radius: 999px;
-  padding: 8px 16px;
-  font-family: 'Poppins', Arial, sans-serif;
+  padding: 7px 16px;
+  font-family: var(--ui-font);
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(107,93,248,0.25);
+  transition: background 0.15s;
 }
-.back-to-home:hover { background: #4e3fe0; }
+.back-to-home:hover { background: #003D99; }
 .page-action-btn {
   display: inline-block;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #6b5df8, #7d71f7);
+  background: #0052CC;
   color: #fff;
   border: none;
   border-radius: 999px;
-  padding: 8px 16px;
-  font-family: 'Poppins', Arial, sans-serif;
+  padding: 7px 16px;
+  font-family: var(--ui-font);
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(107,93,248,0.25);
+  transition: background 0.15s;
 }
-.page-action-btn:hover { background: #4e3fe0; }
+.page-action-btn:hover { background: #003D99; }
 
 @media print {
   .home-page, .home-actions, .back-to-home, .page-action-btn { display: none !important; }
@@ -724,9 +682,9 @@ tfoot td { border: 1px solid #4e3fe0; }
   gap: 10px;
   margin: 14px 0 18px;
   padding: 12px 14px;
-  background: #f1eefe;
-  border: 1px solid #d6cdfb;
-  border-radius: 6px;
+  background: #EAF2FF;
+  border: 1px solid #C5DEFF;
+  border-radius: 12px;
 }
 .misc-label-input {
   flex: 1 1 240px;
@@ -745,22 +703,22 @@ tfoot td { border: 1px solid #4e3fe0; }
   gap: 0;
   max-width: 640px;
   margin: 0 auto 14px;
-  border: 1px solid #5B4FE9;
-  border-radius: 6px;
+  border: 1px solid #0052CC;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(31,78,120,0.15);
+  box-shadow: 0 2px 8px rgba(0,82,204,0.15);
 }
 .week-header-box .whb-item {
   flex: 1 1 0;
   min-width: 140px;
   padding: 8px 14px;
   text-align: center;
-  font-family: Arial, sans-serif;
-  border-right: 1px solid #d6cdfb;
+  font-family: var(--ui-font);
+  border-right: 1px solid #C5DEFF;
 }
 .week-header-box .whb-item:last-child { border-right: none; }
 .week-header-box .whb-school {
-  background: #5B4FE9;
+  background: #0052CC;
   color: #fff;
   font-weight: bold;
   font-size: 13px;
@@ -778,7 +736,7 @@ tfoot td { border: 1px solid #4e3fe0; }
 .week-header-box .whb-label {
   display: block;
   font-size: 10px;
-  color: #5B4FE9;
+  color: #0052CC;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -825,7 +783,6 @@ select {
 </head>
 <body>
 <div class="container">
-  <div class="sidebar-col">
   <div class="masthead">
     <h1>Shk Suleiman Hifz Class Dashboard</h1>
     <div class="meta-row">
@@ -841,9 +798,7 @@ select {
     <button class="tab-btn active" onclick="switchTab('home', this)">Home</button><button class="tab-btn" onclick="switchTab('week1', this)">Week 1</button><button class="tab-btn" onclick="switchTab('week2', this)">Week 2</button><button class="tab-btn" onclick="switchTab('week3', this)">Week 3</button><button class="tab-btn" onclick="switchTab('week4', this)">Week 4</button><button class="tab-btn" onclick="switchTab('week5', this)">Week 5</button><button class="tab-btn" onclick="switchTab('week6', this)">Week 6</button><button class="tab-btn" onclick="switchTab('week7', this)">Week 7</button><button class="tab-btn" onclick="switchTab('week8', this)">Week 8</button><button class="tab-btn" onclick="switchTab('week9', this)">Week 9</button><button class="tab-btn" onclick="switchTab('week10', this)">Week 10</button><button class="tab-btn" onclick="switchTab('week11', this)">Week 11</button><button class="tab-btn" onclick="switchTab('week12', this)">Week 12</button>
     <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('learners', this)">Learners</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('examreport', this)">Exam Term Report</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
   </div>
-  </div>
-
-  <div class="main-col">
+  
   <div id="home" class="tab-content active">
     <div class="home-page">
       <div class="home-welcome">
@@ -867,7 +822,7 @@ select {
       <button class="action-btn" style="background:#FFF2CC;" onclick="startNewTerm()">&#128260; Start New Term</button>
       <button class="action-btn" style="background:#F8D7DA;color:#842029;" onclick="clearRoster()" title="Wipe every learner for a brand-new class (e.g. a new year) - not for a new term with the same learners">&#128465; Clear Roster (New Class)</button>
     </div>
-    <p id="file-link-status" style="text-align:center;color:#e3defc;font-size:12px;font-style:italic;margin:6px 0 0;">Not linked to a file yet - click "Open Daily File" once to choose (or create) the one file you'll reuse every day.</p>
+    <p id="file-link-status" style="text-align:center;color:#DCEBFF;font-size:12px;font-style:italic;margin:6px 0 0;">Not linked to a file yet - click "Open Daily File" once to choose (or create) the one file you'll reuse every day.</p>
     </div>
   </div>
   <div id="week1" class="tab-content">
@@ -1212,7 +1167,7 @@ select {
     </table>
     </div>
   </div>
-  </div>
+    
 </div>
 <script>
 const NUM_LEARNERS = 25;
@@ -2249,7 +2204,7 @@ function viewMiscDoc(id) {
         win.document.write(`<!DOCTYPE html><html><head><title>${escapeHtml(doc.label)}</title>
           <meta charset="UTF-8">
           <style>body{font-family:Arial,sans-serif;max-width:800px;margin:30px auto;padding:0 20px;line-height:1.5;color:#222;}
-          h1,h2,h3{color:#5B4FE9;} img{max-width:100%;}</style></head><body>
+          h1,h2,h3{color:#0052CC;} img{max-width:100%;}</style></head><body>
           <h1>${escapeHtml(doc.label)}</h1>${result.value}</body></html>`);
         win.document.close();
       })
