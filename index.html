@@ -438,6 +438,7 @@ tfoot td { border: 1px solid #0f2e47; }
   .name-sync, .grade-sync { font-size: 9px; }
   .table-scroll { overflow: visible; }
   .erpt-sheet { box-shadow: none; max-width: 100%; }
+  .no-print { display: none !important; }
   @page { margin: 0; }
 
   /* When printing just the Exam Term Report (via its Print/Download button),
@@ -1138,7 +1139,7 @@ select {
     <h2>Learner Report</h2>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
     <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
-    <p class="note">Name, Grade and Performance Status are linked live from the Exam tab; Weekly Progress and the Term Summary are linked live from the Week tabs/Summary tab. The Discipline Log and Written Report are specific to this tab and are saved with the dashboard.</p>
+    <p class="note">Name, Grade and Performance Status are linked live from the Exam tab; Weekly Progress and the Term Summary are linked live from the Week tabs/Summary tab. The Discipline Log is specific to this tab and is saved with the dashboard. The Written Report below is also used to pre-fill the General Comments box on the Exam Term Report tab.</p>
     <div class="learner-select-row">
       <label for="lr-select">Select Learner:</label>
       <select id="lr-select" onchange="renderLearnerReport(this.value)">
@@ -1244,6 +1245,14 @@ function onExamReportFieldInput(r, kind, key, val) {
     store[key] = val;
   }
 }
+// Overwrites General Comments with a fresh copy of the Learner Report's
+// written narrative (Discipline & Behavior status + Weekly Progress),
+// replacing whatever is currently in the box, then re-renders this sheet.
+function refreshExamReportComments(r) {
+  const store = getExamReportRow(r);
+  store.comments = buildWrittenReportPlainText(getLearnerNarrativeData(r));
+  renderExamReport(r);
+}
 // Snapshots every learner's live-computed Term figures (Ajzaa done, Total
 // Ajzaa, Attendance, Tajweed, Dua, Hifz/Quran) for the CURRENT term into
 // the persistent store. Called on Save and before Start New Term, so a
@@ -1327,20 +1336,81 @@ function lrTagClassFor(type) {
   return "lr-tag-remark";
 }
 
-// Builds the full learner profile for one row. Name/Grade/Performance
-// Status are read live from the Exam tab, Weekly Progress from the Week
-// tabs, and the Term Summary from the Summary tab's live-computed cells -
-// so this report always reflects the current dashboard data. Only the
-// Discipline Log is unique to this tab (kept in learnerReportData).
-function buildLearnerReportHtml(r) {
+// Computes all the data needed for a learner's written narrative (used by
+// both the Learner Report tab's "Written Progress & Behavior Report" card
+// and, by default, the "General Comments" box on the Exam Term Report tab).
+// Keeping this in one place means both places always agree with each other.
+function getLearnerNarrativeData(r) {
   const gv = id => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
   const gt = id => { const el = document.getElementById(id); return el ? el.textContent.trim() : ""; };
 
   const name = gv(`exam-name-${r}`) || "(unnamed)";
   const grade = gv(`exam-grade-${r}`) || "-";
   const status = gv(`exam-status-${r}`);
-  const statusClass = LR_STATUS_LABELS[status] || "lr-status-neutral";
   const statusLabel = status || "No status set";
+
+  const sabaqGiven = gt(`sum-sabaqgiven-${r}`) || "0";
+  const pctToTarget = gt(`sum-pct-${r}`) || "0.0%";
+  const totalJuzMemorized = gt(`sum-totaljuz-${r}`) || "0.00";
+  const remaining = gt(`sum-remaining-${r}`) || "30";
+
+  // Discipline & behavior status: this is the main focus of the report.
+  // 0 entries = good, 1-9 entries = needs improvement, 10+ entries = serious/negative.
+  const store = getLearnerReportRow(r);
+  const incidentCount = store.history.length;
+  let disciplineStatus, disciplineClass, disciplineLine;
+  if (incidentCount === 0) {
+    disciplineStatus = "GOOD";
+    disciplineClass = "lr-status-success";
+    disciplineLine = `${name} has good behavior and attendance. No late coming, absence, or other issues were logged this term.`;
+  } else if (incidentCount < 10) {
+    disciplineStatus = "NEEDS IMPROVEMENT";
+    disciplineClass = "lr-status-warning";
+    disciplineLine = `${name} has ${incidentCount} behavior or attendance record(s) logged this term. This needs improvement. Please talk with the student and keep watching this closely.`;
+  } else {
+    disciplineStatus = "SERIOUS CONCERN";
+    disciplineClass = "lr-status-danger";
+    disciplineLine = `${name} has ${incidentCount} behavior or attendance records logged this term. This is a serious concern. Immediate action and a meeting with the parent/guardian is recommended.`;
+  }
+
+  return { name, grade, statusLabel, incidentCount, disciplineStatus, disciplineClass, disciplineLine, sabaqGiven, pctToTarget, totalJuzMemorized, remaining };
+}
+
+// Builds the HTML version of the written report, for the Learner Report tab.
+function buildWrittenReportHtml(d) {
+  return `
+    <strong>Progress Report for ${escapeHtml(d.name)} (${escapeHtml(d.grade)}):</strong><br><br>
+    <strong>Discipline &amp; Behavior Status: <span class="lr-badge ${d.disciplineClass}">${d.disciplineStatus}</span></strong><br>
+    ${escapeHtml(d.disciplineLine)}<br><br>
+    <strong>Weekly Progress:</strong><br>
+    This term, ${escapeHtml(d.name)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, which is
+    <strong>${escapeHtml(d.pctToTarget)}</strong> of the target. So far ${escapeHtml(d.name)} has memorized
+    <strong>${escapeHtml(d.totalJuzMemorized)} Juz</strong>, with <strong>${escapeHtml(d.remaining)} Juz</strong> left to finish the whole Qur'an.<br><br>
+    Overall performance status for this term is <strong>${escapeHtml(d.statusLabel)}</strong>.`;
+}
+
+// Builds the plain-text version of the same report, for the "General
+// Comments" textarea on the Exam Term Report tab (plain text only - no HTML).
+function buildWrittenReportPlainText(d) {
+  return `Discipline & Behavior Status: ${d.disciplineStatus}\n${d.disciplineLine}\n\n`
+    + `Weekly Progress: This term, ${d.name} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the target. `
+    + `So far ${d.name} has memorized ${d.totalJuzMemorized} Juz, with ${d.remaining} Juz left to finish the whole Qur'an.\n\n`
+    + `Overall performance status for this term is ${d.statusLabel}.`;
+}
+
+// Builds the full learner profile for one row. Name/Grade/Performance
+// Status are read live from the Exam tab, Weekly Progress from the Week
+// tabs, and the Term Summary from the Summary tab's live-computed cells -
+// so this report always reflects the current dashboard data. Only the
+// Discipline Log is unique to this tab (kept in learnerReportData).
+function buildLearnerReportHtml(r) {
+  const d = getLearnerNarrativeData(r);
+  const name = d.name, grade = d.grade, statusLabel = d.statusLabel;
+  const status = statusLabel === "No status set" ? "" : statusLabel;
+  const statusClass = LR_STATUS_LABELS[status] || "lr-status-neutral";
+
+  const gv = id => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+  const gt = id => { const el = document.getElementById(id); return el ? el.textContent.trim() : ""; };
 
   // ---- Weekly Progress (live from the Week tabs) ----
   let rows = "";
@@ -1361,15 +1431,15 @@ function buildLearnerReportHtml(r) {
   const yearJuzTarget = (l.yearJuzTarget === null || l.yearJuzTarget === undefined) ? "-" : l.yearJuzTarget;
   const termJuzTarget = (l.termJuzTarget === null || l.termJuzTarget === undefined) ? "-" : l.termJuzTarget;
   const priorJuz = (l.priorJuzMemorized === null || l.priorJuzMemorized === undefined) ? "-" : l.priorJuzMemorized;
-  const sabaqGiven = gt(`sum-sabaqgiven-${r}`) || "0";
-  const pctToTarget = gt(`sum-pct-${r}`) || "0.0%";
+  const sabaqGiven = d.sabaqGiven;
+  const pctToTarget = d.pctToTarget;
   const termJuzDone = gt(`sum-termjuzdone-${r}`) || "0.00";
-  const totalJuzMemorized = gt(`sum-totaljuz-${r}`) || "0.00";
-  const remaining = gt(`sum-remaining-${r}`) || "30";
+  const totalJuzMemorized = d.totalJuzMemorized;
+  const remaining = d.remaining;
 
   // ---- Discipline Log (local to this tab) ----
   const store = getLearnerReportRow(r);
-  const incidentCount = store.history.length;
+  const incidentCount = d.incidentCount;
   let historyHtml = "";
   if (incidentCount === 0) {
     historyHtml = `<p style="margin:0; color:#64748b; font-style:italic;">No logs recorded yet.</p>`;
@@ -1393,33 +1463,7 @@ function buildLearnerReportHtml(r) {
     });
   }
 
-  // ---- Written Report ----
-  // Discipline & behavior status: this is the main focus of the report.
-  // 0 entries = good, 1-9 entries = needs improvement, 10+ entries = serious/negative.
-  let disciplineStatus, disciplineClass, disciplineLine;
-  if (incidentCount === 0) {
-    disciplineStatus = "GOOD";
-    disciplineClass = "lr-status-success";
-    disciplineLine = `${escapeHtml(name)} has good behavior and attendance. No late coming, absence, or other issues were logged this term.`;
-  } else if (incidentCount < 10) {
-    disciplineStatus = "NEEDS IMPROVEMENT";
-    disciplineClass = "lr-status-warning";
-    disciplineLine = `${escapeHtml(name)} has ${incidentCount} behavior or attendance record(s) logged this term. This needs improvement. Please talk with the student and keep watching this closely.`;
-  } else {
-    disciplineStatus = "SERIOUS CONCERN";
-    disciplineClass = "lr-status-danger";
-    disciplineLine = `${escapeHtml(name)} has ${incidentCount} behavior or attendance records logged this term. This is a serious concern. Immediate action and a meeting with the parent/guardian is recommended.`;
-  }
-
-  const writtenReport = `
-    <strong>Progress Report for ${escapeHtml(name)} (${escapeHtml(grade)}):</strong><br><br>
-    <strong>Discipline &amp; Behavior Status: <span class="lr-badge ${disciplineClass}">${disciplineStatus}</span></strong><br>
-    ${disciplineLine}<br><br>
-    <strong>Weekly Progress:</strong><br>
-    This term, ${escapeHtml(name)} gave <strong>${escapeHtml(sabaqGiven)}</strong> pages of Sabaq, which is
-    <strong>${escapeHtml(pctToTarget)}</strong> of the target. So far ${escapeHtml(name)} has memorized
-    <strong>${escapeHtml(totalJuzMemorized)} Juz</strong>, with <strong>${escapeHtml(remaining)} Juz</strong> left to finish the whole Qur'an.<br><br>
-    Overall performance status for this term is <strong>${escapeHtml(statusLabel)}</strong>.`;
+  const writtenReport = buildWrittenReportHtml(d);
 
   return `
     <div class="lr-profile">
@@ -1452,7 +1496,7 @@ function buildLearnerReportHtml(r) {
         </div>
         <div class="lr-card lr-discipline">
           <h4>Discipline &amp; Attendance</h4>
-          <p style="margin-top:0;"><span>Total Logged Incidents:</span> <span class="lr-badge ${disciplineClass}">${incidentCount}</span></p>
+          <p style="margin-top:0;"><span>Total Logged Incidents:</span> <span class="lr-badge ${d.disciplineClass}">${incidentCount}</span></p>
           <div class="lr-notes-box">${historyHtml}</div>
           <div class="lr-actions">
             <button class="lr-action-btn" onclick="logLearnerIncident(${r}, 'Late Coming')">&#9201; + Log Late</button>
@@ -1643,7 +1687,12 @@ function buildExamReportSheetHtml(rowIndex) {
   });
 
   const reopensVal = escapeHtml(store.reopens || "");
-  const commentsVal = escapeHtml(store.comments || "");
+  // General Comments: if the teacher hasn't typed anything here yet, default
+  // to the written narrative from the Learner Report tab (Discipline &
+  // Behavior status + Weekly Progress), so the two stay connected without
+  // overwriting anything the teacher has already written by hand.
+  const commentsIsAuto = !store.comments;
+  const commentsVal = escapeHtml(store.comments || buildWrittenReportPlainText(getLearnerNarrativeData(r)));
   const sigUstaadhVal = escapeHtml(store.sigUstaadh || "");
   const sigHodVal = escapeHtml(store.sigHod || "");
   const sigParentVal = escapeHtml(store.sigParent || "");
@@ -1672,7 +1721,10 @@ function buildExamReportSheetHtml(rowIndex) {
           </thead>
           <tbody>${rowsHtml}</tbody>
         </table>
-        <div class="erpt-comments-label">General Comments:</div>
+        <div class="erpt-comments-label">General Comments:
+          <button type="button" class="action-btn no-print" style="padding:3px 8px; font-size:11px; margin-left:8px;" onclick="refreshExamReportComments(${r})">&#8635; Pull from Learner Report</button>
+          ${commentsIsAuto ? '<span class="no-print" style="font-weight:normal; font-size:11px; color:#777; margin-left:8px;">(auto-filled from Learner Report - edit freely)</span>' : ''}
+        </div>
         <textarea name="er_comments" oninput="onExamReportFieldInput(${r}, 'field', 'comments', this.value)">${commentsVal}</textarea>
         <div class="erpt-signatures">
           <div class="erpt-sig"><input type="text" name="er_sig_ustaadh" value="${sigUstaadhVal}" oninput="onExamReportFieldInput(${r}, 'field', 'sigUstaadh', this.value)"><label>Ustaadh's Signature</label></div>
