@@ -10,7 +10,8 @@
       "termSabaqTarget": 99,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 17
+      "priorJuzMemorized": 17,
+      "notes": ""
     },
     {
       "name": "Mohammed Taha Moosa",
@@ -18,7 +19,8 @@
       "termSabaqTarget": 71,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 23.5
+      "priorJuzMemorized": 23.5,
+      "notes": ""
     },
     {
       "name": "Syed Ali Gilani",
@@ -26,7 +28,8 @@
       "termSabaqTarget": 72,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 22.5
+      "priorJuzMemorized": 22.5,
+      "notes": ""
     },
     {
       "name": "Muhammad Dawood",
@@ -34,7 +37,8 @@
       "termSabaqTarget": 58,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 24
+      "priorJuzMemorized": 24,
+      "notes": ""
     },
     {
       "name": "Afeef Ali",
@@ -42,7 +46,8 @@
       "termSabaqTarget": 65,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 23.75
+      "priorJuzMemorized": 23.75,
+      "notes": ""
     },
     {
       "name": "Zahir Kedir Moreta",
@@ -50,7 +55,8 @@
       "termSabaqTarget": 111,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 11
+      "priorJuzMemorized": 11,
+      "notes": ""
     },
     {
       "name": "Bilal Aboobaker Mottiar",
@@ -58,7 +64,8 @@
       "termSabaqTarget": 121,
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
-      "priorJuzMemorized": 8
+      "priorJuzMemorized": 8,
+      "notes": ""
     },
     {
       "name": "Mohammed Kedir Moreta",
@@ -66,7 +73,8 @@
       "termSabaqTarget": 7,
       "yearJuzTarget": 6,
       "termJuzTarget": 1.5,
-      "priorJuzMemorized": 18.75
+      "priorJuzMemorized": 18.75,
+      "notes": ""
     },
     {
       "name": "Umair Iqbal Mohamed",
@@ -74,7 +82,8 @@
       "termSabaqTarget": 71,
       "yearJuzTarget": 6,
       "termJuzTarget": 1.5,
-      "priorJuzMemorized": 9
+      "priorJuzMemorized": 9,
+      "notes": ""
     },
     {
       "name": "Chaudrey Zayyan Ahmad",
@@ -82,7 +91,8 @@
       "termSabaqTarget": 96,
       "yearJuzTarget": 6,
       "termJuzTarget": 1.5,
-      "priorJuzMemorized": 4.5
+      "priorJuzMemorized": 4.5,
+      "notes": ""
     },
     {
       "name": "Musab Anwar Yasin",
@@ -90,7 +100,8 @@
       "termSabaqTarget": 32,
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
-      "priorJuzMemorized": 12.5
+      "priorJuzMemorized": 12.5,
+      "notes": ""
     },
     {
       "name": "Syed Azlan Haider Gilani",
@@ -98,7 +109,8 @@
       "termSabaqTarget": 50,
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
-      "priorJuzMemorized": 6.5
+      "priorJuzMemorized": 6.5,
+      "notes": ""
     },
     {
       "name": "Sulaiman Dawood",
@@ -106,7 +118,8 @@
       "termSabaqTarget": 55,
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
-      "priorJuzMemorized": 6
+      "priorJuzMemorized": 6,
+      "notes": ""
     },
     {
       "name": "Yahya Cassim",
@@ -114,7 +127,8 @@
       "termSabaqTarget": 41,
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
-      "priorJuzMemorized": 12
+      "priorJuzMemorized": 12,
+      "notes": ""
     },
     {
       "name": "Ahmed Ali",
@@ -122,7 +136,8 @@
       "termSabaqTarget": 77,
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
-      "priorJuzMemorized": 0.75
+      "priorJuzMemorized": 0.75,
+      "notes": ""
     },
     {
       "name": "Hussain Rehman",
@@ -130,7 +145,8 @@
       "termSabaqTarget": 27,
       "yearJuzTarget": 3,
       "termJuzTarget": 0.75,
-      "priorJuzMemorized": 1.25
+      "priorJuzMemorized": 1.25,
+      "notes": ""
     },
     {
       "name": "Mikaeel Patel",
@@ -138,7 +154,8 @@
       "termSabaqTarget": 12,
       "yearJuzTarget": 3,
       "termJuzTarget": 0.75,
-      "priorJuzMemorized": 2.25
+      "priorJuzMemorized": 2.25,
+      "notes": ""
     },
     {
       "name": "Thlotlego L. Ntokwe",
@@ -146,7 +163,8 @@
       "termSabaqTarget": 23,
       "yearJuzTarget": 3,
       "termJuzTarget": 0.75,
-      "priorJuzMemorized": 1.25
+      "priorJuzMemorized": 1.25,
+      "notes": ""
     },
     {
       "name": "Abu Bakr Munshi",
@@ -154,7 +172,8 @@
       "termSabaqTarget": 45,
       "yearJuzTarget": 3,
       "termJuzTarget": 0.75,
-      "priorJuzMemorized": 0.75
+      "priorJuzMemorized": 0.75,
+      "notes": ""
     },
     {
       "name": "Umair Mohamad",
@@ -162,7 +181,8 @@
       "termSabaqTarget": 29,
       "yearJuzTarget": 3,
       "termJuzTarget": 0.75,
-      "priorJuzMemorized": 1.25
+      "priorJuzMemorized": 1.25,
+      "notes": ""
     },
     {
       "name": "Muhammad Hamza",
@@ -170,7 +190,8 @@
       "termSabaqTarget": 7,
       "yearJuzTarget": 1,
       "termJuzTarget": 0.25,
-      "priorJuzMemorized": 0.75
+      "priorJuzMemorized": 0.75,
+      "notes": ""
     },
     {
       "name": "Usamah Suleiman Hamido",
@@ -178,7 +199,8 @@
       "termSabaqTarget": 7,
       "yearJuzTarget": 1,
       "termJuzTarget": 0.25,
-      "priorJuzMemorized": 0.5
+      "priorJuzMemorized": 0.5,
+      "notes": ""
     },
     {
       "name": "",
@@ -186,7 +208,8 @@
       "termSabaqTarget": null,
       "yearJuzTarget": null,
       "termJuzTarget": null,
-      "priorJuzMemorized": null
+      "priorJuzMemorized": null,
+      "notes": ""
     },
     {
       "name": "",
@@ -194,7 +217,8 @@
       "termSabaqTarget": null,
       "yearJuzTarget": null,
       "termJuzTarget": null,
-      "priorJuzMemorized": null
+      "priorJuzMemorized": null,
+      "notes": ""
     },
     {
       "name": "",
@@ -202,7 +226,8 @@
       "termSabaqTarget": null,
       "yearJuzTarget": null,
       "termJuzTarget": null,
-      "priorJuzMemorized": null
+      "priorJuzMemorized": null,
+      "notes": ""
     }
   ],
   "data": {
@@ -1596,21 +1621,21 @@
           0.75,
           0,
           0,
-          null,
+          0,
           null
         ],
         "sabaqDhor": [
           7,
           0,
           0,
-          null,
+          0,
           null
         ],
         "dhor": [
           7,
           0,
           14,
-          null,
+          21,
           null
         ]
       },
@@ -8360,5 +8385,9 @@
       "sigParent": ""
     }
   },
-  "learnerReportData": {}
+  "learnerReportData": {
+    "16": {
+      "history": []
+    }
+  }
 }

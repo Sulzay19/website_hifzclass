@@ -311,7 +311,6 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-header h3 { margin:0; font-size:1.25rem; color:#1F4E78; }
 #learnerreport .lr-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(380px,1fr)); gap:20px; margin-bottom:20px; }
 #learnerreport .lr-card { background:#f8fafc; padding:15px; border-radius:6px; border-left:4px solid #3b82f6; }
-#learnerreport .lr-card.lr-discipline { border-left-color:#f59e0b; }
 #learnerreport .lr-card.lr-report { border-left-color:#10b981; grid-column:1 / -1; }
 #learnerreport .lr-card h4 { margin-top:0; margin-bottom:12px; font-size:.95rem; color:#1e293b; border-bottom:1px solid #e2e8f0; padding-bottom:6px; }
 #learnerreport .lr-progress-table { width:100%; border-collapse:collapse; font-size:.78rem; background:#fff; margin-bottom:10px; border-radius:4px; overflow:hidden; border:1px solid #e2e8f0; }
@@ -320,24 +319,71 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-progress-table tr:last-child td { font-weight:bold; background:#eff6ff; border-top:2px solid #cbd5e1; }
 #learnerreport .lr-summary-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; background:#fff; padding:8px; border-radius:6px; border:1px solid #e2e8f0; font-size:.78rem; }
 #learnerreport .lr-summary-item { display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px dashed #f1f5f9; }
-#learnerreport .lr-badge { padding:4px 8px; border-radius:4px; font-size:.75rem; font-weight:600; }
+#learnerreport .lr-badge { padding:4px 8px; border-radius:4px; font-size:.75rem; font-weight:600; white-space:nowrap; }
 #learnerreport .lr-status-success { background:#d1fae5; color:#059669; }
 #learnerreport .lr-status-warning { background:#fef3c7; color:#d97706; }
 #learnerreport .lr-status-danger { background:#fee2e2; color:#dc2626; }
 #learnerreport .lr-status-neutral { background:#e2e8f0; color:#475569; }
+#learnerreport .lr-status-meeting { background:#ffedd5; color:#c2410c; }
+#learnerreport .lr-status-expulsion { background:#fecaca; color:#991b1b; }
 #learnerreport .lr-tag-late { background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
 #learnerreport .lr-tag-absence { background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
 #learnerreport .lr-tag-remark { background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
-#learnerreport .lr-notes-box { margin-top:10px; background:#fff; padding:10px; border-radius:4px; border:1px solid #e2e8f0; font-size:.85rem; max-height:160px; overflow-y:auto; }
+#learnerreport .lr-tag-minor { background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-tag-moderate { background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-tag-severe { background:#ffedd5; color:#c2410c; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-tag-critical { background:#fecaca; color:#991b1b; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-tag-excused { background:#d1fae5; color:#059669; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-tag-unexcused { background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-notes-box { margin-top:10px; background:#fff; padding:10px; border-radius:4px; border:1px solid #e2e8f0; font-size:.85rem; max-height:150px; overflow-y:auto; }
 #learnerreport .lr-log-row { display:flex; justify-content:space-between; align-items:center; margin-top:3px; font-size:.82rem; gap:6px; }
 #learnerreport .lr-log-note { color:#334155; flex-grow:1; text-align:right; }
 #learnerreport .lr-log-remove { background:none; border:none; color:#cbd5e1; cursor:pointer; font-size:.85rem; line-height:1; padding:0 2px; }
 #learnerreport .lr-log-remove:hover { color:#dc2626; }
-#learnerreport .lr-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
-#learnerreport .lr-action-btn { padding:7px 10px; background:#fff; border:1px solid #cbd5e1; color:#334155; border-radius:6px; cursor:pointer; font-size:.78rem; font-weight:600; }
+#learnerreport .lr-actions { margin-top:10px; }
+#learnerreport .lr-action-btn { width:100%; padding:7px 10px; background:#fff; border:1px solid #cbd5e1; color:#334155; border-radius:6px; cursor:pointer; font-size:.78rem; font-weight:600; }
 #learnerreport .lr-action-btn:hover { background:#f1f5f9; }
-#learnerreport .lr-action-btn.lr-full { grid-column:span 2; }
 #learnerreport .lr-report-box { background:#fff; padding:12px; border-radius:6px; border:1px solid #e2e8f0; font-size:.88rem; line-height:1.6; color:#1e293b; }
+
+/* ===== Discipline logs (3 separate logs) ===== */
+#learnerreport .lr-discipline-wrap { grid-column:1 / -1; }
+#learnerreport .lr-discipline-summary { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; padding:10px 14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; }
+#learnerreport .lr-discipline-summary strong { color:#1e293b; font-size:.9rem; }
+#learnerreport .lr-log-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:16px; }
+#learnerreport .lr-card.lr-log-behaviour { border-left-color:#8b5cf6; }
+#learnerreport .lr-card.lr-log-absence { border-left-color:#ef4444; }
+#learnerreport .lr-card.lr-log-work { border-left-color:#0ea5e9; }
+
+/* ===== Log entry modal ===== */
+.lr-modal-overlay { position:fixed; inset:0; background:rgba(15,23,42,0.55); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
+.lr-modal-box { background:#fff; border-radius:10px; padding:20px 22px; width:100%; max-width:420px; box-shadow:0 10px 30px rgba(0,0,0,0.25); font-family:Arial, sans-serif; }
+.lr-modal-box h4 { margin:0 0 14px; color:#1F4E78; font-size:1.05rem; }
+.lr-modal-field { margin-bottom:12px; }
+.lr-modal-field label { display:block; font-size:.8rem; font-weight:bold; color:#334155; margin-bottom:4px; }
+.lr-modal-field select, .lr-modal-field input, .lr-modal-field textarea {
+  width:100%; padding:7px 8px; border:1px solid #cbd5e1; border-radius:5px; font-family:Arial, sans-serif; font-size:.85rem; box-sizing:border-box;
+}
+.lr-modal-field textarea { min-height:70px; resize:vertical; }
+.lr-modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:16px; }
+.lr-modal-btn { padding:8px 16px; border-radius:6px; border:none; font-weight:bold; font-size:.82rem; cursor:pointer; }
+.lr-modal-btn.lr-cancel { background:#e2e8f0; color:#334155; }
+.lr-modal-btn.lr-save { background:#1F4E78; color:#fff; }
+.lr-modal-btn.lr-cancel:hover { background:#cbd5e1; }
+.lr-modal-btn.lr-save:hover { background:#163a5c; }
+
+/* ===== Action Needed banner ===== */
+#learnerreport .lr-action-banner { border-radius:8px; padding:12px 16px; margin-bottom:16px; border:1px solid; }
+#learnerreport .lr-action-banner.lr-banner-warning { background:#fffbeb; border-color:#fcd34d; }
+#learnerreport .lr-action-banner.lr-banner-meeting { background:#fff7ed; border-color:#fdba74; }
+#learnerreport .lr-action-banner.lr-banner-expulsion { background:#fef2f2; border-color:#fca5a5; }
+#learnerreport .lr-banner-title { font-weight:bold; color:#1e293b; margin-bottom:8px; font-size:.92rem; }
+#learnerreport .lr-banner-row { display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:5px 0; border-top:1px dashed rgba(0,0,0,0.08); }
+#learnerreport .lr-banner-row:first-of-type { border-top:none; }
+#learnerreport .lr-banner-action { font-size:.82rem; color:#334155; }
+#learnerreport .lr-contact-row { display:flex; align-items:center; gap:6px; margin-left:auto; font-size:.78rem; }
+#learnerreport .lr-contact-row label { font-weight:bold; color:#475569; white-space:nowrap; }
+#learnerreport .lr-contact-row select { padding:3px 5px; border-radius:4px; border:1px solid #cbd5e1; font-family:Arial, sans-serif; font-size:.78rem; }
+#learnerreport .lr-contact-row small { color:#64748b; }
 
 /* ===== Graph tab ===== */
 #graph .graph-card { background:#f8fafc; border-left:4px solid #3b82f6; border-radius:6px; padding:15px 18px; margin-top:14px; }
@@ -1260,7 +1306,6 @@ select {
     <h2>Learner Report</h2>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
     <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
-    <p class="note">Name, Grade and Performance Status are linked live from the Exam tab; Weekly Progress and the Term Summary are linked live from the Week tabs/Summary tab. The Discipline Log is specific to this tab and is saved with the dashboard. The Written Report below is also used to pre-fill the General Comments box on the Exam Term Report tab.</p>
     <div class="learner-select-row">
       <label for="lr-select">Select Learner:</label>
       <select id="lr-select" onchange="renderLearnerReport(this.value)">
@@ -1346,16 +1391,151 @@ for (let r = 0; r < NUM_LEARNERS; r++) {
 let examReportData = {};
 
 // ===== Learner Report (profile tab) persistent store =====
-// Keyed by learner row -> { history: [{date, type, note}, ...] }. Name,
-// Grade, Performance Status, Weekly Progress and the Term Summary are NOT
-// stored here - they're read live from the Exam/Week/Summary tabs each
-// time the report is rendered, so this store only holds the Discipline
-// Log entries, which have no other home in the dashboard.
+// Keyed by learner row -> three separate logs:
+//   behaviour: [{date, category, severity, note}]   severity: Minor/Moderate/Severe/Critical
+//   absence:   [{date, excused (bool), note}]
+//   work:      [{date, para, note}]
+// Name, Grade, Performance Status, Weekly Progress and the Term Summary are
+// NOT stored here - they're read live from the Exam/Week/Summary tabs each
+// time the report is rendered, so this store only holds the 3 Discipline
+// Logs, which have no other home in the dashboard.
 let learnerReportData = {};
 function getLearnerReportRow(r) {
-  if (!learnerReportData[r]) learnerReportData[r] = { history: [] };
-  if (!learnerReportData[r].history) learnerReportData[r].history = [];
-  return learnerReportData[r];
+  if (!learnerReportData[r]) learnerReportData[r] = { behaviour: [], absence: [], work: [], contact: {} };
+  const row = learnerReportData[r];
+  if (!row.behaviour) row.behaviour = [];
+  if (!row.absence) row.absence = [];
+  if (!row.work) row.work = [];
+  if (!row.contact) row.contact = {};
+  ["behaviour", "absence", "work"].forEach(k => {
+    if (!row.contact[k]) row.contact[k] = { status: "Not Contacted", date: "" };
+  });
+  // One-time migration: older save files stored a single flat "history"
+  // array with type "Late Coming" / "Absence" / "Remark". Split it into
+  // the new 3-log structure so old dashboards keep their data.
+  if (row.history && row.history.length) {
+    row.history.forEach(item => {
+      if (item.type === "Absence") {
+        row.absence.push({ date: item.date, excused: false, note: item.note });
+      } else if (item.type === "Late Coming") {
+        row.behaviour.push({ date: item.date, category: "Late Coming", severity: "Minor", note: item.note });
+      } else {
+        row.behaviour.push({ date: item.date, category: "General Remark", severity: "Minor", note: item.note });
+      }
+    });
+    delete row.history;
+  }
+  return row;
+}
+
+// ---- Escalation ladders (per-log, independent of each other) ----
+// Each function takes this term's log entries and returns
+// { status, cssClass, count } where status is one of:
+// "Good" / "Warning" / "Parent Meeting" / "Expulsion Review"
+const LR_STATUS_RANK = { "Good": 0, "Warning": 1, "Parent Meeting": 2, "Expulsion Review": 3 };
+const LR_STATUS_CLASS = {
+  "Good": "lr-status-success",
+  "Warning": "lr-status-warning",
+  "Parent Meeting": "lr-status-meeting",
+  "Expulsion Review": "lr-status-expulsion"
+};
+
+function computeBehaviourStatus(list) {
+  const counts = { Minor: 0, Moderate: 0, Severe: 0, Critical: 0 };
+  list.forEach(e => { if (counts[e.severity] !== undefined) counts[e.severity]++; });
+  let status = "Good";
+  if (counts.Critical >= 2) status = "Expulsion Review";
+  else if (counts.Critical >= 1) status = "Parent Meeting";
+  else if (counts.Severe >= 3) status = "Parent Meeting";
+  else if (counts.Moderate >= 4) status = "Warning";
+  return { status, cssClass: LR_STATUS_CLASS[status], count: list.length, counts };
+}
+
+function computeAbsenceStatus(list) {
+  const unexcused = list.filter(e => !e.excused).length;
+  const excused = list.length - unexcused;
+  let status = "Good";
+  if (unexcused >= 10) status = "Expulsion Review";
+  else if (unexcused >= 7) status = "Parent Meeting";
+  else if (unexcused >= 4) status = "Warning";
+  return { status, cssClass: LR_STATUS_CLASS[status], count: list.length, unexcused, excused };
+}
+
+function computeWorkStatus(list) {
+  const count = list.length;
+  let status = "Good";
+  if (count >= 4) status = "Parent Meeting";
+  else if (count >= 3) status = "Warning";
+  return { status, cssClass: LR_STATUS_CLASS[status], count };
+}
+
+// Highest-severity status across all 3 logs, for the combined summary badge.
+function overallDisciplineStatus(behaviour, absence, work) {
+  let best = "Good";
+  [behaviour.status, absence.status, work.status].forEach(s => {
+    if (LR_STATUS_RANK[s] > LR_STATUS_RANK[best]) best = s;
+  });
+  return { status: best, cssClass: LR_STATUS_CLASS[best] };
+}
+
+// Short recommended-action text per status tier, used in the top banner.
+const LR_ACTION_TEXT = {
+  "Warning": "Formal warning to the student is recommended.",
+  "Parent Meeting": "A parent/guardian meeting is recommended.",
+  "Expulsion Review": "This is grounds for an expulsion review."
+};
+
+const LR_LOG_LABELS = { behaviour: "Behaviour", absence: "Absence", work: "Daily Work" };
+
+// Updates a log's parent-contact tracking status. Stamps today's date
+// when moving to Contacted/Meeting Held, clears it when reset to Not Contacted.
+function setContactStatus(r, logType, status) {
+  const store = getLearnerReportRow(r);
+  store.contact[logType].status = status;
+  store.contact[logType].date = status === "Not Contacted" ? "" : new Date().toISOString().split("T")[0];
+  renderLearnerReport(r);
+}
+
+// Builds the top "Action Needed" banner shown above the 3 log cards
+// whenever any log is at Warning or worse. Lists every such log with its
+// recommended action, and - for Parent Meeting/Expulsion Review - the
+// current parent-contact tracking status so it doesn't get forgotten.
+function buildActionBanner(r, d, contact) {
+  const flagged = ["behaviour", "absence", "work"].filter(k => d[k].status !== "Good");
+  if (!flagged.length) return "";
+
+  const rows = flagged.map(k => {
+    const status = d[k].status;
+    const needsContact = status === "Parent Meeting" || status === "Expulsion Review";
+    let contactHtml = "";
+    if (needsContact) {
+      const c = contact[k];
+      contactHtml = `
+        <div class="lr-contact-row">
+          <label>Parent Contact:</label>
+          <select onchange="setContactStatus(${r}, '${k}', this.value)">
+            <option value="Not Contacted" ${c.status === "Not Contacted" ? "selected" : ""}>Not Contacted</option>
+            <option value="Contacted" ${c.status === "Contacted" ? "selected" : ""}>Contacted</option>
+            <option value="Meeting Held" ${c.status === "Meeting Held" ? "selected" : ""}>Meeting Held</option>
+          </select>
+          ${c.date ? `<small>(${escapeHtml(c.date)})</small>` : ""}
+        </div>`;
+    }
+    return `
+      <div class="lr-banner-row">
+        <span class="lr-badge ${d[k].cssClass}">${escapeHtml(LR_LOG_LABELS[k])}: ${escapeHtml(status)}</span>
+        <span class="lr-banner-action">${escapeHtml(LR_ACTION_TEXT[status] || "")}</span>
+        ${contactHtml}
+      </div>`;
+  }).join("");
+
+  const bannerClass = d.overall.status === "Expulsion Review" ? "lr-banner-expulsion"
+    : d.overall.status === "Parent Meeting" ? "lr-banner-meeting" : "lr-banner-warning";
+
+  return `<div class="lr-action-banner ${bannerClass}">
+    <div class="lr-banner-title">&#9888; Action Needed</div>
+    ${rows}
+  </div>`;
 }
 
 function getExamReportRow(r) {
@@ -1470,10 +1650,11 @@ const LR_STATUS_LABELS = {
   "Fail": "lr-status-danger"
 };
 
-function lrTagClassFor(type) {
-  if (type === "Late Coming") return "lr-tag-late";
-  if (type === "Absence") return "lr-tag-absence";
-  return "lr-tag-remark";
+function lrSeverityTagClass(severity) {
+  if (severity === "Moderate") return "lr-tag-moderate";
+  if (severity === "Severe") return "lr-tag-severe";
+  if (severity === "Critical") return "lr-tag-critical";
+  return "lr-tag-minor";
 }
 
 // Scans this learner's raw day-by-day entries across Week 1 - Week 12
@@ -1542,37 +1723,69 @@ function getLearnerNarrativeData(r) {
   const remaining = gt(`sum-remaining-${r}`) || "30";
 
   // Discipline & behavior status: this is the main focus of the report.
-  // 0 entries = good, 1-9 entries = needs improvement, 10+ entries = serious/negative.
+  // Each of the 3 logs (Behaviour / Absence / Daily Work) has its own
+  // escalation ladder; the overall badge shows the most severe of the three.
   const store = getLearnerReportRow(r);
-  const incidentCount = store.history.length;
-  let disciplineStatus, disciplineClass, disciplineLine;
-  if (incidentCount === 0) {
-    disciplineStatus = "GOOD";
-    disciplineClass = "lr-status-success";
-    disciplineLine = `${name} has good behavior and attendance. No late coming, absence, or other issues were logged this term.`;
-  } else if (incidentCount < 10) {
-    disciplineStatus = "NEEDS IMPROVEMENT";
-    disciplineClass = "lr-status-warning";
-    disciplineLine = `${name} has ${incidentCount} behavior or attendance record(s) logged this term. This needs improvement. Please talk with the student and keep watching this closely.`;
-  } else {
-    disciplineStatus = "SERIOUS CONCERN";
-    disciplineClass = "lr-status-danger";
-    disciplineLine = `${name} has ${incidentCount} behavior or attendance records logged this term. This is a serious concern. Immediate action and a meeting with the parent/guardian is recommended.`;
-  }
+  const behaviour = computeBehaviourStatus(store.behaviour);
+  const absence = computeAbsenceStatus(store.absence);
+  const work = computeWorkStatus(store.work);
+  const overall = overallDisciplineStatus(behaviour, absence, work);
+  const incidentCount = behaviour.count + absence.count + work.count;
+
+  const disciplineLines = {
+    behaviour: buildLogStatusLine(name, "behaviour", behaviour),
+    absence: buildLogStatusLine(name, "absence", absence),
+    work: buildLogStatusLine(name, "work", work)
+  };
 
   // Missed-work analysis: scans the raw Week 1-12 day entries for 0s.
   const missedWork = computeMissedWorkData(r);
   const missedWorkPoints = buildMissedWorkPoints(missedWork);
 
-  return { name, grade, statusLabel, incidentCount, disciplineStatus, disciplineClass, disciplineLine, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, missedWork, missedWorkPoints };
+  return { name, grade, statusLabel, incidentCount, behaviour, absence, work, overall, disciplineLines,
+    contact: store.contact, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, missedWork, missedWorkPoints };
+}
+
+// Builds one plain-sentence status line per log, for both the HTML and
+// plain-text written report.
+function buildLogStatusLine(name, kind, d) {
+  if (kind === "behaviour") {
+    if (d.status === "Good") return `${name} has no behaviour concerns logged this term.`;
+    if (d.status === "Warning") return `${name} has ${d.count} behaviour record(s) logged this term (${d.counts.Moderate} Moderate). A formal warning is recommended.`;
+    if (d.status === "Parent Meeting") return `${name} has ${d.count} behaviour record(s) logged this term, including Severe/Critical incidents. A parent/guardian meeting is recommended.`;
+    return `${name} has repeated Critical behaviour incidents logged this term. This is grounds for an expulsion review.`;
+  }
+  if (kind === "absence") {
+    if (d.status === "Good") return `${name} has ${d.unexcused} unexcused absence(s) this term (${d.excused} excused). No action needed.`;
+    if (d.status === "Warning") return `${name} has ${d.unexcused} unexcused absence(s) this term. A formal warning is recommended.`;
+    if (d.status === "Parent Meeting") return `${name} has ${d.unexcused} unexcused absence(s) this term. A parent/guardian meeting is recommended.`;
+    return `${name} has ${d.unexcused} unexcused absences this term. This is grounds for an expulsion review.`;
+  }
+  // work
+  if (d.status === "Good") return `${name} has ${d.count} daily work issue(s) logged this term. No action needed.`;
+  if (d.status === "Warning") return `${name} has ${d.count} daily work issues logged this term (missed/stuck sabaq). A formal warning is recommended.`;
+  return `${name} has ${d.count} daily work issues logged this term. A parent/guardian meeting is recommended to address ongoing academic struggle.`;
 }
 
 // Builds the HTML version of the written report, for the Learner Report tab.
+// One-line contact status note, only shown once a log has reached Parent
+// Meeting/Expulsion Review (Warning tier doesn't need parent contact).
+function contactStatusLine(logType, status, contact) {
+  if (status !== "Parent Meeting" && status !== "Expulsion Review") return "";
+  const c = contact[logType];
+  return c.date ? `Parent Contact: ${c.status} (${c.date}).` : `Parent Contact: ${c.status}.`;
+}
+
 function buildWrittenReportHtml(d) {
   return `
     <strong>Progress Report for ${escapeHtml(d.name)} (${escapeHtml(d.grade)}):</strong><br><br>
-    <strong>Discipline &amp; Behavior Status: <span class="lr-badge ${d.disciplineClass}">${d.disciplineStatus}</span></strong><br>
-    ${escapeHtml(d.disciplineLine)}<br><br>
+    <strong>Overall Discipline Status: <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span></strong><br><br>
+    <strong>General Behaviour: <span class="lr-badge ${d.behaviour.cssClass}">${d.behaviour.status}</span></strong><br>
+    ${escapeHtml(d.disciplineLines.behaviour)}${(() => { const c = contactStatusLine("behaviour", d.behaviour.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
+    <strong>Absence: <span class="lr-badge ${d.absence.cssClass}">${d.absence.status}</span></strong><br>
+    ${escapeHtml(d.disciplineLines.absence)}${(() => { const c = contactStatusLine("absence", d.absence.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
+    <strong>Daily Work: <span class="lr-badge ${d.work.cssClass}">${d.work.status}</span></strong><br>
+    ${escapeHtml(d.disciplineLines.work)}${(() => { const c = contactStatusLine("work", d.work.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
     <strong>Weekly Progress:</strong><br>
     This term, ${escapeHtml(d.name)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, which is
     <strong>${escapeHtml(d.pctToTarget)}</strong> of the target. So far ${escapeHtml(d.name)} has memorized
@@ -1588,7 +1801,13 @@ function buildWrittenReportHtml(d) {
 // Builds the plain-text version of the same report, for the "General
 // Comments" textarea on the Exam Term Report tab (plain text only - no HTML).
 function buildWrittenReportPlainText(d) {
-  return `Discipline & Behavior Status: ${d.disciplineStatus}\n${d.disciplineLine}\n\n`
+  const bLine = contactStatusLine("behaviour", d.behaviour.status, d.contact);
+  const aLine = contactStatusLine("absence", d.absence.status, d.contact);
+  const wLine = contactStatusLine("work", d.work.status, d.contact);
+  return `Overall Discipline Status: ${d.overall.status}\n\n`
+    + `General Behaviour: ${d.behaviour.status}\n${d.disciplineLines.behaviour}${bLine ? " " + bLine : ""}\n\n`
+    + `Absence: ${d.absence.status}\n${d.disciplineLines.absence}${aLine ? " " + aLine : ""}\n\n`
+    + `Daily Work: ${d.work.status}\n${d.disciplineLines.work}${wLine ? " " + wLine : ""}\n\n`
     + `Weekly Progress: This term, ${d.name} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the target. `
     + `So far ${d.name} has memorized ${d.totalJuzMemorized} Juz, with ${d.remaining} Juz left to finish the whole Qur'an.\n\n`
     + `Missed Work (Week 1 - Week 12): ${d.missedWork.totalMissed} total 0${d.missedWork.totalMissed === 1 ? "" : "s"}\n`
@@ -1637,33 +1856,17 @@ function buildLearnerReportHtml(r) {
   const totalJuzMemorized = d.totalJuzMemorized;
   const remaining = d.remaining;
 
-  // ---- Discipline Log (local to this tab) ----
+  // ---- 3 Discipline Logs (local to this tab) ----
   const store = getLearnerReportRow(r);
-  const incidentCount = d.incidentCount;
-  let historyHtml = "";
-  if (incidentCount === 0) {
-    historyHtml = `<p style="margin:0; color:#64748b; font-style:italic;">No logs recorded yet.</p>`;
-  } else {
-    const grouped = {};
-    store.history.forEach((item, idx) => {
-      if (!grouped[item.date]) grouped[item.date] = [];
-      grouped[item.date].push({ ...item, idx });
-    });
-    Object.keys(grouped).sort().reverse().forEach(date => {
-      historyHtml += `<div style="margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #f1f5f9;">
-        <div style="color:#64748b; font-weight:bold; font-size:.78rem; margin-bottom:4px;">&#128197; ${escapeHtml(date)}</div>`;
-      grouped[date].forEach(item => {
-        historyHtml += `<div class="lr-log-row">
-          <span class="${lrTagClassFor(item.type)}">${escapeHtml(item.type)}</span>
-          <span class="lr-log-note">${escapeHtml(item.note)}</span>
-          <button class="lr-log-remove" onclick="removeLearnerIncident(${r}, ${item.idx})" title="Remove entry">&#10005;</button>
-        </div>`;
-      });
-      historyHtml += `</div>`;
-    });
-  }
+  const behaviourHtml = renderLogEntries(r, "behaviour", store.behaviour, item =>
+    `<span class="${lrSeverityTagClass(item.severity)}">${escapeHtml(item.category || "General")} &middot; ${escapeHtml(item.severity)}</span>`);
+  const absenceHtml = renderLogEntries(r, "absence", store.absence, item =>
+    `<span class="${item.excused ? "lr-tag-excused" : "lr-tag-unexcused"}">${item.excused ? "Excused" : "Unexcused"}</span>`);
+  const workHtml = renderLogEntries(r, "work", store.work, item =>
+    `<span class="lr-tag-remark">${escapeHtml(item.para ? "Para " + item.para : "Work")}</span>`);
 
   const writtenReport = buildWrittenReportHtml(d);
+  const actionBanner = buildActionBanner(r, d, store.contact);
 
   return `
     <div class="lr-profile">
@@ -1674,6 +1877,7 @@ function buildLearnerReportHtml(r) {
         </div>
         <span class="lr-badge ${statusClass}">${escapeHtml(statusLabel)}</span>
       </div>
+      ${actionBanner}
       <div class="lr-grid">
         <div class="lr-card">
           <h4>Weekly Progress &amp; Term Summary</h4>
@@ -1694,14 +1898,36 @@ function buildLearnerReportHtml(r) {
             <div class="lr-summary-item"><span>Total Juz Memorized:</span> <strong>${escapeHtml(totalJuzMemorized)}</strong></div>
           </div>
         </div>
-        <div class="lr-card lr-discipline">
-          <h4>Discipline &amp; Attendance</h4>
-          <p style="margin-top:0;"><span>Total Logged Incidents:</span> <span class="lr-badge ${d.disciplineClass}">${incidentCount}</span></p>
-          <div class="lr-notes-box">${historyHtml}</div>
-          <div class="lr-actions">
-            <button class="lr-action-btn" onclick="logLearnerIncident(${r}, 'Late Coming')">&#9201; + Log Late</button>
-            <button class="lr-action-btn" onclick="logLearnerIncident(${r}, 'Absence')">&#10060; + Log Absent</button>
-            <button class="lr-action-btn lr-full" onclick="logLearnerIncident(${r}, 'Remark')">&#128221; + Add General Remark</button>
+      </div>
+      <div class="lr-discipline-wrap">
+        <div class="lr-discipline-summary">
+          <strong>Overall Discipline Status:</strong>
+          <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span>
+        </div>
+        <div class="lr-log-grid">
+          <div class="lr-card lr-log-behaviour">
+            <h4>General Behaviour</h4>
+            <p style="margin-top:0;"><span class="lr-badge ${d.behaviour.cssClass}">${d.behaviour.status}</span> &nbsp;<small style="color:#64748b;">${d.behaviour.count} logged</small></p>
+            <div class="lr-notes-box">${behaviourHtml}</div>
+            <div class="lr-actions">
+              <button class="lr-action-btn" onclick="openLogModal(${r}, 'behaviour')">&#9888; + Log Behaviour</button>
+            </div>
+          </div>
+          <div class="lr-card lr-log-absence">
+            <h4>Absence</h4>
+            <p style="margin-top:0;"><span class="lr-badge ${d.absence.cssClass}">${d.absence.status}</span> &nbsp;<small style="color:#64748b;">${d.absence.unexcused} unexcused / ${d.absence.excused} excused</small></p>
+            <div class="lr-notes-box">${absenceHtml}</div>
+            <div class="lr-actions">
+              <button class="lr-action-btn" onclick="openLogModal(${r}, 'absence')">&#10060; + Log Absent</button>
+            </div>
+          </div>
+          <div class="lr-card lr-log-work">
+            <h4>Daily Work</h4>
+            <p style="margin-top:0;"><span class="lr-badge ${d.work.cssClass}">${d.work.status}</span> &nbsp;<small style="color:#64748b;">${d.work.count} logged</small></p>
+            <div class="lr-notes-box">${workHtml}</div>
+            <div class="lr-actions">
+              <button class="lr-action-btn" onclick="openLogModal(${r}, 'work')">&#128221; + Log Daily Work</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1712,26 +1938,140 @@ function buildLearnerReportHtml(r) {
     </div>`;
 }
 
-function logLearnerIncident(r, type) {
-  const nameEl = document.getElementById(`exam-name-${r}`);
-  const name = nameEl && nameEl.value.trim() ? nameEl.value.trim() : "this learner";
-
-  let promptMessage = `Enter details for ${type} (${name}):`;
-  if (type === "Absence") promptMessage = `Enter reason or note for Absence (${name}):`;
-  if (type === "Late Coming") promptMessage = `Enter minutes/details for Late Coming (${name}):`;
-
-  const noteInput = prompt(promptMessage);
-  if (noteInput && noteInput.trim() !== "") {
-    const store = getLearnerReportRow(r);
-    const today = new Date().toISOString().split("T")[0];
-    store.history.push({ date: today, type, note: noteInput.trim() });
-    renderLearnerReport(r);
+// Renders one log's entries (grouped by date, newest first) as HTML,
+// using tagHtmlFn(item) to render the type-specific tag for that log.
+function renderLogEntries(r, logType, list, tagHtmlFn) {
+  if (!list.length) {
+    return `<p style="margin:0; color:#64748b; font-style:italic;">No logs recorded yet.</p>`;
   }
+  const grouped = {};
+  list.forEach((item, idx) => {
+    if (!grouped[item.date]) grouped[item.date] = [];
+    grouped[item.date].push({ ...item, idx });
+  });
+  let html = "";
+  Object.keys(grouped).sort().reverse().forEach(date => {
+    html += `<div style="margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #f1f5f9;">
+      <div style="color:#64748b; font-weight:bold; font-size:.78rem; margin-bottom:4px;">&#128197; ${escapeHtml(date)}</div>`;
+    grouped[date].forEach(item => {
+      html += `<div class="lr-log-row">
+        ${tagHtmlFn(item)}
+        <span class="lr-log-note">${escapeHtml(item.note || "")}</span>
+        <button class="lr-log-remove" onclick="removeLogEntry(${r}, '${logType}', ${item.idx})" title="Remove entry">&#10005;</button>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  return html;
 }
 
-function removeLearnerIncident(r, idx) {
+function removeLogEntry(r, logType, idx) {
   const store = getLearnerReportRow(r);
-  store.history.splice(idx, 1);
+  store[logType].splice(idx, 1);
+  renderLearnerReport(r);
+}
+
+// ===== Log entry modal (Behaviour / Absence / Daily Work) =====
+const LR_BEHAVIOUR_CATEGORIES = ["Late Coming", "Disruption", "Disrespect", "Phone Use", "Defiance", "Fighting", "Safety Incident", "Other"];
+
+function openLogModal(r, logType) {
+  const nameEl = document.getElementById(`exam-name-${r}`);
+  const name = nameEl && nameEl.value.trim() ? nameEl.value.trim() : "this learner";
+  const today = new Date().toISOString().split("T")[0];
+
+  let title, fieldsHtml;
+  if (logType === "behaviour") {
+    title = `Log Behaviour - ${escapeHtml(name)}`;
+    fieldsHtml = `
+      <div class="lr-modal-field">
+        <label>Category</label>
+        <select id="lr-modal-category">${LR_BEHAVIOUR_CATEGORIES.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("")}</select>
+      </div>
+      <div class="lr-modal-field">
+        <label>Severity</label>
+        <select id="lr-modal-severity">
+          <option value="Minor">Minor</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Severe">Severe</option>
+          <option value="Critical">Critical</option>
+        </select>
+      </div>
+      <div class="lr-modal-field">
+        <label>Note</label>
+        <textarea id="lr-modal-note" placeholder="What happened..."></textarea>
+      </div>`;
+  } else if (logType === "absence") {
+    title = `Log Absence - ${escapeHtml(name)}`;
+    fieldsHtml = `
+      <div class="lr-modal-field">
+        <label>Type</label>
+        <select id="lr-modal-excused">
+          <option value="no">Unexcused</option>
+          <option value="yes">Excused</option>
+        </select>
+      </div>
+      <div class="lr-modal-field">
+        <label>Note / Reason</label>
+        <textarea id="lr-modal-note" placeholder="Reason for absence..."></textarea>
+      </div>`;
+  } else {
+    title = `Log Daily Work - ${escapeHtml(name)}`;
+    fieldsHtml = `
+      <div class="lr-modal-field">
+        <label>Para / Juz (optional)</label>
+        <input type="text" id="lr-modal-para" placeholder="e.g. 6">
+      </div>
+      <div class="lr-modal-field">
+        <label>Note</label>
+        <textarea id="lr-modal-note" placeholder="e.g. work not given, struggling for 2 weeks..."></textarea>
+      </div>`;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "lr-modal-overlay";
+  overlay.id = "lr-modal-overlay";
+  overlay.innerHTML = `
+    <div class="lr-modal-box">
+      <h4>${title}</h4>
+      <div class="lr-modal-field">
+        <label>Date</label>
+        <input type="date" id="lr-modal-date" value="${today}">
+      </div>
+      ${fieldsHtml}
+      <div class="lr-modal-actions">
+        <button class="lr-modal-btn lr-cancel" onclick="closeLogModal()">Cancel</button>
+        <button class="lr-modal-btn lr-save" onclick="saveLogModal(${r}, '${logType}')">Save</button>
+      </div>
+    </div>`;
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeLogModal(); });
+  document.body.appendChild(overlay);
+}
+
+function closeLogModal() {
+  const overlay = document.getElementById("lr-modal-overlay");
+  if (overlay) overlay.remove();
+}
+
+function saveLogModal(r, logType) {
+  const date = document.getElementById("lr-modal-date").value || new Date().toISOString().split("T")[0];
+  const note = document.getElementById("lr-modal-note").value.trim();
+  const store = getLearnerReportRow(r);
+
+  let entry;
+  if (logType === "behaviour") {
+    const category = document.getElementById("lr-modal-category").value;
+    const severity = document.getElementById("lr-modal-severity").value;
+    entry = { date, category, severity, note };
+  } else if (logType === "absence") {
+    const excused = document.getElementById("lr-modal-excused").value === "yes";
+    entry = { date, excused, note };
+  } else {
+    const para = document.getElementById("lr-modal-para").value.trim();
+    entry = { date, para, note };
+  }
+
+  store[logType].push(entry);
+  closeLogModal();
   renderLearnerReport(r);
 }
 
