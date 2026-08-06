@@ -1181,6 +1181,7 @@ select {
 const NUM_LEARNERS = 25;
 const NUM_WEEKS = 12;
 const CATS = ["sabaq", "sabaqDhor", "dhor"];
+const CAT_LABELS = { sabaq: "Sabaq", sabaqDhor: "Sabaq Dhor", dhor: "Dhor" };
 
 // data[week][row][cat] = [d0,d1,d2,d3,d4]
 const data = {};
@@ -1339,6 +1340,53 @@ function lrTagClassFor(type) {
   return "lr-tag-remark";
 }
 
+// Scans this learner's raw day-by-day entries across Week 1 - Week 12
+// (data[week][row][cat][day]) and flags every "0" that was explicitly
+// entered for Sabaq, Sabaq Dhor, or Dhor. A 0 means the learner did NOT
+// give that particular work that day (this is different from a blank/
+// empty cell, which just means nothing has been recorded yet).
+function computeMissedWorkData(r) {
+  const missed = {
+    sabaq: { count: 0, weeks: new Set() },
+    sabaqDhor: { count: 0, weeks: new Set() },
+    dhor: { count: 0, weeks: new Set() }
+  };
+  for (let w = 1; w <= NUM_WEEKS; w++) {
+    if (!data[w] || !data[w][r]) continue;
+    CATS.forEach(cat => {
+      const vals = data[w][r][cat] || [];
+      vals.forEach(v => {
+        if (v === 0) {
+          missed[cat].count++;
+          missed[cat].weeks.add(w);
+        }
+      });
+    });
+  }
+  const result = { totalMissed: 0 };
+  CATS.forEach(cat => {
+    const weeks = Array.from(missed[cat].weeks).sort((a, b) => a - b);
+    result[cat] = { count: missed[cat].count, weeks };
+    result.totalMissed += missed[cat].count;
+  });
+  return result;
+}
+
+// Turns computeMissedWorkData()'s output into short point-form lines -
+// one per category, e.g. "Sabaq: 2x (Week 3, Week 7)". Only categories
+// with at least one 0 are included.
+function buildMissedWorkPoints(missedWork) {
+  const points = [];
+  CATS.forEach(cat => {
+    const info = missedWork[cat];
+    if (info.count > 0) {
+      const weeksStr = info.weeks.map(w => `Week ${w}`).join(", ");
+      points.push(`${CAT_LABELS[cat]}: ${info.count}x (${weeksStr})`);
+    }
+  });
+  return points;
+}
+
 // Computes all the data needed for a learner's written narrative (used by
 // both the Learner Report tab's "Written Progress & Behavior Report" card
 // and, by default, the "General Comments" box on the Exam Term Report tab).
@@ -1376,7 +1424,11 @@ function getLearnerNarrativeData(r) {
     disciplineLine = `${name} has ${incidentCount} behavior or attendance records logged this term. This is a serious concern. Immediate action and a meeting with the parent/guardian is recommended.`;
   }
 
-  return { name, grade, statusLabel, incidentCount, disciplineStatus, disciplineClass, disciplineLine, sabaqGiven, pctToTarget, totalJuzMemorized, remaining };
+  // Missed-work analysis: scans the raw Week 1-12 day entries for 0s.
+  const missedWork = computeMissedWorkData(r);
+  const missedWorkPoints = buildMissedWorkPoints(missedWork);
+
+  return { name, grade, statusLabel, incidentCount, disciplineStatus, disciplineClass, disciplineLine, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, missedWork, missedWorkPoints };
 }
 
 // Builds the HTML version of the written report, for the Learner Report tab.
@@ -1389,6 +1441,11 @@ function buildWrittenReportHtml(d) {
     This term, ${escapeHtml(d.name)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, which is
     <strong>${escapeHtml(d.pctToTarget)}</strong> of the target. So far ${escapeHtml(d.name)} has memorized
     <strong>${escapeHtml(d.totalJuzMemorized)} Juz</strong>, with <strong>${escapeHtml(d.remaining)} Juz</strong> left to finish the whole Qur'an.<br><br>
+    <strong>Missed Work (Week 1 - Week 12): <span class="lr-badge ${d.missedWork.totalMissed === 0 ? "lr-status-success" : "lr-status-warning"}">${d.missedWork.totalMissed} total 0${d.missedWork.totalMissed === 1 ? "" : "s"}</span></strong><br>
+    ${d.missedWorkPoints.length === 0
+      ? `<span style="color:#64748b; font-style:italic;">No 0s recorded - full work given every week.</span>`
+      : `<ul style="margin:4px 0 0 18px; padding:0;">${d.missedWorkPoints.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`
+    }<br>
     Overall performance status for this term is <strong>${escapeHtml(d.statusLabel)}</strong>.`;
 }
 
@@ -1398,6 +1455,10 @@ function buildWrittenReportPlainText(d) {
   return `Discipline & Behavior Status: ${d.disciplineStatus}\n${d.disciplineLine}\n\n`
     + `Weekly Progress: This term, ${d.name} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the target. `
     + `So far ${d.name} has memorized ${d.totalJuzMemorized} Juz, with ${d.remaining} Juz left to finish the whole Qur'an.\n\n`
+    + `Missed Work (Week 1 - Week 12): ${d.missedWork.totalMissed} total 0${d.missedWork.totalMissed === 1 ? "" : "s"}\n`
+    + (d.missedWorkPoints.length === 0
+        ? `- No 0s recorded - full work given every week.\n\n`
+        : d.missedWorkPoints.map(p => `- ${p}`).join("\n") + `\n\n`)
     + `Overall performance status for this term is ${d.statusLabel}.`;
 }
 
