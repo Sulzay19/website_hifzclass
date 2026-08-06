@@ -304,6 +304,22 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-action-btn:hover { background:#f1f5f9; }
 #learnerreport .lr-action-btn.lr-full { grid-column:span 2; }
 #learnerreport .lr-report-box { background:#fff; padding:12px; border-radius:6px; border:1px solid #e2e8f0; font-size:.88rem; line-height:1.6; color:#1e293b; }
+
+/* ===== Graph tab ===== */
+#graph .graph-card { background:#fff; border:1px solid #cfd9e3; border-radius:8px; padding:18px; margin-top:14px; }
+#graph .graph-card h4 { margin:0 0 12px; font-size:.95rem; color:#1e293b; border-bottom:1px solid #e2e8f0; padding-bottom:6px; }
+#graph .graph-legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; font-size:.78rem; color:#334155; }
+#graph .graph-legend span { display:inline-flex; align-items:center; gap:5px; }
+#graph .graph-swatch { width:12px; height:12px; border-radius:2px; display:inline-block; }
+#graph .graph-chart-scroll { overflow-x:auto; padding-bottom:6px; }
+#graph .graph-chart { display:flex; align-items:flex-end; gap:14px; min-height:220px; padding:10px 4px 0; }
+#graph .graph-group { display:flex; flex-direction:column; align-items:center; flex:0 0 auto; }
+#graph .graph-bars { display:flex; align-items:flex-end; gap:3px; height:180px; }
+#graph .graph-bar-col { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; width:16px; }
+#graph .graph-bar { width:100%; border-radius:3px 3px 0 0; min-height:1px; position:relative; }
+#graph .graph-bar-val { font-size:.62rem; color:#475569; margin-bottom:2px; white-space:nowrap; }
+#graph .graph-group-label { margin-top:6px; font-size:.72rem; color:#334155; font-weight:600; text-align:center; }
+#graph .graph-empty-note { color:#64748b; font-style:italic; font-size:.85rem; }
 .rc-section-title {
   margin: 20px 0 8px;
   font-size: 13px;
@@ -808,7 +824,7 @@ select {
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('home', this)">Home</button><button class="tab-btn" onclick="switchTab('week1', this)">Week 1</button><button class="tab-btn" onclick="switchTab('week2', this)">Week 2</button><button class="tab-btn" onclick="switchTab('week3', this)">Week 3</button><button class="tab-btn" onclick="switchTab('week4', this)">Week 4</button><button class="tab-btn" onclick="switchTab('week5', this)">Week 5</button><button class="tab-btn" onclick="switchTab('week6', this)">Week 6</button><button class="tab-btn" onclick="switchTab('week7', this)">Week 7</button><button class="tab-btn" onclick="switchTab('week8', this)">Week 8</button><button class="tab-btn" onclick="switchTab('week9', this)">Week 9</button><button class="tab-btn" onclick="switchTab('week10', this)">Week 10</button><button class="tab-btn" onclick="switchTab('week11', this)">Week 11</button><button class="tab-btn" onclick="switchTab('week12', this)">Week 12</button>
-    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('examreport', this)">Exam Term Report</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
+    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('examreport', this)">Exam Term Report</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('graph', this)">Graph</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
   </div>
   
   <div id="home" class="tab-content active">
@@ -1148,6 +1164,19 @@ select {
     </div>
     <div id="lr-sheet"><p class="rc-empty">Select a learner above to see their report.</p></div>
   </div>
+  <div id="graph" class="tab-content">
+    <h2>Graph</h2>
+    <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
+    <p class="note">Bar-chart view of the same data shown in the Learner Report: Weekly Progress (Sabaq / Sabaq Dhor / Dhor pages given each week) and Missed Work (0 entries recorded across Week 1 - Week 12).</p>
+    <div class="learner-select-row">
+      <label for="graph-select">Select Learner:</label>
+      <select id="graph-select" onchange="renderGraphReport(this.value)">
+        <option value="">-- Choose a learner --</option>
+      </select>
+    </div>
+    <div id="graph-sheet"><p class="rc-empty">Select a learner above to see their graph.</p></div>
+  </div>
   <div id="misc" class="tab-content">
     <h2>Miscellaneous</h2>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
@@ -1287,6 +1316,7 @@ function switchTab(tabId, btn) {
   btn.classList.add("active");
   if (tabId === "examreport") populateExamReportDropdown();
   if (tabId === "learnerreport") populateLearnerReportDropdown();
+  if (tabId === "graph") populateGraphDropdown();
 }
 
 // ===== Learner Report tab =====
@@ -1611,6 +1641,120 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+// ===== Graph tab =====
+// Same learner dropdown pattern as the Learner Report tab. Shows two
+// simple CSS bar charts built from the exact same numbers as the written
+// report: Weekly Progress (Sabaq/Sabaq Dhor/Dhor pages per week, from the
+// Week tabs' `data` object) and Missed Work (0-entry counts per category,
+// from computeMissedWorkData()). No charting library - just divs sized by
+// percentage height, so it works fully offline like the rest of the file.
+const GRAPH_CAT_COLORS = { sabaq: "#A9D18E", sabaqDhor: "#9DC3E6", dhor: "#FFD966" };
+
+function populateGraphDropdown() {
+  const select = document.getElementById("graph-select");
+  if (!select) return;
+  const previouslySelected = select.value;
+  select.innerHTML = '<option value="">-- Choose a learner --</option>';
+
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const nameEl = document.getElementById(`exam-name-${r}`);
+    const name = nameEl ? nameEl.value.trim() : "";
+    if (!name) continue;
+    const opt = document.createElement("option");
+    opt.value = r;
+    opt.textContent = name;
+    select.appendChild(opt);
+  }
+
+  if (previouslySelected && select.querySelector(`option[value="${previouslySelected}"]`)) {
+    select.value = previouslySelected;
+    renderGraphReport(previouslySelected);
+  } else {
+    document.getElementById("graph-sheet").innerHTML =
+      '<p class="rc-empty">Select a learner above to see their graph.</p>';
+  }
+}
+
+function renderGraphReport(rowIndex) {
+  const sheetEl = document.getElementById("graph-sheet");
+  if (!sheetEl) return;
+  if (rowIndex === "" || rowIndex === null || rowIndex === undefined) {
+    sheetEl.innerHTML = '<p class="rc-empty">Select a learner above to see their graph.</p>';
+    return;
+  }
+  sheetEl.innerHTML = buildGraphHtml(Number(rowIndex));
+}
+
+function buildGraphHtml(r) {
+  const nameEl = document.getElementById(`exam-name-${r}`);
+  const name = (nameEl ? nameEl.value.trim() : "") || "(unnamed)";
+
+  // ---- Weekly Progress bars (grouped: Sabaq / Sabaq Dhor / Dhor per week) ----
+  const weekly = [];
+  let maxWeekly = 0;
+  for (let w = 1; w <= NUM_WEEKS; w++) {
+    const wd = data[w] && data[w][r] ? data[w][r] : { sabaq: [], sabaqDhor: [], dhor: [] };
+    const sabaq = sum5(wd.sabaq || []);
+    const sabaqDhor = sum5(wd.sabaqDhor || []);
+    const dhor = sum5(wd.dhor || []);
+    weekly.push({ week: w, sabaq, sabaqDhor, dhor });
+    maxWeekly = Math.max(maxWeekly, sabaq, sabaqDhor, dhor);
+  }
+  maxWeekly = Math.max(maxWeekly, 1);
+
+  const weeklyGroupsHtml = weekly.map(w => `
+    <div class="graph-group">
+      <div class="graph-bars">
+        <div class="graph-bar-col">
+          <span class="graph-bar-val">${w.sabaq || ""}</span>
+          <div class="graph-bar" style="height:${(w.sabaq / maxWeekly) * 100}%; background:${GRAPH_CAT_COLORS.sabaq};"></div>
+        </div>
+        <div class="graph-bar-col">
+          <span class="graph-bar-val">${w.sabaqDhor || ""}</span>
+          <div class="graph-bar" style="height:${(w.sabaqDhor / maxWeekly) * 100}%; background:${GRAPH_CAT_COLORS.sabaqDhor};"></div>
+        </div>
+        <div class="graph-bar-col">
+          <span class="graph-bar-val">${w.dhor || ""}</span>
+          <div class="graph-bar" style="height:${(w.dhor / maxWeekly) * 100}%; background:${GRAPH_CAT_COLORS.dhor};"></div>
+        </div>
+      </div>
+      <div class="graph-group-label">Wk ${w.week}</div>
+    </div>`).join("");
+
+  // ---- Missed Work bars (one bar per category, count of 0s) ----
+  const missedWork = computeMissedWorkData(r);
+  const maxMissed = Math.max(missedWork.sabaq.count, missedWork.sabaqDhor.count, missedWork.dhor.count, 1);
+
+  const missedGroupsHtml = CATS.map(cat => {
+    const count = missedWork[cat].count;
+    return `<div class="graph-group">
+      <div class="graph-bars">
+        <div class="graph-bar-col" style="width:34px;">
+          <span class="graph-bar-val">${count || ""}</span>
+          <div class="graph-bar" style="height:${(count / maxMissed) * 100}%; background:${GRAPH_CAT_COLORS[cat]};"></div>
+        </div>
+      </div>
+      <div class="graph-group-label">${CAT_LABELS[cat]}</div>
+    </div>`;
+  }).join("");
+
+  return `
+    <h3 style="margin:14px 0 0; color:#1F4E78;">${escapeHtml(name)}</h3>
+    <div class="graph-card">
+      <h4>Weekly Progress (pages given per week)</h4>
+      <div class="graph-legend">
+        <span><span class="graph-swatch" style="background:${GRAPH_CAT_COLORS.sabaq};"></span>Sabaq</span>
+        <span><span class="graph-swatch" style="background:${GRAPH_CAT_COLORS.sabaqDhor};"></span>Sabaq Dhor</span>
+        <span><span class="graph-swatch" style="background:${GRAPH_CAT_COLORS.dhor};"></span>Dhor</span>
+      </div>
+      <div class="graph-chart-scroll"><div class="graph-chart">${weeklyGroupsHtml}</div></div>
+    </div>
+    <div class="graph-card">
+      <h4>Missed Work (0 entries, Week 1 - Week 12)</h4>
+      <div class="graph-chart-scroll"><div class="graph-chart">${missedGroupsHtml}</div></div>
+    </div>`;
 }
 
 // ===== Exam Term Report tab (Hifz Report) =====
