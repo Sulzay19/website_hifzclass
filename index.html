@@ -335,6 +335,7 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-tag-critical { background:#fecaca; color:#991b1b; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
 #learnerreport .lr-tag-excused { background:#d1fae5; color:#059669; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
 #learnerreport .lr-tag-unexcused { background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
+#learnerreport .lr-serious-block { margin-top:10px; background:#fff7ed; border-left:3px solid #f59e0b; padding:8px 12px; border-radius:4px; font-size:.9rem; }
 #learnerreport .lr-notes-box { margin-top:10px; background:#fff; padding:10px; border-radius:4px; border:1px solid #e2e8f0; font-size:.85rem; max-height:150px; overflow-y:auto; }
 #learnerreport .lr-log-row { display:flex; justify-content:space-between; align-items:center; margin-top:3px; font-size:.82rem; gap:6px; }
 #learnerreport .lr-log-note { color:#334155; flex-grow:1; text-align:right; }
@@ -1756,10 +1757,10 @@ function buildLogStatusLine(name, kind, d) {
     return `${name} has repeated Critical behaviour incidents logged this term. This is grounds for an expulsion review.`;
   }
   if (kind === "absence") {
-    if (d.status === "Good") return `${name} has ${d.unexcused} unexcused absence(s) this term (${d.excused} excused). No action needed.`;
-    if (d.status === "Warning") return `${name} has ${d.unexcused} unexcused absence(s) this term. A formal warning is recommended.`;
-    if (d.status === "Parent Meeting") return `${name} has ${d.unexcused} unexcused absence(s) this term. A parent/guardian meeting is recommended.`;
-    return `${name} has ${d.unexcused} unexcused absences this term. This is grounds for an expulsion review.`;
+    if (d.status === "Good") return `${name} has ${d.count} absence(s) logged this term. No action needed.`;
+    if (d.status === "Warning") return `${name} has ${d.count} absence(s) logged this term. A formal warning is recommended.`;
+    if (d.status === "Parent Meeting") return `${name} has ${d.count} absence(s) logged this term. A parent/guardian meeting is recommended.`;
+    return `${name} has ${d.count} absences logged this term. This is grounds for an expulsion review.`;
   }
   // work
   if (d.status === "Good") return `${name} has ${d.count} daily work issue(s) logged this term. No action needed.`;
@@ -1776,45 +1777,99 @@ function contactStatusLine(logType, status, contact) {
   return c.date ? `Parent Contact: ${c.status} (${c.date}).` : `Parent Contact: ${c.status}.`;
 }
 
+// Same wording as buildLogStatusLine, but takes a pronoun instead of the
+// learner's name - used only inside the flowing paragraph so the name
+// isn't repeated in every sentence. First mention of the paragraph uses
+// the real name; every mention after that passes "He".
+function buildParagraphLine(pronoun, kind, d) {
+  const has = "has";
+  if (kind === "behaviour") {
+    if (d.status === "Good") return `${pronoun} ${has} no behaviour concerns logged this term.`;
+    if (d.status === "Warning") return `${pronoun} ${has} ${d.count} behaviour record(s) logged this term (${d.counts.Moderate} Moderate). A formal warning is recommended.`;
+    if (d.status === "Parent Meeting") return `${pronoun} ${has} ${d.count} behaviour record(s) logged this term, including Severe/Critical incidents. A parent/guardian meeting is recommended.`;
+    return `${pronoun} ${has} repeated Critical behaviour incidents logged this term. This is grounds for an expulsion review.`;
+  }
+  if (kind === "absence") {
+    if (d.status === "Good") return `${pronoun} ${has} ${d.count} absence(s) logged this term. No action needed.`;
+    if (d.status === "Warning") return `${pronoun} ${has} ${d.count} absence(s) logged this term. A formal warning is recommended.`;
+    if (d.status === "Parent Meeting") return `${pronoun} ${has} ${d.count} absence(s) logged this term. A parent/guardian meeting is recommended.`;
+    return `${pronoun} ${has} ${d.count} absences logged this term. This is grounds for an expulsion review.`;
+  }
+  // work
+  if (d.status === "Good") return `${pronoun} ${has} ${d.count} daily work issue(s) logged this term. No action needed.`;
+  if (d.status === "Warning") return `${pronoun} ${has} ${d.count} daily work issues logged this term (missed/stuck sabaq). A formal warning is recommended.`;
+  return `${pronoun} ${has} ${d.count} daily work issues logged this term. A parent/guardian meeting is recommended to address ongoing academic struggle.`;
+}
+
 function buildWrittenReportHtml(d) {
+  const proseParts = [];
+  const seriousBlocks = [];
+  let nameUsed = false;
+  const nextPronoun = () => { const p = nameUsed ? "He" : d.name; nameUsed = true; return p; };
+
+  [["behaviour", d.behaviour], ["absence", d.absence], ["work", d.work]].forEach(([kind, info]) => {
+    const contact = contactStatusLine(kind, info.status, d.contact);
+    if (info.status === "Good") {
+      proseParts.push(buildParagraphLine(nextPronoun(), kind, info));
+    } else {
+      const line = d.disciplineLines[kind];
+      seriousBlocks.push(`
+        <div class="lr-serious-block">
+          <strong>${LR_LOG_LABELS[kind]} &mdash; <span class="lr-badge ${info.cssClass}">${info.status}</span></strong><br>
+          ${escapeHtml(line)}${contact ? ` <em>${escapeHtml(contact)}</em>` : ""}
+        </div>`);
+    }
+  });
+
+  const weeklySubject = nextPronoun();
+  const weeklySubjectLower = weeklySubject === "He" ? "he" : weeklySubject;
+  const weeklyLine = `This term, ${escapeHtml(weeklySubjectLower)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, `
+    + `which is <strong>${escapeHtml(d.pctToTarget)}</strong> of the term target.`;
+
+  const missedSubject = nextPronoun();
+  const missedLine = d.missedWork.totalMissed === 0
+    ? `No work was missed this term.`
+    : `${escapeHtml(missedSubject)} missed submitting work <strong>${d.missedWork.totalMissed}</strong> time(s) this term `
+      + `(${d.missedWorkPoints.map(escapeHtml).join(", ")}).`;
+
   return `
-    <strong>Progress Report for ${escapeHtml(d.name)} (${escapeHtml(d.grade)}):</strong><br><br>
-    <strong>Overall Discipline Status: <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span></strong><br><br>
-    <strong>General Behaviour: <span class="lr-badge ${d.behaviour.cssClass}">${d.behaviour.status}</span></strong><br>
-    ${escapeHtml(d.disciplineLines.behaviour)}${(() => { const c = contactStatusLine("behaviour", d.behaviour.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
-    <strong>Absence: <span class="lr-badge ${d.absence.cssClass}">${d.absence.status}</span></strong><br>
-    ${escapeHtml(d.disciplineLines.absence)}${(() => { const c = contactStatusLine("absence", d.absence.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
-    <strong>Daily Work: <span class="lr-badge ${d.work.cssClass}">${d.work.status}</span></strong><br>
-    ${escapeHtml(d.disciplineLines.work)}${(() => { const c = contactStatusLine("work", d.work.status, d.contact); return c ? ` <em>${escapeHtml(c)}</em>` : ""; })()}<br><br>
-    <strong>Weekly Progress:</strong><br>
-    This term, ${escapeHtml(d.name)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, which is
-    <strong>${escapeHtml(d.pctToTarget)}</strong> of the target. So far ${escapeHtml(d.name)} has memorized
-    <strong>${escapeHtml(d.totalJuzMemorized)} Juz</strong>, with <strong>${escapeHtml(d.remaining)} Juz</strong> left to finish the whole Qur'an.<br><br>
-    <strong>Missed Work (Week 1 - Week 12): <span class="lr-badge ${d.missedWork.totalMissed === 0 ? "lr-status-success" : "lr-status-warning"}">${d.missedWork.totalMissed} total 0${d.missedWork.totalMissed === 1 ? "" : "s"}</span></strong><br>
-    ${d.missedWorkPoints.length === 0
-      ? `<span style="color:#64748b; font-style:italic;">No 0s recorded - full work given every week.</span>`
-      : `<ul style="margin:4px 0 0 18px; padding:0;">${d.missedWorkPoints.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`
-    }<br>
-    Overall performance status for this term is <strong>${escapeHtml(d.statusLabel)}</strong>.`;
+    <strong>Progress Report for ${escapeHtml(d.name)} (${escapeHtml(d.grade)})</strong> &mdash;
+    Overall Discipline Status: <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span><br><br>
+    <p>${proseParts.map(escapeHtml).join(" ")} ${weeklyLine} ${missedLine}</p>
+    ${seriousBlocks.join("")}
+    <br>Overall performance status for this term is <strong>${escapeHtml(d.statusLabel)}</strong>.`;
 }
 
 // Builds the plain-text version of the same report, for the "General
 // Comments" textarea on the Exam Term Report tab (plain text only - no HTML).
 function buildWrittenReportPlainText(d) {
-  const bLine = contactStatusLine("behaviour", d.behaviour.status, d.contact);
-  const aLine = contactStatusLine("absence", d.absence.status, d.contact);
-  const wLine = contactStatusLine("work", d.work.status, d.contact);
-  return `Overall Discipline Status: ${d.overall.status}\n\n`
-    + `General Behaviour: ${d.behaviour.status}\n${d.disciplineLines.behaviour}${bLine ? " " + bLine : ""}\n\n`
-    + `Absence: ${d.absence.status}\n${d.disciplineLines.absence}${aLine ? " " + aLine : ""}\n\n`
-    + `Daily Work: ${d.work.status}\n${d.disciplineLines.work}${wLine ? " " + wLine : ""}\n\n`
-    + `Weekly Progress: This term, ${d.name} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the target. `
-    + `So far ${d.name} has memorized ${d.totalJuzMemorized} Juz, with ${d.remaining} Juz left to finish the whole Qur'an.\n\n`
-    + `Missed Work (Week 1 - Week 12): ${d.missedWork.totalMissed} total 0${d.missedWork.totalMissed === 1 ? "" : "s"}\n`
-    + (d.missedWorkPoints.length === 0
-        ? `- No 0s recorded - full work given every week.\n\n`
-        : d.missedWorkPoints.map(p => `- ${p}`).join("\n") + `\n\n`)
-    + `Overall performance status for this term is ${d.statusLabel}.`;
+  const proseParts = [];
+  const seriousBlocks = [];
+  let nameUsed = false;
+  const nextPronoun = () => { const p = nameUsed ? "He" : d.name; nameUsed = true; return p; };
+
+  [["behaviour", d.behaviour], ["absence", d.absence], ["work", d.work]].forEach(([kind, info]) => {
+    const contact = contactStatusLine(kind, info.status, d.contact);
+    if (info.status === "Good") {
+      proseParts.push(buildParagraphLine(nextPronoun(), kind, info));
+    } else {
+      const line = d.disciplineLines[kind];
+      seriousBlocks.push(`\n${LR_LOG_LABELS[kind]} - ${info.status}\n${line}${contact ? " " + contact : ""}\n`);
+    }
+  });
+
+  const weeklySubject = nextPronoun();
+  const weeklySubjectLower = weeklySubject === "He" ? "he" : weeklySubject;
+  const weeklyLine = `This term, ${weeklySubjectLower} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the term target.`;
+  const missedSubject = nextPronoun();
+  const missedLine = d.missedWork.totalMissed === 0
+    ? `No work was missed this term.`
+    : `${missedSubject} missed submitting work ${d.missedWork.totalMissed} time(s) this term (${d.missedWorkPoints.join(", ")}).`;
+
+  return `Progress Report for ${d.name} (${d.grade}) - Overall Discipline Status: ${d.overall.status}\n\n`
+    + `${proseParts.join(" ")} ${weeklyLine} ${missedLine}\n`
+    + seriousBlocks.join("")
+    + `\nOverall performance status for this term is ${d.statusLabel}.`;
 }
 
 // Builds the full learner profile for one row. Name/Grade/Performance
