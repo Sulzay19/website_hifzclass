@@ -834,25 +834,25 @@
       },
       {
         "sabaq": [
+          2,
+          2,
+          1.5,
           4,
-          0,
-          0,
-          0,
-          0
+          6
         ],
         "sabaqDhor": [
           3,
-          0,
-          0,
-          0,
-          0
+          4,
+          3,
+          5,
+          8
         ],
         "dhor": [
-          0,
-          0,
-          0,
-          0,
-          0
+          3,
+          4,
+          3,
+          3,
+          8
         ]
       },
       {
@@ -1411,24 +1411,24 @@
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
+          2,
+          1,
+          1.5,
+          4.5,
           null
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
+          3,
+          4,
+          2,
+          0,
           null
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
+          2,
+          2,
+          0,
+          0,
           null
         ]
       },
@@ -7529,8 +7529,8 @@
         ],
         "3": [
           null,
-          "0.50",
-          "24.00",
+          "1.23",
+          "24.73",
           null,
           "",
           null,
@@ -8386,6 +8386,51 @@
     }
   },
   "learnerReportData": {
+    "13": {
+      "behaviour": [],
+      "absence": [],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "15": {
+      "behaviour": [
+        {
+          "date": "2026-08-06",
+          "category": "Disruption",
+          "severity": "Minor",
+          "note": ""
+        }
+      ],
+      "absence": [],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
     "16": {
       "history": []
     }
