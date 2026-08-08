@@ -28,9 +28,14 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": 23.5,
-      "startGrade": "",
-      "startYear": "",
-      "journeyProgress": {},
+      "startGrade": "Grade 6",
+      "startYear": "2023",
+      "journeyProgress": {
+        "4": null,
+        "5": null,
+        "6": 12,
+        "7": 8
+      },
       "notes": ""
     },
     {
@@ -46,7 +51,8 @@
         "4": 3,
         "5": 5,
         "6": 5,
-        "7": 6
+        "7": 6,
+        "8": null
       },
       "notes": ""
     },
@@ -94,7 +100,7 @@
       "startGrade": "grade 5",
       "startYear": "2024",
       "journeyProgress": {
-        "4": 0,
+        "4": null,
         "5": 3,
         "6": 6
       },
@@ -109,7 +115,11 @@
       "priorJuzMemorized": 8,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 2,
+        "5": 2,
+        "6": 2
+      },
       "notes": ""
     },
     {
@@ -136,7 +146,10 @@
       "priorJuzMemorized": 9,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 3,
+        "5": 4
+      },
       "notes": ""
     },
     {
@@ -148,7 +161,10 @@
       "priorJuzMemorized": 4.5,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 1.5,
+        "5": 3
+      },
       "notes": ""
     },
     {
@@ -174,7 +190,9 @@
       "priorJuzMemorized": 6.5,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 3
+      },
       "notes": ""
     },
     {
@@ -187,7 +205,8 @@
       "startGrade": "Grade 4",
       "startYear": "2025",
       "journeyProgress": {
-        "4": 4.5
+        "4": 4.5,
+        "5": null
       },
       "notes": ""
     },
@@ -200,7 +219,10 @@
       "priorJuzMemorized": 12,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 10,
+        "5": null
+      },
       "notes": ""
     },
     {
@@ -212,7 +234,10 @@
       "priorJuzMemorized": 0.75,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": null,
+        "5": null
+      },
       "notes": ""
     },
     {
@@ -224,7 +249,9 @@
       "priorJuzMemorized": 1.25,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 1.5
+      },
       "notes": ""
     },
     {
@@ -236,7 +263,9 @@
       "priorJuzMemorized": 2.25,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 2.45
+      },
       "notes": ""
     },
     {
@@ -248,7 +277,9 @@
       "priorJuzMemorized": 1.25,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 1.59
+      },
       "notes": ""
     },
     {
@@ -260,7 +291,9 @@
       "priorJuzMemorized": 0.75,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 0.9
+      },
       "notes": ""
     },
     {
@@ -272,7 +305,9 @@
       "priorJuzMemorized": 1.25,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 1.47
+      },
       "notes": ""
     },
     {
@@ -284,7 +319,9 @@
       "priorJuzMemorized": 0.75,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 0.75
+      },
       "notes": ""
     },
     {
@@ -296,7 +333,9 @@
       "priorJuzMemorized": 0.5,
       "startGrade": "",
       "startYear": "",
-      "journeyProgress": {},
+      "journeyProgress": {
+        "4": 0.5
+      },
       "notes": ""
     },
     {
@@ -1954,18 +1993,18 @@
       },
       {
         "sabaq": [
-          0.04,
-          0.4,
+          0,
+          0,
           0.3,
-          null,
-          null
+          0.25,
+          0
         ],
         "sabaqDhor": [
           1,
           1,
           1,
           1,
-          null
+          0
         ],
         "dhor": [
           14,
@@ -1978,10 +2017,10 @@
       {
         "sabaq": [
           1,
-          0.04,
-          0.04,
+          0.25,
+          0.25,
           0,
-          null
+          0.25
         ],
         "sabaqDhor": [
           1,
@@ -8452,8 +8491,8 @@
         ],
         "3": [
           null,
-          "0.12",
-          "0.87",
+          "0.11",
+          "0.86",
           null,
           "",
           null,
@@ -8473,8 +8512,8 @@
       "terms": {
         "3": [
           null,
-          "0.11",
-          "0.61",
+          "0.13",
+          "0.63",
           null,
           "",
           null,

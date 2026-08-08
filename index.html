@@ -306,6 +306,9 @@ tfoot td { border: 1px solid #0f2e47; }
 .rc-empty { color: #999; font-style: italic; padding: 10px 0; }
 
 /* ===== Journey tab ===== */
+@media print {
+  #journey-classlist-wrap, #journey-classlist-toggle { display:none !important; }
+}
 #journey .journey-start-row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin:14px 0; }
 #journey .journey-start-row .journey-field { display:flex; flex-direction:column; gap:4px; }
 #journey .journey-start-row label { font-size:12px; font-weight:bold; color:#1F4E78; }
@@ -316,7 +319,7 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-juz-stat { display:flex; flex-direction:column; align-items:flex-start; min-width:120px; }
 #journey .journey-juz-num { font-size:24px; font-weight:bold; color:#1F4E78; line-height:1.1; }
 #journey .journey-juz-label { font-size:11px; color:#666; }
-#journey .journey-juz-status { margin-left:auto; font-size:13px; font-weight:bold; padding:6px 12px; border-radius:999px; }
+#journey .journey-juz-status { margin-left:auto; font-size:13px; font-weight:bold; padding:6px 12px; border-radius:999px; white-space:nowrap; }
 #journey .journey-juz-status.on-track { background:#e2e8f0; color:#334155; }
 #journey .journey-juz-status.ahead { background:#d1fae5; color:#059669; }
 #journey .journey-juz-status.behind { background:#fee2e2; color:#dc2626; }
@@ -327,17 +330,17 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-card.completed { border-top-color:#D4AF37; background:#fdfaf0; }
 #journey .journey-card.current { border-top-color:#1F4E78; background:#eef3fa; box-shadow:0 2px 8px rgba(31,78,120,0.25); }
 #journey .journey-card.upcoming { opacity:0.6; }
+#journey .journey-card.joined-later { opacity:0.5; border-top-style:dashed; border-top-color:#9ca3af; background:#f9fafb; }
 #journey .journey-card .journey-grade-label { font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#B8860B; }
 #journey .journey-card h4 { margin:6px 0 8px; font-size:16px; color:#1F4E78; }
 #journey .journey-card ul { margin:0; padding-left:18px; font-size:12.5px; color:#333; }
 #journey .journey-card ul li { margin-bottom:3px; }
-#journey .journey-progress-row { display:flex; align-items:center; gap:6px; margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; }
-#journey .journey-progress-row label { font-size:12px; font-weight:bold; color:#555; }
-#journey .journey-progress-row input { width:60px; font-family: Arial, sans-serif; font-size:13px; padding:4px 6px; border:1px solid #ccc; border-radius:4px; }
+#journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; font-size:12.5px; font-weight:bold; color:#1F4E78; }
 #journey .journey-status-badge { position:absolute; top:10px; right:10px; font-size:10px; font-weight:bold; padding:3px 7px; border-radius:999px; text-transform:uppercase; }
 #journey .journey-status-badge.completed { background:#fdf0c8; color:#8a6d1a; }
 #journey .journey-status-badge.current { background:#1F4E78; color:#fff; }
 #journey .journey-status-badge.upcoming { background:#e2e8f0; color:#64748b; }
+#journey .journey-status-badge.joined-later { background:#e5e7eb; color:#6b7280; }
 
 /* ===== Learner Report tab ===== */
 #learnerreport .lr-profile { background:#fff; border:1px solid #cfd9e3; border-radius:8px; padding:20px; margin-top:14px; }
@@ -639,7 +642,7 @@ tfoot td { border: 1px solid #0f2e47; }
   body.printing-single-page .tab-content.active {
     display: block !important;
     page-break-after: auto !important;
-    padding: 0 !important;
+    padding: 14mm 10mm !important;
     border-radius: 0 !important;
   }
   body.printing-single-page .tab-content.active .page-action-btn,
@@ -1367,7 +1370,23 @@ select {
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
     <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
     <p class="note">A summary of the Hifz journey: grade-by-grade progression. Select a learner to see when he started and what he has accomplished each year.</p>
-    <div class="learner-select-row">
+    <p class="note" style="margin-top:16px;">
+      <a href="#" id="journey-classlist-toggle" onclick="toggleJourneyClasslist(event)" style="color:#1F4E78; font-weight:bold; text-decoration:underline; cursor:pointer;">Show / Edit Classlist</a>
+    </p>
+    <div id="journey-classlist-wrap" style="display:none;">
+      <h3 style="margin-top:10px;">Grade-wise Paras Completed (Classlist)</h3>
+      <p class="note">Names and grades sync automatically from the Exam tab. Enter each learner's completed Paras for the grade he is/was in — this feeds the cards below automatically.</p>
+      <div style="overflow-x:auto;">
+      <table class="week-table" id="journey-classlist-table">
+        <thead><tr>
+          <th>#</th><th>Name</th><th>Grade</th>
+          <th>G4 Paras</th><th>G5 Paras</th><th>G6 Paras</th><th>G7 Paras</th><th>G8 Paras</th><th>G9 Paras</th>
+        </tr></thead>
+        <tbody id="journey-classlist-body"></tbody>
+      </table>
+      </div>
+    </div>
+    <div class="learner-select-row" style="margin-top:22px;">
       <label for="journey-select">Select Learner:</label>
       <select id="journey-select" onchange="renderJourneyTab(this.value)">
         <option value="">-- Choose a learner --</option>
@@ -2215,7 +2234,19 @@ function parseGradeNumber(val) {
   return m ? parseInt(m[0], 10) : null;
 }
 
+function toggleJourneyClasslist(evt) {
+  if (evt) evt.preventDefault();
+  const wrap = document.getElementById("journey-classlist-wrap");
+  const link = document.getElementById("journey-classlist-toggle");
+  if (!wrap) return;
+  const isHidden = wrap.style.display === "none";
+  wrap.style.display = isHidden ? "block" : "none";
+  if (link) link.textContent = isHidden ? "Hide Classlist" : "Show / Edit Classlist";
+}
+
 function populateJourneyDropdown() {
+  renderJourneyClasslist();
+
   const select = document.getElementById("journey-select");
   if (!select) return;
   const previouslySelected = select.value;
@@ -2240,6 +2271,35 @@ function populateJourneyDropdown() {
   }
 }
 
+// Builds the "Grade-wise Paras Completed" classlist: one row per roster
+// slot (all 25, matching the Week/Summary/Exam sheets), with Name/Grade
+// synced read-only from the Exam tab and one editable Paras cell per
+// grade (4-9), stored in learners[r].journeyProgress[grade]. This is the
+// single entry point for grade-completion data - the per-learner journey
+// cards below just read from it.
+function renderJourneyClasslist() {
+  const body = document.getElementById("journey-classlist-body");
+  if (!body) return;
+  let html = "";
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const nameEl = document.getElementById(`exam-name-${r}`);
+    const gradeEl = document.getElementById(`exam-grade-${r}`);
+    const name = nameEl ? nameEl.value.trim() : "";
+    const grade = gradeEl ? gradeEl.value.trim() : "";
+    const jp = learners[r] && learners[r].journeyProgress ? learners[r].journeyProgress : {};
+    html += `<tr><td class="num-col">${r + 1}</td>
+      <td class="exam-name-col"><span class="name-sync" id="journey-name-${r}">${escapeHtml(name)}</span></td>
+      <td class="grade-col"><span class="name-sync" id="journey-grade-${r}">${escapeHtml(grade)}</span></td>`;
+    JOURNEY_STAGES.forEach(stage => {
+      const val = (jp[stage.grade] === null || jp[stage.grade] === undefined) ? "" : jp[stage.grade];
+      html += `<td class="exam-narrow"><input type="number" min="0" max="30" step="0.5" value="${val}"
+        oninput="onJourneyProgressChange(${r}, ${stage.grade}, this.value)"></td>`;
+    });
+    html += `</tr>`;
+  }
+  body.innerHTML = html;
+}
+
 function onJourneyFieldChange(row, field, val) {
   learners[row][field] = val;
 }
@@ -2248,6 +2308,10 @@ function onJourneyProgressChange(row, grade, val) {
   if (!learners[row].journeyProgress) learners[row].journeyProgress = {};
   const num = parseFloat(val);
   learners[row].journeyProgress[grade] = (val === "" || isNaN(num)) ? null : num;
+  // If the learner is currently open in the journey card view below,
+  // refresh it so the card values stay in sync with the classlist.
+  const select = document.getElementById("journey-select");
+  if (select && Number(select.value) === row) renderJourneyTab(row);
 }
 
 function renderJourneyTab(rowIndex) {
@@ -2267,7 +2331,12 @@ function buildJourneyHtml(r) {
   const startYear = l.startYear || "";
   const currentGradeNum = parseGradeNumber(l.grade);
   const startGradeNum = parseGradeNumber(startGrade);
-  const actualJuz = (l.priorJuzMemorized === null || l.priorJuzMemorized === undefined) ? 0 : Number(l.priorJuzMemorized);
+
+  // "Current Juz" is read live from the Summary tab's computed Total Juz
+  // Memorized cell for this same learner/row, so it always reflects the
+  // latest weekly Sabaq progress rather than a manually-entered figure.
+  const totalJuzEl = document.getElementById(`sum-totaljuz-${r}`);
+  const actualJuz = totalJuzEl ? (parseFloat(totalJuzEl.textContent) || 0) : 0;
 
   const currentStage = currentGradeNum !== null
     ? JOURNEY_STAGES.find(s => s.grade === currentGradeNum)
@@ -2304,20 +2373,17 @@ function buildJourneyHtml(r) {
       if (stage.grade < currentGradeNum) status = "completed";
       else if (stage.grade === currentGradeNum) status = "current";
     }
-    if (startGradeNum !== null && stage.grade < startGradeNum) status = "upcoming";
-    const statusLabel = status === "completed" ? "Completed" : (status === "current" ? "In Progress" : "Upcoming");
+    if (startGradeNum !== null && stage.grade < startGradeNum) status = "joined-later";
+    const statusLabel = status === "completed" ? "Completed" : (status === "current" ? "In Progress" : (status === "joined-later" ? "Joined Later" : "Upcoming"));
     const progressVal = (l.journeyProgress && l.journeyProgress[stage.grade] !== undefined && l.journeyProgress[stage.grade] !== null)
-      ? l.journeyProgress[stage.grade] : "";
+      ? l.journeyProgress[stage.grade] : null;
+    const progressText = status === "joined-later" ? "Not applicable - joined later" : (progressVal !== null ? `${progressVal} Paras completed` : "Not yet recorded");
     return `<div class="journey-card ${status}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>
       <div class="journey-grade-label">GRADE ${stage.grade}</div>
       <h4>${escapeHtml(stage.title)}</h4>
       <ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
-      <div class="journey-progress-row">
-        <label for="journey-progress-${r}-${stage.grade}">Paras completed:</label>
-        <input type="number" min="0" max="30" step="0.5" id="journey-progress-${r}-${stage.grade}" value="${progressVal}"
-          oninput="onJourneyProgressChange(${r}, ${stage.grade}, this.value)">
-      </div>
+      <div class="journey-progress-row"><span>${escapeHtml(progressText)}</span></div>
     </div>`;
   }).join("");
 
@@ -2768,6 +2834,8 @@ function onNameChange(row, val) {
   }
   const sumEl = document.getElementById(`name-sum-${row}`);
   if (sumEl) sumEl.textContent = val;
+  const journeyEl = document.getElementById(`journey-name-${row}`);
+  if (journeyEl) journeyEl.textContent = val;
 }
 
 function onGradeChange(row, val) {
@@ -2783,6 +2851,13 @@ function onGradeChange(row, val) {
   }
   const sumEl = document.getElementById(`grade-sum-${row}`);
   if (sumEl) sumEl.textContent = val;
+  const journeyEl = document.getElementById(`journey-grade-${row}`);
+  if (journeyEl) journeyEl.textContent = val;
+  // If this learner's journey card view is currently open, refresh it so
+  // the stage highlighting (Completed/In Progress/Upcoming) stays in sync
+  // with the grade change.
+  const journeySelect = document.getElementById("journey-select");
+  if (journeySelect && Number(journeySelect.value) === row) renderJourneyTab(row);
 }
 
 function onDayChange(week, row, cat, day, val) {
@@ -2943,6 +3018,13 @@ function startNewTerm() {
 
   for (let w = 1; w <= NUM_WEEKS; w++) recalcWeek(w);
   recalcSummary();
+  // Keep the Journey tab in sync: Start Grade/Year and the Paras classlist
+  // are untouched by a new term, but the "Juz Memorized" stat on an
+  // already-open learner card is sourced live from the Summary tab, so
+  // refresh it now instead of waiting for a tab switch.
+  renderJourneyClasslist();
+  const journeySelect = document.getElementById("journey-select");
+  if (journeySelect && journeySelect.value !== "") renderJourneyTab(journeySelect.value);
   alert("New term started. Each learner's Total Juz Memorized has been carried forward as their new Prior Juz Memorized baseline, this term's Hifz Report figures have been archived, and the weekly grid + Exam tab are now clear. Don't forget to update the Term field above for the new term.");
 }
 
@@ -3024,6 +3106,12 @@ function clearRoster() {
   recalcSummary();
   populateExamReportDropdown();
   populateLearnerReportDropdown();
+  // Journey tab: Start Grade/Year and the Paras classlist were wiped along
+  // with each learner above - refresh the classlist and clear any
+  // currently-open learner card so the tab doesn't keep showing stale data.
+  renderJourneyClasslist();
+  const journeySelect = document.getElementById("journey-select");
+  if (journeySelect) populateJourneyDropdown();
 
   alert("Roster cleared. Ready for a new class - enter names on Week 1 (or use \"Load / Import\" to bring in a roster file) to get started.");
 }
@@ -3764,6 +3852,9 @@ function applyLoadedState(state) {
   recalcSummary();
   populateExamReportDropdown();
   populateLearnerReportDropdown();
+  renderJourneyClasslist();
+  const journeySelect = document.getElementById("journey-select");
+  if (journeySelect) populateJourneyDropdown();
 }
 
 function doShare() {
