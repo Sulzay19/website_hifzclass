@@ -305,6 +305,40 @@ tfoot td { border: 1px solid #0f2e47; }
 .rc-row .rc-value { font-weight: bold; color: #000; font-size: 15px; }
 .rc-empty { color: #999; font-style: italic; padding: 10px 0; }
 
+/* ===== Journey tab ===== */
+#journey .journey-start-row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin:14px 0; }
+#journey .journey-start-row .journey-field { display:flex; flex-direction:column; gap:4px; }
+#journey .journey-start-row label { font-size:12px; font-weight:bold; color:#1F4E78; }
+#journey .journey-start-row input { font-family: Arial, sans-serif; font-size:13px; padding:6px 8px; border:1px solid #ccc; border-radius:4px; min-width:110px; }
+#journey .journey-summary { font-size:14px; color:#333; margin:4px 0 18px; }
+#journey .journey-summary b { color:#1F4E78; }
+#journey .journey-juz-row { display:flex; flex-wrap:wrap; align-items:center; gap:18px; background:#fff; border:1px solid #dbe5f1; border-radius:8px; padding:14px 18px; margin-bottom:18px; }
+#journey .journey-juz-stat { display:flex; flex-direction:column; align-items:flex-start; min-width:120px; }
+#journey .journey-juz-num { font-size:24px; font-weight:bold; color:#1F4E78; line-height:1.1; }
+#journey .journey-juz-label { font-size:11px; color:#666; }
+#journey .journey-juz-status { margin-left:auto; font-size:13px; font-weight:bold; padding:6px 12px; border-radius:999px; }
+#journey .journey-juz-status.on-track { background:#e2e8f0; color:#334155; }
+#journey .journey-juz-status.ahead { background:#d1fae5; color:#059669; }
+#journey .journey-juz-status.behind { background:#fee2e2; color:#dc2626; }
+#journey .journey-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+@media (max-width: 900px) { #journey .journey-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { #journey .journey-grid { grid-template-columns: 1fr; } }
+#journey .journey-card { border:1px solid #dbe5f1; border-radius:6px; padding:14px 16px; background:#fff; border-top:5px solid #1F4E78; position:relative; }
+#journey .journey-card.completed { border-top-color:#D4AF37; background:#fdfaf0; }
+#journey .journey-card.current { border-top-color:#1F4E78; background:#eef3fa; box-shadow:0 2px 8px rgba(31,78,120,0.25); }
+#journey .journey-card.upcoming { opacity:0.6; }
+#journey .journey-card .journey-grade-label { font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#B8860B; }
+#journey .journey-card h4 { margin:6px 0 8px; font-size:16px; color:#1F4E78; }
+#journey .journey-card ul { margin:0; padding-left:18px; font-size:12.5px; color:#333; }
+#journey .journey-card ul li { margin-bottom:3px; }
+#journey .journey-progress-row { display:flex; align-items:center; gap:6px; margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; }
+#journey .journey-progress-row label { font-size:12px; font-weight:bold; color:#555; }
+#journey .journey-progress-row input { width:60px; font-family: Arial, sans-serif; font-size:13px; padding:4px 6px; border:1px solid #ccc; border-radius:4px; }
+#journey .journey-status-badge { position:absolute; top:10px; right:10px; font-size:10px; font-weight:bold; padding:3px 7px; border-radius:999px; text-transform:uppercase; }
+#journey .journey-status-badge.completed { background:#fdf0c8; color:#8a6d1a; }
+#journey .journey-status-badge.current { background:#1F4E78; color:#fff; }
+#journey .journey-status-badge.upcoming { background:#e2e8f0; color:#64748b; }
+
 /* ===== Learner Report tab ===== */
 #learnerreport .lr-profile { background:#fff; border:1px solid #cfd9e3; border-radius:8px; padding:20px; margin-top:14px; }
 #learnerreport .lr-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-bottom:1px solid #edf2f7; padding-bottom:12px; margin-bottom:15px; }
@@ -926,7 +960,7 @@ select {
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('home', this)">Home</button><button class="tab-btn" onclick="switchTab('week1', this)">Week 1</button><button class="tab-btn" onclick="switchTab('week2', this)">Week 2</button><button class="tab-btn" onclick="switchTab('week3', this)">Week 3</button><button class="tab-btn" onclick="switchTab('week4', this)">Week 4</button><button class="tab-btn" onclick="switchTab('week5', this)">Week 5</button><button class="tab-btn" onclick="switchTab('week6', this)">Week 6</button><button class="tab-btn" onclick="switchTab('week7', this)">Week 7</button><button class="tab-btn" onclick="switchTab('week8', this)">Week 8</button><button class="tab-btn" onclick="switchTab('week9', this)">Week 9</button><button class="tab-btn" onclick="switchTab('week10', this)">Week 10</button><button class="tab-btn" onclick="switchTab('week11', this)">Week 11</button><button class="tab-btn" onclick="switchTab('week12', this)">Week 12</button>
-    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('examreport', this)">Exam Term Report</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('graph', this)">Graph</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
+    <button class="tab-btn" onclick="switchTab('summary', this)">Summary</button><button class="tab-btn" onclick="switchTab('exam', this)">Exam</button><button class="tab-btn" onclick="switchTab('examreport', this)">Exam Term Report</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('graph', this)">Graph</button><button class="tab-btn" onclick="switchTab('journey', this)">Journey</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
   </div>
   
   <div id="home" class="tab-content active">
@@ -1328,6 +1362,19 @@ select {
     </div>
     <div id="graph-sheet"><p class="rc-empty">Select a learner above to see their graph.</p></div>
   </div>
+  <div id="journey" class="tab-content">
+    <h2>Path to Hifz Retention</h2>
+    <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
+    <p class="note">A summary of the Hifz journey: grade-by-grade progression. Select a learner to see when he started and what he has accomplished each year.</p>
+    <div class="learner-select-row">
+      <label for="journey-select">Select Learner:</label>
+      <select id="journey-select" onchange="renderJourneyTab(this.value)">
+        <option value="">-- Choose a learner --</option>
+      </select>
+    </div>
+    <div id="journey-sheet"><p class="rc-empty">Select a learner above to see their journey.</p></div>
+  </div>
   <div id="misc" class="tab-content">
     <h2>Miscellaneous</h2>
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
@@ -1376,6 +1423,7 @@ for (let r = 0; r < NUM_LEARNERS; r++) {
   learners.push({
     name: "", grade: "",
     termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null,
+    startGrade: "", startYear: "", journeyProgress: {},
     notes: ""
   });
 }
@@ -1604,6 +1652,7 @@ function switchTab(tabId, btn) {
   if (tabId === "examreport") populateExamReportDropdown();
   if (tabId === "learnerreport") populateLearnerReportDropdown();
   if (tabId === "graph") populateGraphDropdown();
+  if (tabId === "journey") populateJourneyDropdown();
 }
 
 // ===== Learner Report tab =====
@@ -2142,6 +2191,153 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+// ===== Journey tab =====
+// Static "Path to Hifz Retention" stages (grade-by-grade progression),
+// paired with each learner's start grade/year so we can show which
+// stage he has reached, based on his current Grade field (kept in sync
+// with the Week/Summary/Exam tabs via onGradeChange).
+const JOURNEY_STAGES = [
+  { grade: 4, title: "Building the Foundation", bullets: ["6 to 10 lines daily", "3 Paras to complete"], cumJuz: 3 },
+  { grade: 5, title: "Strengthening the Foundation", bullets: ["10 to 13 lines daily", "5 Paras to complete"], cumJuz: 8 },
+  { grade: 6, title: "Commitment & Proficiency", bullets: ["1 to 1\u00BC pages daily", "6 Paras to complete"], cumJuz: 14 },
+  { grade: 7, title: "The Final Ascent", bullets: ["1 to 1\u00BD pages daily", "8 Paras to complete"], cumJuz: 22 },
+  { grade: 8, title: "The Finishing Line", bullets: ["1 to 1\u00BD pages daily", "Remaining 8 Paras"], cumJuz: 30 },
+  { grade: 9, title: "The Golden Year", bullets: ["Dhor (Revision) only", "All 30 Paras maintained"], cumJuz: 30 }
+];
+
+// Pull the first number out of a free-text Grade field (e.g. "Grade 6",
+// "6", "Gr.6") so it can be matched against JOURNEY_STAGES.
+function parseGradeNumber(val) {
+  if (val === null || val === undefined) return null;
+  const m = String(val).match(/\d+/);
+  return m ? parseInt(m[0], 10) : null;
+}
+
+function populateJourneyDropdown() {
+  const select = document.getElementById("journey-select");
+  if (!select) return;
+  const previouslySelected = select.value;
+  select.innerHTML = '<option value="">-- Choose a learner --</option>';
+
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const nameEl = document.getElementById(`exam-name-${r}`);
+    const name = nameEl ? nameEl.value.trim() : "";
+    if (!name) continue;
+    const opt = document.createElement("option");
+    opt.value = r;
+    opt.textContent = name;
+    select.appendChild(opt);
+  }
+
+  if (previouslySelected && select.querySelector(`option[value="${previouslySelected}"]`)) {
+    select.value = previouslySelected;
+    renderJourneyTab(previouslySelected);
+  } else {
+    document.getElementById("journey-sheet").innerHTML =
+      '<p class="rc-empty">Select a learner above to see their journey.</p>';
+  }
+}
+
+function onJourneyFieldChange(row, field, val) {
+  learners[row][field] = val;
+}
+
+function onJourneyProgressChange(row, grade, val) {
+  if (!learners[row].journeyProgress) learners[row].journeyProgress = {};
+  const num = parseFloat(val);
+  learners[row].journeyProgress[grade] = (val === "" || isNaN(num)) ? null : num;
+}
+
+function renderJourneyTab(rowIndex) {
+  const sheetEl = document.getElementById("journey-sheet");
+  if (!sheetEl) return;
+  if (rowIndex === "" || rowIndex === null || rowIndex === undefined) {
+    sheetEl.innerHTML = '<p class="rc-empty">Select a learner above to see their journey.</p>';
+    return;
+  }
+  sheetEl.innerHTML = buildJourneyHtml(Number(rowIndex));
+}
+
+function buildJourneyHtml(r) {
+  const l = learners[r] || {};
+  const name = l.name || "";
+  const startGrade = l.startGrade || "";
+  const startYear = l.startYear || "";
+  const currentGradeNum = parseGradeNumber(l.grade);
+  const startGradeNum = parseGradeNumber(startGrade);
+  const actualJuz = (l.priorJuzMemorized === null || l.priorJuzMemorized === undefined) ? 0 : Number(l.priorJuzMemorized);
+
+  const currentStage = currentGradeNum !== null
+    ? JOURNEY_STAGES.find(s => s.grade === currentGradeNum)
+    : null;
+  const expectedJuz = currentStage ? currentStage.cumJuz : null;
+
+  let summary = `<b>${escapeHtml(name)}</b> is currently in <b>${escapeHtml(l.grade || "-")}</b>.`;
+  if (startGrade || startYear) {
+    summary = `<b>${escapeHtml(name)}</b> started Hifz in <b>${escapeHtml(startGrade || "-")}</b>` +
+      (startYear ? ` (${escapeHtml(startYear)})` : "") +
+      ` and is currently in <b>${escapeHtml(l.grade || "-")}</b>.`;
+  }
+
+  let juzBox = "";
+  if (expectedJuz !== null) {
+    const diff = actualJuz - expectedJuz;
+    const diffAbs = Math.abs(diff).toFixed(2).replace(/\.00$/, "");
+    let statusClass = "on-track", statusText = `On track (${expectedJuz} Juz expected by ${escapeHtml(l.grade)})`;
+    if (diff > 0.004) { statusClass = "ahead"; statusText = `Ahead by ${diffAbs} Juz`; }
+    else if (diff < -0.004) { statusClass = "behind"; statusText = `Behind by ${diffAbs} Juz`; }
+    juzBox = `
+    <div class="journey-juz-row">
+      <div class="journey-juz-stat"><span class="journey-juz-num">${actualJuz.toFixed(2).replace(/\.00$/, "")}</span><span class="journey-juz-label">Juz Memorized</span></div>
+      <div class="journey-juz-stat"><span class="journey-juz-num">${expectedJuz}</span><span class="journey-juz-label">Expected for ${escapeHtml(l.grade)}</span></div>
+      <div class="journey-juz-status ${statusClass}">${statusText}</div>
+    </div>`;
+  } else {
+    juzBox = `<div class="journey-juz-row"><p class="rc-empty" style="margin:0;">Set the learner's Grade (Summary tab) to compare his Juz progress against the expected pace.</p></div>`;
+  }
+
+  const cards = JOURNEY_STAGES.map(stage => {
+    let status = "upcoming";
+    if (currentGradeNum !== null) {
+      if (stage.grade < currentGradeNum) status = "completed";
+      else if (stage.grade === currentGradeNum) status = "current";
+    }
+    if (startGradeNum !== null && stage.grade < startGradeNum) status = "upcoming";
+    const statusLabel = status === "completed" ? "Completed" : (status === "current" ? "In Progress" : "Upcoming");
+    const progressVal = (l.journeyProgress && l.journeyProgress[stage.grade] !== undefined && l.journeyProgress[stage.grade] !== null)
+      ? l.journeyProgress[stage.grade] : "";
+    return `<div class="journey-card ${status}">
+      <span class="journey-status-badge ${status}">${statusLabel}</span>
+      <div class="journey-grade-label">GRADE ${stage.grade}</div>
+      <h4>${escapeHtml(stage.title)}</h4>
+      <ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
+      <div class="journey-progress-row">
+        <label for="journey-progress-${r}-${stage.grade}">Paras completed:</label>
+        <input type="number" min="0" max="30" step="0.5" id="journey-progress-${r}-${stage.grade}" value="${progressVal}"
+          oninput="onJourneyProgressChange(${r}, ${stage.grade}, this.value)">
+      </div>
+    </div>`;
+  }).join("");
+
+  return `
+    <div class="journey-start-row">
+      <div class="journey-field">
+        <label for="journey-startgrade-${r}">Start Grade</label>
+        <input type="text" id="journey-startgrade-${r}" value="${escapeHtml(startGrade)}" placeholder="e.g. Grade 4"
+          oninput="onJourneyFieldChange(${r}, 'startGrade', this.value)">
+      </div>
+      <div class="journey-field">
+        <label for="journey-startyear-${r}">Start Year</label>
+        <input type="text" id="journey-startyear-${r}" value="${escapeHtml(startYear)}" placeholder="e.g. 2023"
+          oninput="onJourneyFieldChange(${r}, 'startYear', this.value)">
+      </div>
+    </div>
+    <p class="journey-summary">${summary}</p>
+    ${juzBox}
+    <div class="journey-grid">${cards}</div>
+  `;
 }
 
 // ===== Graph tab =====
@@ -2778,7 +2974,7 @@ function clearRoster() {
   }
 
   for (let r = 0; r < NUM_LEARNERS; r++) {
-    learners[r] = { name: "", grade: "", termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null, notes: "" };
+    learners[r] = { name: "", grade: "", termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null, startGrade: "", startYear: "", journeyProgress: {}, notes: "" };
 
     const nameInput = document.querySelector(`.name-input[data-row="${r}"]`);
     const gradeInput = document.querySelector(`.grade-input[data-row="${r}"]`);
@@ -3522,6 +3718,12 @@ function applyLoadedState(state) {
         if (input) input.value = (val === null || val === undefined) ? "" : val;
         learners[r][field] = (val === null || val === undefined) ? null : val;
       });
+      // Journey tab fields (Start Grade/Year) - restored directly onto the
+      // learners record; the Journey inputs themselves only exist once a
+      // learner is selected on that tab, so they're re-rendered from here.
+      learners[r].startGrade = l.startGrade || "";
+      learners[r].startYear = l.startYear || "";
+      learners[r].journeyProgress = l.journeyProgress || {};
 
       const notesInput = document.querySelector(`.notes-input[data-row="${r}"]`);
       if (notesInput) notesInput.value = l.notes || "";

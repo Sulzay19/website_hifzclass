@@ -1622,21 +1622,21 @@
           0,
           0,
           0,
-          null
+          0.25
         ],
         "sabaqDhor": [
           7,
           0,
           0,
           0,
-          null
+          0
         ],
         "dhor": [
           7,
           0,
           14,
           21,
-          null
+          21
         ]
       },
       {
@@ -1866,15 +1866,15 @@
           14,
           14,
           14,
-          null
+          14
         ]
       },
       {
         "sabaq": [
-          0.06,
+          1,
           0.04,
           0.04,
-          null,
+          0,
           null
         ],
         "sabaqDhor": [
@@ -1882,14 +1882,14 @@
           1,
           1,
           1,
-          null
+          1
         ],
         "dhor": [
           14,
           14,
           14,
           14,
-          null
+          14
         ]
       },
       {
@@ -7916,8 +7916,8 @@
         ],
         "3": [
           null,
-          "0.48",
-          "12.98",
+          "0.49",
+          "12.99",
           null,
           "",
           null,
@@ -8367,8 +8367,8 @@
       "terms": {
         "3": [
           null,
-          "0.07",
-          "0.57",
+          "0.11",
+          "0.61",
           null,
           "",
           null,
@@ -8386,10 +8386,219 @@
     }
   },
   "learnerReportData": {
-    "13": {
+    "2": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-08-01",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "6": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-07-23",
+          "excused": false,
+          "note": "absent"
+        },
+        {
+          "date": "2026-07-30",
+          "excused": false,
+          "note": "fajr absent"
+        },
+        {
+          "date": "2026-07-31",
+          "excused": false,
+          "note": "absent"
+        },
+        {
+          "date": "2026-08-03",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "8": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-07-25",
+          "excused": true,
+          "note": "absent sick"
+        }
+      ],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "9": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-08-01",
+          "excused": false,
+          "note": "absent"
+        },
+        {
+          "date": "2026-07-25",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
+      "work": [
+        {
+          "date": "2026-08-07",
+          "para": "",
+          "note": "no work is being given."
+        }
+      ],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "10": {
       "behaviour": [],
       "absence": [],
       "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "11": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-08-01",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "12": {
+      "behaviour": [
+        {
+          "date": "2026-08-07",
+          "category": "Safety Incident",
+          "severity": "Severe",
+          "note": "went outside school without permission."
+        }
+      ],
+      "absence": [],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
+    "13": {
+      "behaviour": [
+        {
+          "date": "2026-08-07",
+          "category": "Safety Incident",
+          "severity": "Severe",
+          "note": "went outside school without permission."
+        }
+      ],
+      "absence": [],
+      "work": [
+        {
+          "date": "2026-08-07",
+          "para": "para 6",
+          "note": "struggling to give dhor of it"
+        }
+      ],
       "contact": {
         "behaviour": {
           "status": "Not Contacted",
@@ -8412,10 +8621,33 @@
           "category": "Disruption",
           "severity": "Minor",
           "note": ""
+        },
+        {
+          "date": "2026-08-06",
+          "category": "Other",
+          "severity": "Severe",
+          "note": "throwing paper balls to others during class"
         }
       ],
-      "absence": [],
-      "work": [],
+      "absence": [
+        {
+          "date": "2026-08-01",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
+      "work": [
+        {
+          "date": "2026-08-04",
+          "para": "sabaq",
+          "note": "not prepared"
+        },
+        {
+          "date": "2026-08-06",
+          "para": "sabaq",
+          "note": "not prepared"
+        }
+      ],
       "contact": {
         "behaviour": {
           "status": "Not Contacted",
@@ -8464,6 +8696,51 @@
         }
       }
     },
+    "18": {
+      "behaviour": [],
+      "absence": [
+        {
+          "date": "2026-08-07",
+          "excused": false,
+          "note": "fajr absent"
+        },
+        {
+          "date": "2026-07-21",
+          "excused": false,
+          "note": "fajr"
+        },
+        {
+          "date": "2026-07-25",
+          "excused": false,
+          "note": "absent for the day"
+        },
+        {
+          "date": "2026-07-28",
+          "excused": false,
+          "note": "fajr absent"
+        },
+        {
+          "date": "2026-07-29",
+          "excused": false,
+          "note": "fajr absent"
+        }
+      ],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
     "19": {
       "behaviour": [
         {
@@ -8473,7 +8750,18 @@
           "note": "tearing pages from signing book and throwing to others in class"
         }
       ],
-      "absence": [],
+      "absence": [
+        {
+          "date": "2026-08-03",
+          "excused": false,
+          "note": "absent"
+        },
+        {
+          "date": "2026-07-25",
+          "excused": false,
+          "note": "absent"
+        }
+      ],
       "work": [],
       "contact": {
         "behaviour": {
