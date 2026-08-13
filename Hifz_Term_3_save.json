@@ -1,6 +1,6 @@
 {
   "meta": {
-    "date": "23 July 2026",
+    "date": "13 August 2026",
     "term": "Term 3"
   },
   "learners": [
@@ -19,7 +19,7 @@
         "6": 4,
         "7": 5.5
       },
-      "notes": ""
+      "notes": "better work in the term"
     },
     {
       "name": "Mohammed Taha Moosa",
@@ -36,7 +36,7 @@
         "6": 12,
         "7": 8
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Syed Ali Gilani",
@@ -54,7 +54,7 @@
         "7": 6,
         "8": null
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Muhammad Dawood",
@@ -71,7 +71,7 @@
         "6": 5,
         "7": 8
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Afeef Ali",
@@ -88,7 +88,7 @@
         "6": 4.5,
         "7": 7
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Zahir Kedir Moreta",
@@ -104,7 +104,7 @@
         "5": 3,
         "6": 6
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Bilal Aboobaker Mottiar",
@@ -120,7 +120,7 @@
         "5": 2,
         "6": 2
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Mohammed Kedir Moreta",
@@ -135,7 +135,7 @@
         "4": 5.5,
         "5": 8.5
       },
-      "notes": ""
+      "notes": "excellent"
     },
     {
       "name": "Umair Iqbal Mohamed",
@@ -150,7 +150,7 @@
         "4": 3,
         "5": 4
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Chaudrey Zayyan Ahmad",
@@ -165,7 +165,7 @@
         "4": 1.5,
         "5": 3
       },
-      "notes": ""
+      "notes": "no work is given"
     },
     {
       "name": "Musab Anwar Yasin",
@@ -179,7 +179,7 @@
       "journeyProgress": {
         "4": 10
       },
-      "notes": ""
+      "notes": "very good"
     },
     {
       "name": "Syed Azlan Haider Gilani",
@@ -193,7 +193,7 @@
       "journeyProgress": {
         "4": 3
       },
-      "notes": ""
+      "notes": "very good"
     },
     {
       "name": "Sulaiman Dawood",
@@ -208,7 +208,7 @@
         "4": 4.5,
         "5": null
       },
-      "notes": ""
+      "notes": "doing good"
     },
     {
       "name": "Yahya Cassim",
@@ -223,7 +223,7 @@
         "4": 10,
         "5": null
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Ahmed Ali",
@@ -238,7 +238,7 @@
         "4": null,
         "5": null
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Hussain Rehman",
@@ -252,7 +252,7 @@
       "journeyProgress": {
         "4": 1.5
       },
-      "notes": ""
+      "notes": "doing okay"
     },
     {
       "name": "Mikaeel Patel",
@@ -266,7 +266,7 @@
       "journeyProgress": {
         "4": 2.45
       },
-      "notes": ""
+      "notes": "repeating work"
     },
     {
       "name": "Thlotlego L. Ntokwe",
@@ -280,7 +280,7 @@
       "journeyProgress": {
         "4": 1.59
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Abu Bakr Munshi",
@@ -294,7 +294,7 @@
       "journeyProgress": {
         "4": 0.9
       },
-      "notes": ""
+      "notes": "behind with work"
     },
     {
       "name": "Umair Mohamad",
@@ -308,7 +308,7 @@
       "journeyProgress": {
         "4": 1.47
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Muhammad Hamza",
@@ -322,7 +322,7 @@
       "journeyProgress": {
         "4": 0.75
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "Usamah Suleiman Hamido",
@@ -336,7 +336,7 @@
       "journeyProgress": {
         "4": 0.5
       },
-      "notes": ""
+      "notes": "doing well"
     },
     {
       "name": "",
@@ -2110,8 +2110,31 @@
     "4": [
       {
         "sabaq": [
+          1.25,
+          0,
           null,
           null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          6,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          null,
+          0,
           null,
           null,
           null
@@ -2133,8 +2156,100 @@
       },
       {
         "sabaq": [
+          2.25,
+          2.25,
           null,
           null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          7,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          1.5,
+          2,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          1,
+          1.5,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          4,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          14,
+          14,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          0,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          null,
+          0,
           null,
           null,
           null
@@ -2156,21 +2271,274 @@
       },
       {
         "sabaq": [
+          0,
+          2.75,
           null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0.5,
+          0.5,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          2,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          0,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          0,
+          0,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          1,
+          0.75,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          1,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0.75,
+          1,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          7,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          1,
+          0.75,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          6,
+          6,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          4,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          0,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          2,
+          2,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          7,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          0.5,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          0,
+          1,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          1,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
+          7,
           null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          null,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0.5,
+          null,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          7,
+          null,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          14,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "sabaq": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "sabaqDhor": [
+          0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "dhor": [
+          0,
           null,
           null,
           null,
@@ -2186,14 +2554,14 @@
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          14,
           null,
           null,
           null,
@@ -2202,21 +2570,21 @@
       },
       {
         "sabaq": [
-          null,
+          0.25,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          1,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          14,
           null,
           null,
           null,
@@ -2225,389 +2593,21 @@
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
+          0.25,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
+          1,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      {
-        "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "dhor": [
-          null,
+          14,
           null,
           null,
           null,
@@ -7631,8 +7631,8 @@
         ],
         "3": [
           null,
-          "0.43",
-          "17.43",
+          "0.47",
+          "17.47",
           null,
           "",
           null,
@@ -7717,8 +7717,8 @@
         ],
         "3": [
           null,
-          "1.05",
-          "23.55",
+          "1.21",
+          "23.71",
           null,
           "",
           null,
@@ -7760,8 +7760,8 @@
         ],
         "3": [
           null,
-          "1.46",
-          "25.46",
+          "1.58",
+          "25.58",
           null,
           "",
           null,
@@ -7803,8 +7803,8 @@
         ],
         "3": [
           null,
-          "1.39",
-          "25.14",
+          "1.48",
+          "25.23",
           null,
           "",
           null,
@@ -7932,8 +7932,8 @@
         ],
         "3": [
           null,
-          "1.29",
-          "20.04",
+          "1.38",
+          "20.13",
           null,
           "",
           null,
@@ -7975,8 +7975,8 @@
         ],
         "3": [
           null,
-          "0.34",
-          "9.34",
+          "0.38",
+          "9.38",
           null,
           "",
           null,
@@ -8061,8 +8061,8 @@
         ],
         "3": [
           null,
-          "0.49",
-          "12.99",
+          "0.55",
+          "13.05",
           null,
           "",
           null,
@@ -8104,8 +8104,8 @@
         ],
         "3": [
           null,
-          "0.70",
-          "7.20",
+          "0.76",
+          "7.26",
           null,
           "",
           null,
@@ -8147,8 +8147,8 @@
         ],
         "3": [
           null,
-          "0.65",
-          "6.65",
+          "0.71",
+          "6.71",
           null,
           "",
           null,
@@ -8233,8 +8233,8 @@
         ],
         "3": [
           null,
-          "0.13",
-          "0.88",
+          "0.15",
+          "0.90",
           null,
           "",
           null,
@@ -8276,8 +8276,8 @@
         ],
         "3": [
           null,
-          "0.25",
-          "1.50",
+          "0.29",
+          "1.54",
           null,
           "",
           null,
@@ -8362,8 +8362,8 @@
         ],
         "3": [
           null,
-          "0.34",
-          "1.59",
+          "0.36",
+          "1.61",
           null,
           "",
           null,
@@ -8491,8 +8491,8 @@
         ],
         "3": [
           null,
-          "0.11",
-          "0.86",
+          "0.12",
+          "0.87",
           null,
           "",
           null,
@@ -8512,8 +8512,8 @@
       "terms": {
         "3": [
           null,
-          "0.13",
-          "0.63",
+          "0.14",
+          "0.64",
           null,
           "",
           null,
@@ -8594,6 +8594,25 @@
         }
       }
     },
+    "5": {
+      "behaviour": [],
+      "absence": [],
+      "work": [],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
     "6": {
       "behaviour": [],
       "absence": [
@@ -8634,8 +8653,47 @@
         }
       }
     },
+    "7": {
+      "behaviour": [
+        {
+          "date": "2026-08-11",
+          "category": "Other",
+          "severity": "Minor",
+          "note": "talking and not reading"
+        }
+      ],
+      "absence": [],
+      "work": [
+        {
+          "date": "2026-08-11",
+          "para": "",
+          "note": "not giving work despite being called"
+        }
+      ],
+      "contact": {
+        "behaviour": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "absence": {
+          "status": "Not Contacted",
+          "date": ""
+        },
+        "work": {
+          "status": "Not Contacted",
+          "date": ""
+        }
+      }
+    },
     "8": {
-      "behaviour": [],
+      "behaviour": [
+        {
+          "date": "2026-08-11",
+          "category": "Other",
+          "severity": "Minor",
+          "note": "talking and not reading"
+        }
+      ],
       "absence": [
         {
           "date": "2026-07-25",
@@ -8643,7 +8701,13 @@
           "note": "absent sick"
         }
       ],
-      "work": [],
+      "work": [
+        {
+          "date": "2026-08-11",
+          "para": "",
+          "note": "not coming to give work despite being called"
+        }
+      ],
       "contact": {
         "behaviour": {
           "status": "Not Contacted",
@@ -8660,7 +8724,14 @@
       }
     },
     "9": {
-      "behaviour": [],
+      "behaviour": [
+        {
+          "date": "2026-08-11",
+          "category": "Other",
+          "severity": "Minor",
+          "note": "talking and not reading"
+        }
+      ],
       "absence": [
         {
           "date": "2026-08-01",
@@ -8678,6 +8749,11 @@
           "date": "2026-08-07",
           "para": "",
           "note": "no work is being given."
+        },
+        {
+          "date": "2026-08-11",
+          "para": "",
+          "note": "doesnt want to come to give work"
         }
       ],
       "contact": {
@@ -8723,7 +8799,13 @@
           "note": "absent"
         }
       ],
-      "work": [],
+      "work": [
+        {
+          "date": "2026-08-11",
+          "para": "",
+          "note": "not coming to give work despite of being called"
+        }
+      ],
       "contact": {
         "behaviour": {
           "status": "Not Contacted",
@@ -8746,6 +8828,12 @@
           "category": "Safety Incident",
           "severity": "Severe",
           "note": "went outside school without permission."
+        },
+        {
+          "date": "2026-08-13",
+          "category": "Disrespect",
+          "severity": "Critical",
+          "note": "came to give sabaq and didnt know it and when he was given his Quran back he laughed in as in mocking."
         }
       ],
       "absence": [],
@@ -8810,6 +8898,12 @@
           "category": "Other",
           "severity": "Severe",
           "note": "throwing paper balls to others during class"
+        },
+        {
+          "date": "2026-08-13",
+          "category": "Disrespect",
+          "severity": "Critical",
+          "note": "laughing in class after being warned 3 times."
         }
       ],
       "absence": [

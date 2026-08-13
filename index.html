@@ -382,6 +382,19 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-action-btn { width:100%; padding:7px 10px; background:#fff; border:1px solid #cbd5e1; color:#334155; border-radius:6px; cursor:pointer; font-size:.78rem; font-weight:600; }
 #learnerreport .lr-action-btn:hover { background:#f1f5f9; }
 #learnerreport .lr-report-box { background:#fff; padding:12px; border-radius:6px; border:1px solid #e2e8f0; font-size:.88rem; line-height:1.6; color:#1e293b; }
+#learnerreport .lr-report-box p { margin: 0 0 10px; }
+#learnerreport .lr-report-box p:last-of-type { margin-bottom: 0; }
+
+/* Raw weekly table/summary figures - collapsed by default since the
+   Written Report paragraph above already covers the same numbers in
+   prose; kept here (collapsed) as an optional view for printing/reference. */
+#learnerreport .lr-raw-data { margin-bottom:20px; border:1px solid #e2e8f0; border-radius:6px; background:#f8fafc; }
+#learnerreport .lr-raw-data summary { cursor:pointer; padding:10px 14px; font-size:.82rem; font-weight:600; color:#1F4E78; list-style:none; }
+#learnerreport .lr-raw-data summary::-webkit-details-marker { display:none; }
+#learnerreport .lr-raw-data summary::before { content:"\25B8  "; }
+#learnerreport .lr-raw-data[open] summary::before { content:"\25BE  "; }
+#learnerreport .lr-raw-data[open] summary { border-bottom:1px solid #e2e8f0; }
+#learnerreport .lr-raw-data .lr-grid { margin: 14px; margin-top: 14px; margin-bottom: 0; }
 
 /* ===== Discipline logs (3 separate logs) ===== */
 #learnerreport .lr-discipline-wrap { grid-column:1 / -1; }
@@ -548,6 +561,12 @@ tfoot td { border: 1px solid #0f2e47; }
   .container { max-width: 100%; }
   .action-row, .tabs, .legend, #file-link-status { display: none !important; }
   .masthead { border-radius: 0; }
+  /* The weekly table/summary figures are collapsed on-screen (the prose
+     report above already covers the same numbers) but should still print
+     in full if this tab is printed, regardless of whether it was expanded. */
+  #learnerreport .lr-raw-data summary { display: none !important; }
+  #learnerreport .lr-raw-data { display: block !important; border: none; background: none; }
+  #learnerreport .lr-raw-data > *:not(summary) { display: block !important; }
   .tab-content {
     display: block !important;
     page-break-after: always;
@@ -1790,6 +1809,9 @@ function getLearnerNarrativeData(r) {
   const pctToTarget = gt(`sum-pct-${r}`) || "0.0%";
   const totalJuzMemorized = gt(`sum-totaljuz-${r}`) || "0.00";
   const remaining = gt(`sum-remaining-${r}`) || "30";
+  const termSabaqTargetRaw = learners[r] ? learners[r].termSabaqTarget : null;
+  const termSabaqTarget = (termSabaqTargetRaw === null || termSabaqTargetRaw === undefined) ? "-" : String(termSabaqTargetRaw);
+  const journey = getJourneySummaryData(r);
 
   // Discipline & behavior status: this is the main focus of the report.
   // Each of the 3 logs (Behaviour / Absence / Daily Work) has its own
@@ -1812,7 +1834,84 @@ function getLearnerNarrativeData(r) {
   const missedWorkPoints = buildMissedWorkPoints(missedWork);
 
   return { name, grade, statusLabel, incidentCount, behaviour, absence, work, overall, disciplineLines,
-    contact: store.contact, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, missedWork, missedWorkPoints };
+    contact: store.contact, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, termSabaqTarget,
+    missedWork, missedWorkPoints, journey };
+}
+
+// Joins a list of short phrases in natural English: ["a"] -> "a";
+// ["a","b"] -> "a and b"; ["a","b","c"] -> "a, b, and c".
+function joinNaturally(parts) {
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0];
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}`;
+}
+
+// One combined discipline sentence covering only the logs still at "Good"
+// status (anything Warning/Parent Meeting/Expulsion is called out in its
+// own highlighted block instead, so it isn't buried in this sentence).
+// No "No action needed" / "logged this term" filler - just the figures.
+function buildDisciplineSentence(pronoun, d) {
+  const bits = [];
+  if (d.behaviour.status === "Good") {
+    bits.push(d.behaviour.count === 0 ? "no behaviour concerns" : `${d.behaviour.count} behaviour concern${d.behaviour.count === 1 ? "" : "s"}`);
+  }
+  if (d.absence.status === "Good") {
+    bits.push(`${d.absence.count} absence${d.absence.count === 1 ? "" : "s"}`);
+  }
+  if (d.work.status === "Good") {
+    bits.push(`${d.work.count} daily work issue${d.work.count === 1 ? "" : "s"}`);
+  }
+  if (bits.length === 0) return "";
+  return `${pronoun} has had ${joinNaturally(bits)} this term.`;
+}
+
+// Combines all three missed-work categories (Sabaq / Sabaq Dhor / Dhor)
+// into one sentence instead of a per-category breakdown, naming only the
+// one or two categories with the most misses rather than listing every
+// week it happened in.
+function buildMissedWorkSentence(pronoun, missedWork) {
+  if (missedWork.totalMissed === 0) return "No work was missed this term.";
+  const nonzero = CATS.map(cat => ({ cat, count: missedWork[cat].count }))
+    .filter(c => c.count > 0)
+    .sort((a, b) => b.count - a.count);
+  const topCats = nonzero.slice(0, 2).map(c => CAT_LABELS[c.cat]);
+  const detail = topCats.length ? `, mostly ${joinNaturally(topCats)}` : "";
+  return `${pronoun} missed submitting work ${missedWork.totalMissed} time${missedWork.totalMissed === 1 ? "" : "s"} across the term${detail}.`;
+}
+
+// One sentence on academic pace this term: pages given vs. the term
+// target, then the missed-work sentence.
+function buildAcademicParagraph(pronoun, missedPronoun, d) {
+  const targetPart = d.termSabaqTarget === "-" ? "" : ` against a target of ${d.termSabaqTarget}`;
+  const weeklyLine = `This term, ${pronoun} gave ${d.sabaqGiven} pages of Sabaq${targetPart}, `
+    + `which is ${d.pctToTarget} of the term target.`;
+  const missedLine = buildMissedWorkSentence(missedPronoun, d.missedWork);
+  return `${weeklyLine} ${missedLine}`;
+}
+
+// Short history/pace paragraph pulled from the Journey tab data - when
+// did he start, what grade is he in now, and how does his total Juz
+// memorized compare to what's expected for that grade.
+function buildJourneyParagraph(pronoun, d) {
+  const j = d.journey;
+  if (!j.startGrade && !j.startYear && j.expectedJuz === null) return "";
+  const parts = [];
+  if (j.startGrade || j.startYear) {
+    const startBit = j.startYear ? `${j.startGrade || "-"} (${j.startYear})` : (j.startGrade || "-");
+    parts.push(`${pronoun} started Hifz in ${startBit} and is now in ${j.currentGrade || "-"}`);
+  }
+  if (j.expectedJuz !== null) {
+    const juzStr = j.actualJuz.toFixed(2).replace(/\.00$/, "");
+    if (j.paceStatus === "on-track") {
+      parts.push(`${parts.length ? "he has" : (pronoun + " has")} memorized ${juzStr} Juz to date, on track with the ${j.expectedJuz} Juz expected for his grade`);
+    } else {
+      const aheadBehind = j.paceStatus === "ahead" ? "ahead of" : "behind";
+      parts.push(`${parts.length ? "he has" : (pronoun + " has")} memorized ${juzStr} Juz to date, ${j.paceDiff} Juz ${aheadBehind} the pace expected for his grade`);
+    }
+  }
+  if (!parts.length) return "";
+  return parts.join(", ") + ".";
 }
 
 // Builds one plain-sentence status line per log, for both the HTML and
@@ -1870,40 +1969,41 @@ function buildParagraphLine(pronoun, kind, d) {
 }
 
 function buildWrittenReportHtml(d) {
-  const proseParts = [];
   const seriousBlocks = [];
   let nameUsed = false;
   const nextPronoun = () => { const p = nameUsed ? "He" : d.name; nameUsed = true; return p; };
 
+  // Paragraph 1: discipline - one combined sentence for whatever's still
+  // "Good"; anything Warning/Parent Meeting/Expulsion gets its own
+  // highlighted block below instead of being folded into the sentence.
+  const disciplineSentence = buildDisciplineSentence(nextPronoun(), d);
   [["behaviour", d.behaviour], ["absence", d.absence], ["work", d.work]].forEach(([kind, info]) => {
+    if (info.status === "Good") return;
     const contact = contactStatusLine(kind, info.status, d.contact);
-    if (info.status === "Good") {
-      proseParts.push(buildParagraphLine(nextPronoun(), kind, info));
-    } else {
-      const line = d.disciplineLines[kind];
-      seriousBlocks.push(`
-        <div class="lr-serious-block">
-          <strong>${LR_LOG_LABELS[kind]} &mdash; <span class="lr-badge ${info.cssClass}">${info.status}</span></strong><br>
-          ${escapeHtml(line)}${contact ? ` <em>${escapeHtml(contact)}</em>` : ""}
-        </div>`);
-    }
+    const line = d.disciplineLines[kind];
+    seriousBlocks.push(`
+      <div class="lr-serious-block">
+        <strong>${LR_LOG_LABELS[kind]} &mdash; <span class="lr-badge ${info.cssClass}">${info.status}</span></strong><br>
+        ${escapeHtml(line)}${contact ? ` <em>${escapeHtml(contact)}</em>` : ""}
+      </div>`);
   });
 
-  const weeklySubject = nextPronoun();
-  const weeklySubjectLower = weeklySubject === "He" ? "he" : weeklySubject;
-  const weeklyLine = `This term, ${escapeHtml(weeklySubjectLower)} gave <strong>${escapeHtml(d.sabaqGiven)}</strong> pages of Sabaq, `
-    + `which is <strong>${escapeHtml(d.pctToTarget)}</strong> of the term target.`;
+  // Paragraph 2: academic pace - pages given vs. target, then missed work.
+  const academicParagraph = buildAcademicParagraph(nextPronoun(), nextPronoun(), d);
 
-  const missedSubject = nextPronoun();
-  const missedLine = d.missedWork.totalMissed === 0
-    ? `No work was missed this term.`
-    : `${escapeHtml(missedSubject)} missed submitting work <strong>${d.missedWork.totalMissed}</strong> time(s) this term `
-      + `(${d.missedWorkPoints.map(escapeHtml).join(", ")}).`;
+  // Paragraph 3: journey/history - only appears once there's Journey tab
+  // data (start grade/year and/or an expected-Juz comparison) to show.
+  const journeyParagraph = buildJourneyParagraph(nextPronoun(), d);
+
+  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph]
+    .filter(Boolean)
+    .map(p => `<p>${escapeHtml(p)}</p>`)
+    .join("");
 
   return `
     <strong>Progress Report for ${escapeHtml(d.name)} (${escapeHtml(d.grade)})</strong> &mdash;
     Overall Discipline Status: <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span><br><br>
-    <p>${proseParts.map(escapeHtml).join(" ")} ${weeklyLine} ${missedLine}</p>
+    ${paragraphs}
     ${seriousBlocks.join("")}
     <br>Overall performance status for this term is <strong>${escapeHtml(d.statusLabel)}</strong>.`;
 }
@@ -1911,31 +2011,25 @@ function buildWrittenReportHtml(d) {
 // Builds the plain-text version of the same report, for the "General
 // Comments" textarea on the Exam Term Report tab (plain text only - no HTML).
 function buildWrittenReportPlainText(d) {
-  const proseParts = [];
   const seriousBlocks = [];
   let nameUsed = false;
   const nextPronoun = () => { const p = nameUsed ? "He" : d.name; nameUsed = true; return p; };
 
+  const disciplineSentence = buildDisciplineSentence(nextPronoun(), d);
   [["behaviour", d.behaviour], ["absence", d.absence], ["work", d.work]].forEach(([kind, info]) => {
+    if (info.status === "Good") return;
     const contact = contactStatusLine(kind, info.status, d.contact);
-    if (info.status === "Good") {
-      proseParts.push(buildParagraphLine(nextPronoun(), kind, info));
-    } else {
-      const line = d.disciplineLines[kind];
-      seriousBlocks.push(`\n${LR_LOG_LABELS[kind]} - ${info.status}\n${line}${contact ? " " + contact : ""}\n`);
-    }
+    const line = d.disciplineLines[kind];
+    seriousBlocks.push(`\n${LR_LOG_LABELS[kind]} - ${info.status}\n${line}${contact ? " " + contact : ""}\n`);
   });
 
-  const weeklySubject = nextPronoun();
-  const weeklySubjectLower = weeklySubject === "He" ? "he" : weeklySubject;
-  const weeklyLine = `This term, ${weeklySubjectLower} gave ${d.sabaqGiven} pages of Sabaq, which is ${d.pctToTarget} of the term target.`;
-  const missedSubject = nextPronoun();
-  const missedLine = d.missedWork.totalMissed === 0
-    ? `No work was missed this term.`
-    : `${missedSubject} missed submitting work ${d.missedWork.totalMissed} time(s) this term (${d.missedWorkPoints.join(", ")}).`;
+  const academicParagraph = buildAcademicParagraph(nextPronoun(), nextPronoun(), d);
+  const journeyParagraph = buildJourneyParagraph(nextPronoun(), d);
+
+  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph].filter(Boolean).join("\n\n");
 
   return `Progress Report for ${d.name} (${d.grade}) - Overall Discipline Status: ${d.overall.status}\n\n`
-    + `${proseParts.join(" ")} ${weeklyLine} ${missedLine}\n`
+    + `${paragraphs}\n`
     + seriousBlocks.join("")
     + `\nOverall performance status for this term is ${d.statusLabel}.`;
 }
@@ -2001,27 +2095,34 @@ function buildLearnerReportHtml(r) {
         <span class="lr-badge ${statusClass}">${escapeHtml(statusLabel)}</span>
       </div>
       ${actionBanner}
-      <div class="lr-grid">
-        <div class="lr-card">
-          <h4>Weekly Progress &amp; Term Summary</h4>
-          <div style="max-height:160px; overflow-y:auto; margin-bottom:10px;">
-            <table class="lr-progress-table">
-              <thead><tr><th>Week</th><th>Sabaq</th><th>Sabaq Dhor</th><th>Dhor</th><th>Total</th></tr></thead>
-              <tbody>${rows}</tbody>
-            </table>
-          </div>
-          <div class="lr-summary-grid">
-            <div class="lr-summary-item"><span>Term Sabaq Target:</span> <strong>${escapeHtml(String(termSabaqTarget))}</strong></div>
-            <div class="lr-summary-item"><span>Sabaq Given:</span> <strong>${escapeHtml(sabaqGiven)}</strong></div>
-            <div class="lr-summary-item"><span>% to Target:</span> <strong>${escapeHtml(pctToTarget)}</strong></div>
-            <div class="lr-summary-item"><span>Term Juz Done:</span> <strong>${escapeHtml(termJuzDone)}</strong></div>
-            <div class="lr-summary-item"><span>Year Juz Target:</span> <strong>${escapeHtml(String(yearJuzTarget))}</strong></div>
-            <div class="lr-summary-item"><span>Term Juz Target:</span> <strong>${escapeHtml(String(termJuzTarget))}</strong></div>
-            <div class="lr-summary-item"><span>Prior Juz:</span> <strong>${escapeHtml(String(priorJuz))}</strong></div>
-            <div class="lr-summary-item"><span>Total Juz Memorized:</span> <strong>${escapeHtml(totalJuzMemorized)}</strong></div>
+      <div class="lr-card lr-report">
+        <h4>Written Progress &amp; Behavior Report</h4>
+        <div class="lr-report-box">${writtenReport}</div>
+      </div>
+      <details class="lr-raw-data">
+        <summary>Show weekly table &amp; term summary figures (for printing/reference)</summary>
+        <div class="lr-grid">
+          <div class="lr-card">
+            <h4>Weekly Progress &amp; Term Summary</h4>
+            <div style="max-height:160px; overflow-y:auto; margin-bottom:10px;">
+              <table class="lr-progress-table">
+                <thead><tr><th>Week</th><th>Sabaq</th><th>Sabaq Dhor</th><th>Dhor</th><th>Total</th></tr></thead>
+                <tbody>${rows}</tbody>
+              </table>
+            </div>
+            <div class="lr-summary-grid">
+              <div class="lr-summary-item"><span>Term Sabaq Target:</span> <strong>${escapeHtml(String(termSabaqTarget))}</strong></div>
+              <div class="lr-summary-item"><span>Sabaq Given:</span> <strong>${escapeHtml(sabaqGiven)}</strong></div>
+              <div class="lr-summary-item"><span>% to Target:</span> <strong>${escapeHtml(pctToTarget)}</strong></div>
+              <div class="lr-summary-item"><span>Term Juz Done:</span> <strong>${escapeHtml(termJuzDone)}</strong></div>
+              <div class="lr-summary-item"><span>Year Juz Target:</span> <strong>${escapeHtml(String(yearJuzTarget))}</strong></div>
+              <div class="lr-summary-item"><span>Term Juz Target:</span> <strong>${escapeHtml(String(termJuzTarget))}</strong></div>
+              <div class="lr-summary-item"><span>Prior Juz:</span> <strong>${escapeHtml(String(priorJuz))}</strong></div>
+              <div class="lr-summary-item"><span>Total Juz Memorized:</span> <strong>${escapeHtml(totalJuzMemorized)}</strong></div>
+            </div>
           </div>
         </div>
-      </div>
+      </details>
       <div class="lr-discipline-wrap">
         <div class="lr-discipline-summary">
           <strong>Overall Discipline Status:</strong>
@@ -2053,10 +2154,6 @@ function buildLearnerReportHtml(r) {
             </div>
           </div>
         </div>
-      </div>
-      <div class="lr-card lr-report">
-        <h4>Written Progress &amp; Behavior Report</h4>
-        <div class="lr-report-box">${writtenReport}</div>
       </div>
     </div>`;
 }
@@ -2234,6 +2331,36 @@ function parseGradeNumber(val) {
   return m ? parseInt(m[0], 10) : null;
 }
 
+// Computes the same start-grade/current-grade/expected-vs-actual Juz figures
+// used on the Journey tab, in one place, so the Journey tab and the Learner
+// Report's history paragraph always agree with each other.
+function getJourneySummaryData(r) {
+  const l = learners[r] || {};
+  const startGrade = l.startGrade || "";
+  const startYear = l.startYear || "";
+  const currentGrade = l.grade || "";
+  const currentGradeNum = parseGradeNumber(currentGrade);
+
+  const totalJuzEl = document.getElementById(`sum-totaljuz-${r}`);
+  const actualJuz = totalJuzEl ? (parseFloat(totalJuzEl.textContent) || 0) : 0;
+
+  const currentStage = currentGradeNum !== null
+    ? JOURNEY_STAGES.find(s => s.grade === currentGradeNum)
+    : null;
+  const expectedJuz = currentStage ? currentStage.cumJuz : null;
+
+  let paceStatus = null, paceDiff = null;
+  if (expectedJuz !== null) {
+    const diff = actualJuz - expectedJuz;
+    paceDiff = Math.abs(diff).toFixed(2).replace(/\.00$/, "");
+    if (diff > 0.004) paceStatus = "ahead";
+    else if (diff < -0.004) paceStatus = "behind";
+    else paceStatus = "on-track";
+  }
+
+  return { startGrade, startYear, currentGrade, actualJuz, expectedJuz, paceStatus, paceDiff };
+}
+
 function toggleJourneyClasslist(evt) {
   if (evt) evt.preventDefault();
   const wrap = document.getElementById("journey-classlist-wrap");
@@ -2327,21 +2454,11 @@ function renderJourneyTab(rowIndex) {
 function buildJourneyHtml(r) {
   const l = learners[r] || {};
   const name = l.name || "";
-  const startGrade = l.startGrade || "";
-  const startYear = l.startYear || "";
+  const j = getJourneySummaryData(r);
+  const startGrade = j.startGrade, startYear = j.startYear;
   const currentGradeNum = parseGradeNumber(l.grade);
   const startGradeNum = parseGradeNumber(startGrade);
-
-  // "Current Juz" is read live from the Summary tab's computed Total Juz
-  // Memorized cell for this same learner/row, so it always reflects the
-  // latest weekly Sabaq progress rather than a manually-entered figure.
-  const totalJuzEl = document.getElementById(`sum-totaljuz-${r}`);
-  const actualJuz = totalJuzEl ? (parseFloat(totalJuzEl.textContent) || 0) : 0;
-
-  const currentStage = currentGradeNum !== null
-    ? JOURNEY_STAGES.find(s => s.grade === currentGradeNum)
-    : null;
-  const expectedJuz = currentStage ? currentStage.cumJuz : null;
+  const actualJuz = j.actualJuz, expectedJuz = j.expectedJuz;
 
   let summary = `<b>${escapeHtml(name)}</b> is currently in <b>${escapeHtml(l.grade || "-")}</b>.`;
   if (startGrade || startYear) {
@@ -2352,11 +2469,10 @@ function buildJourneyHtml(r) {
 
   let juzBox = "";
   if (expectedJuz !== null) {
-    const diff = actualJuz - expectedJuz;
-    const diffAbs = Math.abs(diff).toFixed(2).replace(/\.00$/, "");
+    const diffAbs = j.paceDiff;
     let statusClass = "on-track", statusText = `On track (${expectedJuz} Juz expected by ${escapeHtml(l.grade)})`;
-    if (diff > 0.004) { statusClass = "ahead"; statusText = `Ahead by ${diffAbs} Juz`; }
-    else if (diff < -0.004) { statusClass = "behind"; statusText = `Behind by ${diffAbs} Juz`; }
+    if (j.paceStatus === "ahead") { statusClass = "ahead"; statusText = `Ahead by ${diffAbs} Juz`; }
+    else if (j.paceStatus === "behind") { statusClass = "behind"; statusText = `Behind by ${diffAbs} Juz`; }
     juzBox = `
     <div class="journey-juz-row">
       <div class="journey-juz-stat"><span class="journey-juz-num">${actualJuz.toFixed(2).replace(/\.00$/, "")}</span><span class="journey-juz-label">Juz Memorized</span></div>
