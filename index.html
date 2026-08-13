@@ -2123,38 +2123,41 @@ function buildLearnerReportHtml(r) {
           </div>
         </div>
       </details>
-      <div class="lr-discipline-wrap">
-        <div class="lr-discipline-summary">
-          <strong>Overall Discipline Status:</strong>
-          <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span>
+      <details class="lr-raw-data">
+        <summary>Show discipline logs (Behaviour / Absence / Daily Work)</summary>
+        <div class="lr-discipline-wrap">
+          <div class="lr-discipline-summary">
+            <strong>Overall Discipline Status:</strong>
+            <span class="lr-badge ${d.overall.cssClass}">${d.overall.status}</span>
+          </div>
+          <div class="lr-log-grid">
+            <div class="lr-card lr-log-behaviour">
+              <h4>General Behaviour</h4>
+              <p style="margin-top:0;"><span class="lr-badge ${d.behaviour.cssClass}">${d.behaviour.status}</span> &nbsp;<small style="color:#64748b;">${d.behaviour.count} logged</small></p>
+              <div class="lr-notes-box">${behaviourHtml}</div>
+              <div class="lr-actions">
+                <button class="lr-action-btn" onclick="openLogModal(${r}, 'behaviour')">&#9888; + Log Behaviour</button>
+              </div>
+            </div>
+            <div class="lr-card lr-log-absence">
+              <h4>Absence</h4>
+              <p style="margin-top:0;"><span class="lr-badge ${d.absence.cssClass}">${d.absence.status}</span> &nbsp;<small style="color:#64748b;">${d.absence.unexcused} unexcused / ${d.absence.excused} excused</small></p>
+              <div class="lr-notes-box">${absenceHtml}</div>
+              <div class="lr-actions">
+                <button class="lr-action-btn" onclick="openLogModal(${r}, 'absence')">&#10060; + Log Absent</button>
+              </div>
+            </div>
+            <div class="lr-card lr-log-work">
+              <h4>Daily Work</h4>
+              <p style="margin-top:0;"><span class="lr-badge ${d.work.cssClass}">${d.work.status}</span> &nbsp;<small style="color:#64748b;">${d.work.count} logged</small></p>
+              <div class="lr-notes-box">${workHtml}</div>
+              <div class="lr-actions">
+                <button class="lr-action-btn" onclick="openLogModal(${r}, 'work')">&#128221; + Log Daily Work</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="lr-log-grid">
-          <div class="lr-card lr-log-behaviour">
-            <h4>General Behaviour</h4>
-            <p style="margin-top:0;"><span class="lr-badge ${d.behaviour.cssClass}">${d.behaviour.status}</span> &nbsp;<small style="color:#64748b;">${d.behaviour.count} logged</small></p>
-            <div class="lr-notes-box">${behaviourHtml}</div>
-            <div class="lr-actions">
-              <button class="lr-action-btn" onclick="openLogModal(${r}, 'behaviour')">&#9888; + Log Behaviour</button>
-            </div>
-          </div>
-          <div class="lr-card lr-log-absence">
-            <h4>Absence</h4>
-            <p style="margin-top:0;"><span class="lr-badge ${d.absence.cssClass}">${d.absence.status}</span> &nbsp;<small style="color:#64748b;">${d.absence.unexcused} unexcused / ${d.absence.excused} excused</small></p>
-            <div class="lr-notes-box">${absenceHtml}</div>
-            <div class="lr-actions">
-              <button class="lr-action-btn" onclick="openLogModal(${r}, 'absence')">&#10060; + Log Absent</button>
-            </div>
-          </div>
-          <div class="lr-card lr-log-work">
-            <h4>Daily Work</h4>
-            <p style="margin-top:0;"><span class="lr-badge ${d.work.cssClass}">${d.work.status}</span> &nbsp;<small style="color:#64748b;">${d.work.count} logged</small></p>
-            <div class="lr-notes-box">${workHtml}</div>
-            <div class="lr-actions">
-              <button class="lr-action-btn" onclick="openLogModal(${r}, 'work')">&#128221; + Log Daily Work</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      </details>
     </div>`;
 }
 
