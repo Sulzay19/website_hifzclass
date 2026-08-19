@@ -7,9 +7,9 @@
     {
       "name": "Rehan Mohsinbhai Patel",
       "grade": "Grade 8",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 103,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 16.75,
       "startGrade": "",
@@ -21,9 +21,9 @@
     {
       "name": "Mohammed Taha Moosa",
       "grade": "Grade 8",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 73,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 23,
       "startGrade": "",
@@ -35,9 +35,9 @@
     {
       "name": "Syed Ali Gilani",
       "grade": "Grade 8",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 76,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 22,
       "startGrade": "",
@@ -49,9 +49,9 @@
     {
       "name": "Muhammad Dawood",
       "grade": "Grade 8",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 65,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 23.25,
       "startGrade": "",
@@ -63,9 +63,9 @@
     {
       "name": "Afeef Ali",
       "grade": "Grade 8",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 68,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 22.75,
       "startGrade": "",
@@ -77,9 +77,9 @@
     {
       "name": "Zahir Kedir Moreta",
       "grade": "Grade 7",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 110,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": 9,
       "totalParasMemorized": 10.5,
       "startGrade": "",
@@ -91,9 +91,9 @@
     {
       "name": "Bilal Aboobaker Mottier",
       "grade": "Grade 7",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 124,
       "yearJuzTarget": 8,
-      "termJuzTarget": null,
+      "termJuzTarget": 2,
       "priorJuzMemorized": 7.5,
       "totalParasMemorized": 9.25,
       "startGrade": "",
@@ -105,9 +105,9 @@
     {
       "name": "Mohammed Kedir Moreta",
       "grade": "Grade 6",
-      "termSabaqTarget": null,
+      "termSabaqTarget": -4,
       "yearJuzTarget": 6,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.5,
       "priorJuzMemorized": 14,
       "totalParasMemorized": 17.75,
       "startGrade": "",
@@ -119,9 +119,9 @@
     {
       "name": "Umair Iqbal Mohamed",
       "grade": "Grade 6",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 75,
       "yearJuzTarget": 6,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.5,
       "priorJuzMemorized": null,
       "totalParasMemorized": 8.25,
       "startGrade": "",
@@ -133,9 +133,9 @@
     {
       "name": "Chaudrey Zayyan Ahmad",
       "grade": "Grade 6",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 99,
       "yearJuzTarget": 6,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.5,
       "priorJuzMemorized": 3.5,
       "totalParasMemorized": 4.5,
       "startGrade": "",
@@ -147,9 +147,9 @@
     {
       "name": "Musab Anwar Yasin",
       "grade": "Grade 5",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 32,
       "yearJuzTarget": 5,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
       "totalParasMemorized": 12,
       "startGrade": "",
@@ -161,9 +161,9 @@
     {
       "name": "Syed Azlan Haider Gilani",
       "grade": "Grade 5",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 55,
       "yearJuzTarget": 5,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
       "totalParasMemorized": 6.75,
       "startGrade": "",
@@ -175,9 +175,9 @@
     {
       "name": "Suliman Dawood",
       "grade": "Grade 5",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 57,
       "yearJuzTarget": 5,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
       "totalParasMemorized": 5.25,
       "startGrade": "",
@@ -189,9 +189,9 @@
     {
       "name": "Yahya Cassim",
       "grade": "Grade 5",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 44,
       "yearJuzTarget": 5,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
       "totalParasMemorized": 11.25,
       "startGrade": "",
@@ -203,9 +203,9 @@
     {
       "name": "Ahmed Ali",
       "grade": "Grade 5",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 84,
       "yearJuzTarget": 5,
-      "termJuzTarget": null,
+      "termJuzTarget": 1.25,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 0.75,
       "startGrade": "",
@@ -217,9 +217,9 @@
     {
       "name": "Hussain Rahman",
       "grade": "Grade 4",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 33,
       "yearJuzTarget": 3,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 1.25,
       "startGrade": "",
@@ -231,9 +231,9 @@
     {
       "name": "Mikaeel Patel",
       "grade": "Grade 4",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 11,
       "yearJuzTarget": 3,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 2.5,
       "startGrade": "",
@@ -245,9 +245,9 @@
     {
       "name": "Thlotlego Letlhogonolo Ntokwe",
       "grade": "Grade 4",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 28,
       "yearJuzTarget": 3,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 1.25,
       "startGrade": "",
@@ -259,9 +259,9 @@
     {
       "name": "Abu Bakr Munshi",
       "grade": "Grade 4",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 50,
       "yearJuzTarget": 3,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 0.5,
       "startGrade": "",
@@ -273,9 +273,9 @@
     {
       "name": "Umair Mohamad",
       "grade": "Grade 4",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 36,
       "yearJuzTarget": 3,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 1.25,
       "startGrade": "",
@@ -287,9 +287,9 @@
     {
       "name": "Muhammad Hamza",
       "grade": "Grade 3",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 14,
       "yearJuzTarget": 2,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.5,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 0.5,
       "startGrade": "",
@@ -301,9 +301,9 @@
     {
       "name": "Usamah Suleiman Hamido",
       "grade": "Grade 1",
-      "termSabaqTarget": null,
+      "termSabaqTarget": 7,
       "yearJuzTarget": 1,
-      "termJuzTarget": null,
+      "termJuzTarget": 0.25,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 0.25,
       "startGrade": "",
@@ -360,507 +360,507 @@
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          3,
+          1,
+          1,
+          1
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          3,
+          4,
+          4
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          0,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          2,
+          2,
+          5,
+          1
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          4,
+          3,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          5,
+          4,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          2.25,
+          3,
+          6.25,
+          4.5
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          7
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          11.25,
+          2,
+          1.75,
+          3
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          0,
+          7
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          14,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          16,
+          2,
+          0,
+          3.75
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          3,
+          0,
+          6
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          7,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          11.75,
+          1.5,
+          1.25,
+          3.5
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          2,
+          4,
+          5
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          12,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          4.25,
+          1,
+          0,
+          0.75
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          6,
+          4,
+          5
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          10,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          18,
+          1,
+          2,
+          3
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          0,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          1.25,
+          0.75,
+          0,
+          0
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          1.5,
+          2,
+          2,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0.25,
+          0.25,
+          0.25
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          4,
+          6,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          2,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          4.25,
+          1,
+          1,
+          1.75
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          4,
+          6,
+          7,
+          4
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          10
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          4.75,
+          2,
+          2.25,
+          3
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          4,
+          6,
+          4
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          5,
+          4
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          7.25,
+          1,
+          1,
+          0.75
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          7
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          4,
+          0,
+          1,
+          0
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          4,
+          5,
+          2,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          1,
+          0,
+          4,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0.25,
+          0,
+          0.25,
+          0.5
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          2,
+          2,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          2.5,
+          0.25,
+          1,
+          0.25
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          7
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          14,
+          0,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          2.5,
+          0.25,
+          0.25,
+          1
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          3,
+          5,
+          7
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          4,
+          14,
+          14,
+          4
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          4.75,
+          0.25,
+          0.75,
+          0.25
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          10,
+          7,
+          5,
+          10
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          14,
+          14
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0.25,
+          0.25,
+          0.25,
+          0.5
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          1.25,
+          0.75,
+          0.75
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          7,
+          4
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          21,
+          7
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          1
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          13,
+          13,
+          13
         ]
       },
       {
         "sabaq": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0.25,
+          0.25,
+          0.5
         ],
         "sabaqDhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
           null,
-          null,
-          null,
-          null,
-          null
+          0,
+          13,
+          13,
+          13
         ]
       },
       {
@@ -936,508 +936,508 @@
     "2": [
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0.5,
+          1,
+          0,
+          1.75
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          6,
+          6,
+          6,
+          8,
+          6
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          4,
+          4
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          0,
+          0,
+          0,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          3,
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          2,
+          0,
+          2,
+          0,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          7,
+          7,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          2,
+          0,
+          3,
+          2,
+          8
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7,
+          5
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          2,
+          0,
+          2.5,
+          5
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          6,
+          7,
+          7,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7,
+          14
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          1,
+          1,
+          0.5,
+          1
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          8,
+          6,
+          6,
+          5,
+          11
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          2,
+          5,
+          4,
+          0,
+          6
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          1.5,
+          0,
+          0,
+          0,
+          2.5
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          0,
+          0,
+          7,
+          6
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          3,
+          4,
+          0,
+          4,
+          4
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          1.5,
+          1.75,
+          1,
+          0.75,
+          2
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7,
+          21
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          14,
+          7,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          1,
+          0.75,
+          1,
+          1,
+          1.25
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          3,
+          4,
+          4,
+          5,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          4,
+          7,
+          7,
+          7
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.5,
+          1,
+          1.25,
+          1.25,
+          0.75
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          6,
+          6,
+          6,
+          3
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          10,
+          6,
+          6,
+          6,
+          7
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.75,
+          0.5,
+          0.75,
+          1,
+          1
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          6,
+          6,
+          6,
+          7,
+          6
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          7,
+          7,
+          7,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.75,
+          1,
+          1,
+          1.5,
+          2.5
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          5,
+          7,
+          3,
+          1,
+          2.5
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          3,
+          5,
+          4,
+          3
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0.75,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          0,
+          6,
+          5,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          19,
+          7
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.75,
+          0,
+          0,
+          0.5,
+          0.5
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          1,
+          1
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.75,
+          0,
+          0.75,
+          0.5,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          14,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          14,
+          14,
+          0
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0.75,
+          0.75
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          0,
+          7,
+          5,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          0,
+          0,
+          3,
+          28
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.75,
+          0.5,
+          0.5,
+          0,
+          0.25
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          10,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          14,
+          14,
+          28
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.5,
+          0,
+          0,
+          0.75,
+          0.25
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          4,
+          5,
+          0,
+          7,
+          21
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.5,
+          0.5,
+          0.75,
+          0,
+          0.25
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          7,
+          7
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          21,
+          21,
+          28
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0.5,
+          0.5,
+          0.25,
+          0.25,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          21,
+          21,
+          21
         ]
       },
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0.25,
+          0.25,
+          0.25,
+          0.25
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          0,
+          0,
+          0,
+          0,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          14,
+          14,
+          14,
+          14,
+          14
         ]
       },
       {
@@ -2090,25 +2090,25 @@
     "4": [
       {
         "sabaq": [
-          null,
-          null,
-          null,
-          null,
-          null
+          1.25,
+          0,
+          0.75,
+          0,
+          0
         ],
         "sabaqDhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          7,
+          7,
+          7,
+          4,
+          0
         ],
         "dhor": [
-          null,
-          null,
-          null,
-          null,
-          null
+          6,
+          0,
+          4,
+          4,
+          0
         ]
       },
       {
@@ -7287,8 +7287,8 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7298,8 +7298,8 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.25",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7309,8 +7309,8 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.79",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7320,8 +7320,8 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "2.95",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7331,8 +7331,8 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "2.79",
+      "dhor10": "1",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7342,8 +7342,8 @@
       "grade": "Grade 7",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.92",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7353,8 +7353,8 @@
       "grade": "Grade 7",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.89",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7364,8 +7364,8 @@
       "grade": "Grade 6",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "3.69",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7375,8 +7375,8 @@
       "grade": "Grade 6",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.83",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7386,8 +7386,8 @@
       "grade": "Grade 6",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.09",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7397,8 +7397,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.82",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7408,8 +7408,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "2.29",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7419,8 +7419,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "2.39",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7430,8 +7430,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.82",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7441,8 +7441,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.39",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7452,8 +7452,8 @@
       "grade": "Grade 4",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.43",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7463,8 +7463,8 @@
       "grade": "Grade 4",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.31",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7474,8 +7474,8 @@
       "grade": "Grade 4",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.9",
+      "dhor10": "1",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7485,8 +7485,8 @@
       "grade": "Grade 4",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.65",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7496,8 +7496,8 @@
       "grade": "Grade 4",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.13",
+      "dhor10": "1",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7507,8 +7507,8 @@
       "grade": "Grade 3",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0.89",
+      "dhor10": "1",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7518,8 +7518,8 @@
       "grade": "Grade 1",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "1.43",
+      "dhor10": "1",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7529,8 +7529,8 @@
       "grade": "",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7540,8 +7540,8 @@
       "grade": "",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7551,8 +7551,8 @@
       "grade": "",
       "hifz100": "",
       "hifz70": "",
-      "target20": "",
-      "dhor10": "",
+      "target20": "0",
+      "dhor10": "0",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7586,14 +7586,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "16.75",
-          "—",
-          "3",
+          "0.5",
+          "17.25",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "1"
         ]
       },
       "totals": [],
@@ -7629,14 +7629,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
+          "0.5",
+          "23.5",
           "—",
-          "23",
-          "—",
-          "15",
+          "",
           null,
           "",
           "",
-          ""
+          "1.25"
         ]
       },
       "totals": [],
@@ -7672,14 +7672,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "22",
-          "—",
-          "8",
+          "0.75",
+          "22.75",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "1.79"
         ]
       },
       "totals": [],
@@ -7715,14 +7715,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "23.25",
-          "—",
-          "1",
+          "1.25",
+          "24.5",
+          "2",
+          "",
           null,
           "",
           "",
-          ""
+          "2.95"
         ]
       },
       "totals": [],
@@ -7758,14 +7758,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "22.75",
-          "—",
-          "2",
+          "1",
+          "23.75",
+          "3",
+          "",
           null,
           "",
           "",
-          ""
+          "3.79"
         ]
       },
       "totals": [],
@@ -7801,14 +7801,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "10.5",
-          "—",
-          "0",
+          "0.75",
+          "11.25",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "1.92"
         ]
       },
       "totals": [],
@@ -7844,14 +7844,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "—",
-          "9.25",
-          "—",
-          "22",
+          "0.25",
+          "9.5",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "0.89"
         ]
       },
       "totals": [],
@@ -7887,14 +7887,14 @@
         ],
         "3": [
           "1 to 1¼ pages daily",
-          "—",
-          "17.75",
-          "—",
-          "0",
+          "1",
+          "18.75",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "3.69"
         ]
       },
       "totals": [],
@@ -7930,14 +7930,14 @@
         ],
         "3": [
           "1 to 1¼ pages daily",
-          "—",
-          "8.25",
-          "—",
+          "0.25",
+          "8.5",
           "1",
+          "",
           null,
           "",
           "",
-          ""
+          "0.83"
         ]
       },
       "totals": [],
@@ -7973,14 +7973,14 @@
         ],
         "3": [
           "1 to 1¼ pages daily",
-          "—",
+          "0",
           "4.5",
           "—",
-          "15",
+          "",
           null,
           "",
           "",
-          ""
+          "0.09"
         ]
       },
       "totals": [],
@@ -8016,14 +8016,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "—",
-          "12",
-          "—",
-          "0",
+          "0.5",
+          "12.5",
+          "2",
+          "",
           null,
           "",
           "",
-          ""
+          "1.82"
         ]
       },
       "totals": [],
@@ -8059,14 +8059,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "—",
-          "6.75",
-          "—",
-          "9",
+          "0.5",
+          "7.25",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "2.29"
         ]
       },
       "totals": [],
@@ -8102,14 +8102,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "—",
-          "5.25",
-          "—",
-          "2",
+          "0.5",
+          "5.75",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "2.39"
         ]
       },
       "totals": [],
@@ -8145,14 +8145,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "—",
-          "11.25",
-          "—",
+          "0.25",
+          "11.5",
           "1",
+          "",
           null,
           "",
           "",
-          ""
+          "0.82"
         ]
       },
       "totals": [],
@@ -8188,14 +8188,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "—",
+          "0",
           "0.75",
           "—",
-          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "0.39"
         ]
       },
       "totals": [],
@@ -8232,14 +8232,14 @@
         ],
         "3": [
           "6 to 10 lines daily",
-          "—",
-          "1.25",
-          "—",
-          "6",
+          "0.25",
+          "1.5",
+          "2",
+          "",
           null,
           "",
           "",
-          ""
+          "1.43"
         ]
       },
       "totals": [],
@@ -8275,14 +8275,14 @@
         ],
         "3": [
           "6 to 10 lines daily",
-          "—",
-          "2.5",
-          "—",
-          "6",
+          "0.25",
+          "2.75",
+          "2",
+          "",
           null,
           "",
           "",
-          ""
+          "1.31"
         ]
       },
       "totals": [],
@@ -8318,14 +8318,14 @@
         ],
         "3": [
           "6 to 10 lines daily",
-          "—",
-          "1.25",
-          "—",
-          "0",
+          "0.25",
+          "1.5",
+          "5",
+          "",
           null,
           "",
           "",
-          ""
+          "2.9"
         ]
       },
       "totals": [],
@@ -8361,14 +8361,14 @@
         ],
         "3": [
           "6 to 10 lines daily",
-          "—",
+          "0",
           "0.5",
-          "—",
-          "23",
+          "1",
+          "",
           null,
           "",
           "",
-          ""
+          "0.65"
         ]
       },
       "totals": [],
@@ -8404,14 +8404,14 @@
         ],
         "3": [
           "6 to 10 lines daily",
-          "—",
-          "1.25",
-          "—",
+          "0.25",
+          "1.5",
           "4",
+          "",
           null,
           "",
           "",
-          ""
+          "2.13"
         ]
       },
       "totals": [],
@@ -8447,14 +8447,14 @@
         ],
         "3": [
           "",
-          "—",
+          "0",
           "0.5",
-          "—",
-          "-",
+          "3",
+          "",
           null,
           "",
           "",
-          ""
+          "1.8900000000000001"
         ]
       },
       "totals": [],
@@ -8490,14 +8490,14 @@
         ],
         "3": [
           "",
-          "—",
+          "0",
           "0.25",
-          "—",
-          "-",
+          "3",
+          "",
           null,
           "",
           "",
-          ""
+          "2.4299999999999997"
         ]
       },
       "totals": [],
