@@ -332,7 +332,7 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-start-row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin:14px 0; }
 #journey .journey-start-row .journey-field { display:flex; flex-direction:column; gap:4px; }
 #journey .journey-start-row label { font-size:12px; font-weight:bold; color:#1F4E78; }
-#journey .journey-start-row input { font-family: Arial, sans-serif; font-size:13px; padding:6px 8px; border:1px solid #ccc; border-radius:4px; min-width:110px; }
+#journey .journey-start-row input, #journey .journey-start-row select { font-family: Arial, sans-serif; font-size:13px; padding:6px 8px; border:1px solid #ccc; border-radius:4px; min-width:110px; }
 #journey .journey-summary { font-size:14px; color:#333; margin:4px 0 18px; }
 #journey .journey-summary b { color:#1F4E78; }
 #journey .journey-juz-row { display:flex; flex-wrap:wrap; align-items:center; gap:18px; background:#fff; border:1px solid #dbe5f1; border-radius:8px; padding:14px 18px; margin-bottom:18px; }
@@ -356,6 +356,7 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-card ul { margin:0; padding-left:18px; font-size:12.5px; color:#333; }
 #journey .journey-card ul li { margin-bottom:3px; }
 #journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; font-size:12.5px; font-weight:bold; color:#1F4E78; }
+#journey .journey-progress-row select.journey-paras-select { width:100%; font-family:Arial, sans-serif; font-size:12.5px; font-weight:bold; color:#1F4E78; padding:5px 6px; border:1px solid #c7d5e6; border-radius:4px; background:#fff; }
 #journey .journey-status-badge { position:absolute; top:10px; right:10px; font-size:10px; font-weight:bold; padding:3px 7px; border-radius:999px; text-transform:uppercase; }
 #journey .journey-status-badge.completed { background:#fdf0c8; color:#8a6d1a; }
 #journey .journey-status-badge.current { background:#1F4E78; color:#fff; }
@@ -375,7 +376,7 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-progress-table th { background:#2563eb; color:#fff; font-weight:600; }
 #learnerreport .lr-progress-table tr:last-child td { font-weight:bold; background:#eff6ff; border-top:2px solid #cbd5e1; }
 #learnerreport .lr-summary-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; background:#fff; padding:8px; border-radius:6px; border:1px solid #e2e8f0; font-size:.78rem; }
-#learnerreport .lr-summary-item { display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px dashed #f1f5f9; }
+#learnerreport .lr-summary-item { display:flex; justify-content:flex-start; gap:8px; padding:3px 0; border-bottom:1px dashed #f1f5f9; }
 #learnerreport .lr-badge { padding:4px 8px; border-radius:4px; font-size:.75rem; font-weight:600; white-space:nowrap; }
 #learnerreport .lr-status-success { background:#d1fae5; color:#059669; }
 #learnerreport .lr-status-warning { background:#fef3c7; color:#d97706; }
@@ -1907,6 +1908,7 @@ function getLearnerNarrativeData(r) {
   const summaryRow = getEffectiveSummaryRow(r);
   const sabaqGiven = String(summaryRow.sabaqGiven || 0);
   const pctToTarget = `${(summaryRow.pct || 0).toFixed(1)}%`;
+  const termJuzDone = formatQuarter(summaryRow.termJuzDone || 0);
   const totalJuzMemorized = formatQuarter(summaryRow.memorized || 0);
   const remaining = formatQuarter(summaryRow.remaining != null ? summaryRow.remaining : 30);
   const termSabaqTargetRaw = isViewingLiveTerm()
@@ -1937,7 +1939,7 @@ function getLearnerNarrativeData(r) {
   const missedWorkPoints = buildMissedWorkPoints(missedWork);
 
   return { name, grade, statusLabel, incidentCount, behaviour, absence, work, overall, disciplineLines,
-    contact: store.contact, sabaqGiven, pctToTarget, totalJuzMemorized, remaining, termSabaqTarget,
+    contact: store.contact, sabaqGiven, pctToTarget, termJuzDone, totalJuzMemorized, remaining, termSabaqTarget,
     missedWork, missedWorkPoints, journey };
 }
 
@@ -2172,7 +2174,7 @@ function buildLearnerReportHtml(r) {
   const priorJuz = (l.totalParasMemorized === null || l.totalParasMemorized === undefined) ? "-" : l.totalParasMemorized;
   const sabaqGiven = d.sabaqGiven;
   const pctToTarget = d.pctToTarget;
-  const termJuzDone = gt(`sum-termjuzdone-${r}`) || "0.00";
+  const termJuzDone = d.termJuzDone;
   const totalJuzMemorized = d.totalJuzMemorized;
   const remaining = d.remaining;
 
@@ -2472,6 +2474,22 @@ function parseGradeNumber(val) {
   return m ? parseInt(m[0], 10) : null;
 }
 
+// Builds <option> tags for the Start Year dropdown: the current year back
+// to 15 years ago. If the learner's stored startYear falls outside that
+// range (old data, or a typo from before this was a dropdown), it's added
+// too so existing selections are never silently lost.
+function buildStartYearOptions(selected) {
+  const nowYear = new Date().getFullYear();
+  const years = [];
+  for (let y = nowYear; y >= nowYear - 15; y--) years.push(y);
+  if (selected && !years.includes(parseInt(selected, 10))) {
+    const sel = parseInt(selected, 10);
+    if (!isNaN(sel)) years.push(sel);
+  }
+  years.sort((a, b) => b - a);
+  return years.map(y => `<option value="${y}" ${String(y) === String(selected) ? "selected" : ""}>${y}</option>`).join("");
+}
+
 // Computes the same start-grade/current-grade/expected-vs-actual Juz figures
 // used on the Journey tab, in one place, so the Journey tab and the Learner
 // Report's history paragraph always agree with each other.
@@ -2595,6 +2613,19 @@ function renderJourneyTab(rowIndex) {
   sheetEl.innerHTML = buildJourneyHtml(Number(rowIndex));
 }
 
+// Builds the inline "Paras completed" dropdown shown on each Journey card,
+// bound to the same learners[r].journeyProgress[grade] store as the
+// Show/Edit Classlist table, so entering a value here (or there) updates
+// both - this is just a second, more direct way to enter the same data.
+function buildJourneyParasSelect(r, grade, progressVal) {
+  const opts = [`<option value="">Not yet recorded</option>`];
+  for (let v = 0; v <= 30; v += 0.5) {
+    const selected = progressVal !== null && Math.abs(progressVal - v) < 0.001 ? "selected" : "";
+    opts.push(`<option value="${v}" ${selected}>${formatQuarter(v)} Paras completed</option>`);
+  }
+  return `<select class="journey-paras-select" onchange="onJourneyProgressChange(${r}, ${grade}, this.value)">${opts.join("")}</select>`;
+}
+
 function buildJourneyHtml(r) {
   const l = learners[r] || {};
   const name = l.name || "";
@@ -2637,13 +2668,15 @@ function buildJourneyHtml(r) {
     const statusLabel = status === "completed" ? "Completed" : (status === "current" ? "In Progress" : (status === "joined-later" ? "Joined Later" : "Upcoming"));
     const progressVal = (l.journeyProgress && l.journeyProgress[stage.grade] !== undefined && l.journeyProgress[stage.grade] !== null)
       ? l.journeyProgress[stage.grade] : null;
-    const progressText = status === "joined-later" ? "Not applicable - joined later" : (progressVal !== null ? `${progressVal} Paras completed` : "Not yet recorded");
+    const progressRow = status === "joined-later"
+      ? `<div class="journey-progress-row"><span>Not applicable - joined later</span></div>`
+      : `<div class="journey-progress-row">${buildJourneyParasSelect(r, stage.grade, progressVal)}</div>`;
     return `<div class="journey-card ${status}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>
       <div class="journey-grade-label">GRADE ${stage.grade}</div>
       <h4>${escapeHtml(stage.title)}</h4>
       <ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
-      <div class="journey-progress-row"><span>${escapeHtml(progressText)}</span></div>
+      ${progressRow}
     </div>`;
   }).join("");
 
@@ -2651,13 +2684,20 @@ function buildJourneyHtml(r) {
     <div class="journey-start-row">
       <div class="journey-field">
         <label for="journey-startgrade-${r}">Start Grade</label>
-        <input type="text" id="journey-startgrade-${r}" value="${escapeHtml(startGrade)}" placeholder="e.g. Grade 4"
-          oninput="onJourneyFieldChange(${r}, 'startGrade', this.value)">
+        <select id="journey-startgrade-${r}" onchange="onJourneyFieldChange(${r}, 'startGrade', this.value)">
+          <option value="">-- Select --</option>
+          ${JOURNEY_STAGES.map(stage => {
+            const val = `Grade ${stage.grade}`;
+            return `<option value="${escapeHtml(val)}" ${startGrade === val ? "selected" : ""}>${escapeHtml(val)}</option>`;
+          }).join("")}
+        </select>
       </div>
       <div class="journey-field">
         <label for="journey-startyear-${r}">Start Year</label>
-        <input type="text" id="journey-startyear-${r}" value="${escapeHtml(startYear)}" placeholder="e.g. 2023"
-          oninput="onJourneyFieldChange(${r}, 'startYear', this.value)">
+        <select id="journey-startyear-${r}" onchange="onJourneyFieldChange(${r}, 'startYear', this.value)">
+          <option value="">-- Select --</option>
+          ${buildStartYearOptions(startYear)}
+        </select>
       </div>
     </div>
     <p class="journey-summary">${summary}</p>
