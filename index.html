@@ -2169,7 +2169,7 @@ function buildLearnerReportHtml(r) {
   const termSabaqTarget = (l.termSabaqTarget === null || l.termSabaqTarget === undefined) ? "-" : l.termSabaqTarget;
   const yearJuzTarget = (l.yearJuzTarget === null || l.yearJuzTarget === undefined) ? "-" : l.yearJuzTarget;
   const termJuzTarget = (l.termJuzTarget === null || l.termJuzTarget === undefined) ? "-" : l.termJuzTarget;
-  const priorJuz = (l.priorJuzMemorized === null || l.priorJuzMemorized === undefined) ? "-" : l.priorJuzMemorized;
+  const priorJuz = (l.totalParasMemorized === null || l.totalParasMemorized === undefined) ? "-" : l.totalParasMemorized;
   const sabaqGiven = d.sabaqGiven;
   const pctToTarget = d.pctToTarget;
   const termJuzDone = gt(`sum-termjuzdone-${r}`) || "0.00";
@@ -3489,7 +3489,11 @@ function computeSummaryRow(r) {
   let sabaqGiven = 0;
   for (let w = 1; w <= NUM_WEEKS; w++) sabaqGiven += sum5(data[w][r].sabaq);
   const target = learners[r].termSabaqTarget || 0;
-  const prior = learners[r].priorJuzMemorized || 0;
+  // Use the same baseline as the Class List tab's "Total Quran Paras"
+  // column (learners[r].totalParasMemorized, the manually-entered Class
+  // List figure) instead of the old, no-longer-editable priorJuzMemorized
+  // field, so Journey/Learner Report always agree with Class List.
+  const prior = learners[r].totalParasMemorized || 0;
   const termJuzDone = sabaqGiven / 28;
   const memorized = prior + termJuzDone;
   const pct = target > 0 ? (sabaqGiven / target) * 100 : 0;
@@ -3514,7 +3518,7 @@ function recalcSummary() {
   for (let r = 0; r < NUM_LEARNERS; r++) {
     const { sabaqGiven, termJuzDone, pct, memorized, remaining } = computeSummaryRow(r);
     const target = learners[r].termSabaqTarget || 0;
-    const prior = learners[r].priorJuzMemorized || 0;
+    const prior = learners[r].totalParasMemorized || 0;
 
     // Summary tab only renders rows for active learners (its last 3
     // always-empty rows were removed), so guard these lookups - rows
@@ -4703,7 +4707,7 @@ function doShare() {
     let sabaqGiven = 0;
     for (let w = 1; w <= NUM_WEEKS; w++) sabaqGiven += sum5(data[w][r].sabaq);
     const target = learners[r].termSabaqTarget || 0;
-    const prior = learners[r].priorJuzMemorized || 0;
+    const prior = learners[r].totalParasMemorized || 0;
     const memorized = prior + (sabaqGiven / 28);
     const pct = target > 0 ? ((sabaqGiven / target) * 100).toFixed(1) : "0.0";
     const remaining = 30 - memorized;
