@@ -152,9 +152,12 @@
       "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
       "totalParasMemorized": 12,
-      "startGrade": "",
-      "startYear": "",
-      "journeyProgress": {},
+      "startGrade": "Grade 4",
+      "startYear": "2025",
+      "journeyProgress": {
+        "4": 9,
+        "5": 3.75
+      },
       "notes": "",
       "clAttendance": ""
     },

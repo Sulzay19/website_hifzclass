@@ -357,7 +357,8 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-timeline-labels { display:flex; justify-content:space-between; margin-top:6px; font-size:10.5px; color:#64748b; padding:0 2px; }
 #journey .journey-timeline-labels span.is-current { color:#1F4E78; font-weight:bold; }
 
-#journey .journey-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+#journey .journey-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:16px; }
+@media (max-width: 1300px) { #journey .journey-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 900px) { #journey .journey-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { #journey .journey-grid { grid-template-columns: 1fr; } }
 
@@ -2496,8 +2497,7 @@ const JOURNEY_STAGES = [
   { grade: 5, title: "Strengthening the Foundation", bullets: ["10 to 13 lines daily", "5 Paras to complete"], cumJuz: 8, parasRequired: 5 },
   { grade: 6, title: "Commitment & Proficiency", bullets: ["1 to 1\u00BC pages daily", "6 Paras to complete"], cumJuz: 14, parasRequired: 6 },
   { grade: 7, title: "The Final Ascent", bullets: ["1 to 1\u00BD pages daily", "8 Paras to complete"], cumJuz: 22, parasRequired: 8 },
-  { grade: 8, title: "The Finishing Line", bullets: ["1 to 1\u00BD pages daily", "Remaining 8 Paras"], cumJuz: 30, parasRequired: 8 },
-  { grade: 9, title: "The Golden Year", bullets: ["Dhor (Revision) only", "All 30 Paras maintained"], cumJuz: 30, parasRequired: 0 }
+  { grade: 8, title: "The Finishing Line", bullets: ["1 to 1\u00BD pages daily", "Remaining 8 Paras"], cumJuz: 30, parasRequired: 8 }
 ];
 
 // Pull the first number out of a free-text Grade field (e.g. "Grade 6",
@@ -2543,7 +2543,13 @@ function getJourneySummaryData(r) {
   const currentStage = currentGradeNum !== null
     ? JOURNEY_STAGES.find(s => s.grade === currentGradeNum)
     : null;
-  const expectedJuz = currentStage ? currentStage.cumJuz : null;
+  // Grade 4-8 map directly onto a Journey stage. A learner recorded as
+  // Grade 9+ (or any grade past the last stage) has already passed the
+  // final stage, so he's still expected to be at that stage's full total
+  // (30 Juz) rather than showing no expected pace at all.
+  const lastStage = JOURNEY_STAGES[JOURNEY_STAGES.length - 1];
+  const expectedJuz = currentStage ? currentStage.cumJuz
+    : (currentGradeNum !== null && currentGradeNum > lastStage.grade ? lastStage.cumJuz : null);
 
   let paceStatus = null, paceDiff = null;
   if (expectedJuz !== null) {
