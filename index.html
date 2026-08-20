@@ -333,32 +333,66 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-start-row .journey-field { display:flex; flex-direction:column; gap:4px; }
 #journey .journey-start-row label { font-size:12px; font-weight:bold; color:#1F4E78; }
 #journey .journey-start-row input, #journey .journey-start-row select { font-family: Arial, sans-serif; font-size:13px; padding:6px 8px; border:1px solid #ccc; border-radius:4px; min-width:110px; }
-#journey .journey-summary { font-size:14px; color:#333; margin:4px 0 18px; }
+#journey .journey-summary { font-size:14px; color:#333; margin:14px 0 18px; }
 #journey .journey-summary b { color:#1F4E78; }
-#journey .journey-juz-row { display:flex; flex-wrap:wrap; align-items:center; gap:18px; background:#fff; border:1px solid #dbe5f1; border-radius:8px; padding:14px 18px; margin-bottom:18px; }
+
+/* Overview panel: numbers + status pill, plus a Grade 4-9 timeline bar
+   showing overall percent complete with a "you are here" marker, so the
+   learner's position is visible at a glance instead of only in 6 cards. */
+#journey .journey-overview { background:#fff; border:1px solid #dbe5f1; border-radius:8px; padding:16px 18px; margin-bottom:18px; }
+#journey .journey-juz-row { display:flex; flex-wrap:wrap; align-items:center; gap:18px; }
 #journey .journey-juz-stat { display:flex; flex-direction:column; align-items:flex-start; min-width:120px; }
 #journey .journey-juz-num { font-size:24px; font-weight:bold; color:#1F4E78; line-height:1.1; }
 #journey .journey-juz-label { font-size:11px; color:#666; }
 #journey .journey-juz-status { margin-left:auto; font-size:13px; font-weight:bold; padding:6px 12px; border-radius:999px; white-space:nowrap; }
 #journey .journey-juz-status.on-track { background:#e2e8f0; color:#334155; }
 #journey .journey-juz-status.ahead { background:#d1fae5; color:#059669; }
-#journey .journey-juz-status.behind { background:#fee2e2; color:#dc2626; }
+#journey .journey-juz-status.behind { background:#fef3c7; color:#92400e; }
+
+#journey .journey-timeline { margin-top:18px; }
+#journey .journey-timeline-track { position:relative; height:10px; background:#e2e8f0; border-radius:999px; margin:0 2px; }
+#journey .journey-timeline-fill { position:absolute; left:0; top:0; height:100%; background:linear-gradient(90deg,#1F4E78,#3f77ab); border-radius:999px; transition:width 0.2s; }
+#journey .journey-timeline-tick { position:absolute; top:-3px; width:2px; height:16px; background:#fff; border-left:2px solid #cbd5e1; }
+#journey .journey-timeline-here { position:absolute; top:-11px; transform:translateX(-50%); font-size:16px; line-height:1; }
+#journey .journey-timeline-labels { display:flex; justify-content:space-between; margin-top:6px; font-size:10.5px; color:#64748b; padding:0 2px; }
+#journey .journey-timeline-labels span.is-current { color:#1F4E78; font-weight:bold; }
+
 #journey .journey-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
 @media (max-width: 900px) { #journey .journey-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { #journey .journey-grid { grid-template-columns: 1fr; } }
-#journey .journey-card { border:1px solid #dbe5f1; border-radius:6px; padding:14px 16px; background:#fff; border-top:5px solid #1F4E78; position:relative; }
-#journey .journey-card.completed { border-top-color:#D4AF37; background:#fdfaf0; }
+
+/* Consistent color mapping across border + badge: green = completed,
+   blue = in progress, gray = upcoming/not started, dashed gray = n/a. */
+#journey .journey-card { border:1px solid #dbe5f1; border-radius:6px; padding:14px 16px; background:#fff; border-top:5px solid #94a3b8; position:relative; }
+#journey .journey-card.completed { border-top-color:#059669; background:#f0fdf6; }
 #journey .journey-card.current { border-top-color:#1F4E78; background:#eef3fa; box-shadow:0 2px 8px rgba(31,78,120,0.25); }
-#journey .journey-card.upcoming { opacity:0.6; }
-#journey .journey-card.joined-later { opacity:0.5; border-top-style:dashed; border-top-color:#9ca3af; background:#f9fafb; }
-#journey .journey-card .journey-grade-label { font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#B8860B; }
-#journey .journey-card h4 { margin:6px 0 8px; font-size:16px; color:#1F4E78; }
+#journey .journey-card.upcoming { border-top-color:#cbd5e1; background:#fbfcfe; opacity:0.75; }
+#journey .journey-card.joined-later { opacity:0.55; border-top-style:dashed; border-top-color:#9ca3af; background:#f9fafb; }
+#journey .journey-card .journey-grade-label { font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#64748b; }
+#journey .journey-card h4 { margin:6px 0 8px; font-size:16px; color:#1F4E78; padding-right:70px; }
 #journey .journey-card ul { margin:0; padding-left:18px; font-size:12.5px; color:#333; }
 #journey .journey-card ul li { margin-bottom:3px; }
-#journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; font-size:12.5px; font-weight:bold; color:#1F4E78; }
-#journey .journey-progress-row select.journey-paras-select { width:100%; font-family:Arial, sans-serif; font-size:12.5px; font-weight:bold; color:#1F4E78; padding:5px 6px; border:1px solid #c7d5e6; border-radius:4px; background:#fff; }
+
+/* Per-card mini progress bar (recorded paras vs. paras required for that
+   grade) - the card front now leads with actual progress, not static text. */
+#journey .journey-card-progress { margin-top:2px; }
+#journey .journey-card-progress-label { font-size:11.5px; font-weight:bold; color:#1F4E78; display:flex; justify-content:space-between; margin-bottom:4px; }
+#journey .journey-card-progress-track { height:7px; background:#e5e9f0; border-radius:999px; overflow:hidden; }
+#journey .journey-card-progress-fill { height:100%; background:#1F4E78; border-radius:999px; }
+#journey .journey-card.completed .journey-card-progress-fill { background:#059669; }
+
+/* Static curriculum text (lines/pages per day, paras required) is fixed
+   info, repeated on every card - tucked behind a toggle instead of always
+   shown, so the card focuses on this learner's actual data. */
+#journey .journey-reqs-toggle { display:inline-block; margin-top:8px; font-size:11.5px; color:#1F4E78; text-decoration:underline; cursor:pointer; background:none; border:none; padding:0; font-family:Arial, sans-serif; font-weight:bold; }
+#journey .journey-reqs-body { display:none; margin-top:8px; padding-top:8px; border-top:1px dashed #dbe5f1; }
+#journey .journey-reqs-body.open { display:block; }
+
+#journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; font-size:12.5px; font-weight:bold; color:#1F4E78; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+#journey .journey-progress-row input.journey-paras-input { width:64px; flex:0 0 auto; font-family:Arial, sans-serif; font-size:12.5px; font-weight:bold; color:#1F4E78; padding:5px 6px; border:1px solid #c7d5e6; border-radius:4px; background:#fff; text-align:center; }
+#journey .journey-progress-row .journey-paras-unit { font-size:11.5px; font-weight:bold; color:#666; }
 #journey .journey-status-badge { position:absolute; top:10px; right:10px; font-size:10px; font-weight:bold; padding:3px 7px; border-radius:999px; text-transform:uppercase; }
-#journey .journey-status-badge.completed { background:#fdf0c8; color:#8a6d1a; }
+#journey .journey-status-badge.completed { background:#d1fae5; color:#059669; }
 #journey .journey-status-badge.current { background:#1F4E78; color:#fff; }
 #journey .journey-status-badge.upcoming { background:#e2e8f0; color:#64748b; }
 #journey .journey-status-badge.joined-later { background:#e5e7eb; color:#6b7280; }
@@ -2458,12 +2492,12 @@ function escapeHtml(str) {
 // stage he has reached, based on his current Grade field (kept in sync
 // with the Week/Summary/Exam tabs via onGradeChange).
 const JOURNEY_STAGES = [
-  { grade: 4, title: "Building the Foundation", bullets: ["6 to 10 lines daily", "3 Paras to complete"], cumJuz: 3 },
-  { grade: 5, title: "Strengthening the Foundation", bullets: ["10 to 13 lines daily", "5 Paras to complete"], cumJuz: 8 },
-  { grade: 6, title: "Commitment & Proficiency", bullets: ["1 to 1\u00BC pages daily", "6 Paras to complete"], cumJuz: 14 },
-  { grade: 7, title: "The Final Ascent", bullets: ["1 to 1\u00BD pages daily", "8 Paras to complete"], cumJuz: 22 },
-  { grade: 8, title: "The Finishing Line", bullets: ["1 to 1\u00BD pages daily", "Remaining 8 Paras"], cumJuz: 30 },
-  { grade: 9, title: "The Golden Year", bullets: ["Dhor (Revision) only", "All 30 Paras maintained"], cumJuz: 30 }
+  { grade: 4, title: "Building the Foundation", bullets: ["6 to 10 lines daily", "3 Paras to complete"], cumJuz: 3, parasRequired: 3 },
+  { grade: 5, title: "Strengthening the Foundation", bullets: ["10 to 13 lines daily", "5 Paras to complete"], cumJuz: 8, parasRequired: 5 },
+  { grade: 6, title: "Commitment & Proficiency", bullets: ["1 to 1\u00BC pages daily", "6 Paras to complete"], cumJuz: 14, parasRequired: 6 },
+  { grade: 7, title: "The Final Ascent", bullets: ["1 to 1\u00BD pages daily", "8 Paras to complete"], cumJuz: 22, parasRequired: 8 },
+  { grade: 8, title: "The Finishing Line", bullets: ["1 to 1\u00BD pages daily", "Remaining 8 Paras"], cumJuz: 30, parasRequired: 8 },
+  { grade: 9, title: "The Golden Year", bullets: ["Dhor (Revision) only", "All 30 Paras maintained"], cumJuz: 30, parasRequired: 0 }
 ];
 
 // Pull the first number out of a free-text Grade field (e.g. "Grade 6",
@@ -2613,17 +2647,30 @@ function renderJourneyTab(rowIndex) {
   sheetEl.innerHTML = buildJourneyHtml(Number(rowIndex));
 }
 
-// Builds the inline "Paras completed" dropdown shown on each Journey card,
-// bound to the same learners[r].journeyProgress[grade] store as the
-// Show/Edit Classlist table, so entering a value here (or there) updates
-// both - this is just a second, more direct way to enter the same data.
+// Builds the inline "Paras completed" manual entry box shown on each
+// Journey card, bound to the same learners[r].journeyProgress[grade]
+// store as the Show/Edit Classlist table, so entering a value here (or
+// there) updates both - this is just a second, more direct way to enter
+// the same data. A plain number input instead of a 61-option dropdown.
 function buildJourneyParasSelect(r, grade, progressVal) {
-  const opts = [`<option value="">Not yet recorded</option>`];
-  for (let v = 0; v <= 30; v += 0.5) {
-    const selected = progressVal !== null && Math.abs(progressVal - v) < 0.001 ? "selected" : "";
-    opts.push(`<option value="${v}" ${selected}>${formatQuarter(v)} Paras completed</option>`);
-  }
-  return `<select class="journey-paras-select" onchange="onJourneyProgressChange(${r}, ${grade}, this.value)">${opts.join("")}</select>`;
+  const val = progressVal === null ? "" : progressVal;
+  return `<input type="number" class="journey-paras-input" min="0" max="30" step="0.5"
+    placeholder="Not yet recorded" value="${val}"
+    onchange="onJourneyProgressChange(${r}, ${grade}, this.value)"> <span class="journey-paras-unit">paras completed</span>`;
+}
+
+// Expands/collapses the static "lines/pages per day, paras required"
+// text on a Journey card - that info is fixed per grade, not per learner,
+// so it's tucked away by default and the card front leads with the
+// learner's actual recorded progress instead.
+function toggleJourneyReqs(id, evt) {
+  if (evt) evt.preventDefault();
+  const body = document.getElementById(id);
+  const link = document.getElementById(id + "-toggle");
+  if (!body) return;
+  const nowOpen = !body.classList.contains("open");
+  body.classList.toggle("open", nowOpen);
+  if (link) link.textContent = nowOpen ? "Hide requirements \u25B4" : "Show requirements \u25BE";
 }
 
 function buildJourneyHtml(r) {
@@ -2642,20 +2689,44 @@ function buildJourneyHtml(r) {
       ` and is currently in <b>${escapeHtml(l.grade || "-")}</b>.`;
   }
 
-  let juzBox = "";
+  const TOTAL_JUZ = 30;
+  let overview = "";
   if (expectedJuz !== null) {
     const diffAbs = j.paceDiff;
     let statusClass = "on-track", statusText = `On track (${expectedJuz} Juz expected by ${escapeHtml(l.grade)})`;
     if (j.paceStatus === "ahead") { statusClass = "ahead"; statusText = `Ahead by ${diffAbs} Juz`; }
-    else if (j.paceStatus === "behind") { statusClass = "behind"; statusText = `Behind by ${diffAbs} Juz`; }
-    juzBox = `
-    <div class="journey-juz-row">
-      <div class="journey-juz-stat"><span class="journey-juz-num">${formatQuarter(actualJuz)}</span><span class="journey-juz-label">Juz Memorized</span></div>
-      <div class="journey-juz-stat"><span class="journey-juz-num">${expectedJuz}</span><span class="journey-juz-label">Expected for ${escapeHtml(l.grade)}</span></div>
-      <div class="journey-juz-status ${statusClass}">${statusText}</div>
+    else if (j.paceStatus === "behind") { statusClass = "behind"; statusText = `${diffAbs} Juz behind pace`; }
+
+    // Timeline bar: filled to actual Juz / 30, with a tick + label at each
+    // grade's cumulative target and a "you are here" marker at the
+    // learner's actual position - a single glance for where he stands.
+    const fillPct = Math.max(0, Math.min(100, (actualJuz / TOTAL_JUZ) * 100));
+    const ticks = JOURNEY_STAGES.map(stage => {
+      const pct = Math.min(100, (stage.cumJuz / TOTAL_JUZ) * 100);
+      return `<div class="journey-timeline-tick" style="left:${pct}%;" title="Grade ${stage.grade}: ${stage.cumJuz} Juz"></div>`;
+    }).join("");
+    const labels = JOURNEY_STAGES.map(stage =>
+      `<span class="${stage.grade === currentGradeNum ? "is-current" : ""}">G${stage.grade}</span>`
+    ).join("");
+
+    overview = `
+    <div class="journey-overview">
+      <div class="journey-juz-row">
+        <div class="journey-juz-stat"><span class="journey-juz-num">${formatQuarter(actualJuz)}</span><span class="journey-juz-label">Juz Memorized</span></div>
+        <div class="journey-juz-stat"><span class="journey-juz-num">${expectedJuz}</span><span class="journey-juz-label">Expected for ${escapeHtml(l.grade)}</span></div>
+        <div class="journey-juz-status ${statusClass}">${statusText}</div>
+      </div>
+      <div class="journey-timeline">
+        <div class="journey-timeline-track">
+          <div class="journey-timeline-fill" style="width:${fillPct}%;"></div>
+          ${ticks}
+          <div class="journey-timeline-here" style="left:${fillPct}%;" title="${formatQuarter(actualJuz)} Juz memorized">\uD83D\uDCCD</div>
+        </div>
+        <div class="journey-timeline-labels">${labels}</div>
+      </div>
     </div>`;
   } else {
-    juzBox = `<div class="journey-juz-row"><p class="rc-empty" style="margin:0;">Set the learner's Grade (Summary tab) to compare his Juz progress against the expected pace.</p></div>`;
+    overview = `<div class="journey-overview"><p class="rc-empty" style="margin:0;">Set the learner's Grade (Summary tab) to compare his Juz progress against the expected pace.</p></div>`;
   }
 
   const cards = JOURNEY_STAGES.map(stage => {
@@ -2668,14 +2739,35 @@ function buildJourneyHtml(r) {
     const statusLabel = status === "completed" ? "Completed" : (status === "current" ? "In Progress" : (status === "joined-later" ? "Joined Later" : "Upcoming"));
     const progressVal = (l.journeyProgress && l.journeyProgress[stage.grade] !== undefined && l.journeyProgress[stage.grade] !== null)
       ? l.journeyProgress[stage.grade] : null;
+
+    // Mini progress bar up front: recorded paras vs. paras required for
+    // this grade, so the card leads with the learner's actual data
+    // instead of static curriculum text.
+    let progressBar = "";
+    if (status !== "joined-later" && stage.parasRequired > 0) {
+      const pct = progressVal !== null ? Math.max(0, Math.min(100, (progressVal / stage.parasRequired) * 100)) : 0;
+      const doneLabel = progressVal !== null ? `${formatQuarter(progressVal)} / ${stage.parasRequired} paras` : `\u2013 / ${stage.parasRequired} paras`;
+      progressBar = `<div class="journey-card-progress">
+        <div class="journey-card-progress-label"><span>${doneLabel}</span><span>${progressVal !== null ? Math.round(pct) + "%" : ""}</span></div>
+        <div class="journey-card-progress-track"><div class="journey-card-progress-fill" style="width:${pct}%;"></div></div>
+      </div>`;
+    }
+
+    const reqsId = `journey-reqs-${r}-${stage.grade}`;
+    const reqsToggle = `<a href="#" id="${reqsId}-toggle" class="journey-reqs-toggle" onclick="toggleJourneyReqs('${reqsId}', event)">Show requirements \u25BE</a>`;
+    const reqsBody = `<div id="${reqsId}" class="journey-reqs-body"><ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul></div>`;
+
     const progressRow = status === "joined-later"
       ? `<div class="journey-progress-row"><span>Not applicable - joined later</span></div>`
       : `<div class="journey-progress-row">${buildJourneyParasSelect(r, stage.grade, progressVal)}</div>`;
+
     return `<div class="journey-card ${status}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>
       <div class="journey-grade-label">GRADE ${stage.grade}</div>
       <h4>${escapeHtml(stage.title)}</h4>
-      <ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>
+      ${progressBar}
+      ${reqsToggle}
+      ${reqsBody}
       ${progressRow}
     </div>`;
   }).join("");
@@ -2701,7 +2793,7 @@ function buildJourneyHtml(r) {
       </div>
     </div>
     <p class="journey-summary">${summary}</p>
-    ${juzBox}
+    ${overview}
     <div class="journey-grid">${cards}</div>
   `;
 }
