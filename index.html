@@ -389,9 +389,31 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-reqs-body { display:none; margin-top:8px; padding-top:8px; border-top:1px dashed #dbe5f1; }
 #journey .journey-reqs-body.open { display:block; }
 
-#journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; font-size:12.5px; font-weight:bold; color:#1F4E78; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-#journey .journey-progress-row input.journey-paras-input { width:64px; flex:0 0 auto; font-family:Arial, sans-serif; font-size:12.5px; font-weight:bold; color:#1F4E78; padding:5px 6px; border:1px solid #c7d5e6; border-radius:4px; background:#fff; text-align:center; }
-#journey .journey-progress-row .journey-paras-unit { font-size:11.5px; font-weight:bold; color:#666; }
+#journey .journey-progress-row { margin-top:10px; padding-top:10px; border-top:1px dashed #dbe5f1; }
+
+/* Para picker: Juz dropdown + quarter/half/three-quarter/full dropdown
+   + Add button, all on one row above the recorded pills. */
+#journey .journey-para-picker { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+#journey .journey-para-picker select { font-family:Arial, sans-serif; font-size:12px; padding:4px 6px; border:1px solid #c7d5e6; border-radius:4px; background:#fff; color:#1F4E78; }
+#journey .journey-para-juz-select { flex:1 1 auto; min-width:90px; }
+#journey .journey-para-frac-select { flex:0 0 auto; width:64px; }
+#journey .journey-para-add-btn { font-family:Arial, sans-serif; font-size:12px; font-weight:bold; padding:5px 12px; border:1px solid #1F4E78; border-radius:4px; background:#1F4E78; color:#fff; cursor:pointer; }
+#journey .journey-para-add-btn:hover { background:#163a5c; }
+
+/* Recorded-Para pills: solid green once a Para is Full, outlined with
+   its fraction label while it's still only partially memorized. Click
+   a pill on a card to remove/re-enter it. */
+#journey .journey-para-pills { display:flex; flex-wrap:wrap; gap:6px; }
+#journey .journey-para-pills-empty { font-size:11.5px; color:#94a3b8; font-style:italic; }
+#journey .journey-para-pill { display:inline-block; font-size:12px; font-weight:bold; padding:4px 10px; border-radius:999px; cursor:pointer; }
+#journey .journey-para-pill.full { background:#d1fae5; color:#059669; border:1px solid #a7f3d0; }
+#journey .journey-para-pill.partial { background:transparent; color:#64748b; border:1px solid #cbd5e1; }
+#journey .journey-para-pill:hover { opacity:0.75; }
+
+/* "Paras completed" summary in the top overview box - all recorded
+   Paras across every grade, same pill styling as the per-card ones. */
+#journey .journey-para-summary { margin-top:14px; padding-top:12px; border-top:1px dashed #dbe5f1; }
+#journey .journey-para-summary-label { display:block; font-size:11px; font-weight:bold; color:#64748b; margin-bottom:6px; }
 #journey .journey-status-badge { position:absolute; top:10px; right:10px; font-size:10px; font-weight:bold; padding:3px 7px; border-radius:999px; text-transform:uppercase; }
 #journey .journey-status-badge.completed { background:#d1fae5; color:#059669; }
 #journey .journey-status-badge.current { background:#1F4E78; color:#fff; }
@@ -1523,7 +1545,7 @@ for (let r = 0; r < NUM_LEARNERS; r++) {
   learners.push({
     name: "", grade: "",
     termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null, totalParasMemorized: null,
-    startGrade: "", startYear: "", journeyProgress: {},
+    startGrade: "", startYear: "", journeyProgress: {}, journeyParas: {},
     notes: "",
     clAttendance: ""
   });
@@ -2653,16 +2675,108 @@ function renderJourneyTab(rowIndex) {
   sheetEl.innerHTML = buildJourneyHtml(Number(rowIndex));
 }
 
-// Builds the inline "Paras completed" manual entry box shown on each
-// Journey card, bound to the same learners[r].journeyProgress[grade]
-// store as the Show/Edit Classlist table, so entering a value here (or
-// there) updates both - this is just a second, more direct way to enter
-// the same data. A plain number input instead of a 61-option dropdown.
-function buildJourneyParasSelect(r, grade, progressVal) {
-  const val = progressVal === null ? "" : progressVal;
-  return `<input type="number" class="journey-paras-input" min="0" max="30" step="0.5"
-    placeholder="Not yet recorded" value="${val}"
-    onchange="onJourneyProgressChange(${r}, ${grade}, this.value)"> <span class="journey-paras-unit">paras completed</span>`;
+// Each grade covers a fixed slice of the 30 Para Hifz order, which runs
+// Juz 30 -> 29 -> ... -> 1 (not 1 -> 30). Given a stage's cumulative
+// Juz target and the previous stage's, this returns that grade's Para
+// numbers in the order they're actually memorized (highest Juz first).
+function getStageJuzList(stage) {
+  const idx = JOURNEY_STAGES.findIndex(s => s.grade === stage.grade);
+  const priorCum = idx > 0 ? JOURNEY_STAGES[idx - 1].cumJuz : 0;
+  const list = [];
+  for (let pos = priorCum + 1; pos <= stage.cumJuz; pos++) list.push(31 - pos);
+  return list;
+}
+
+const PARA_FRACTIONS = [
+  { val: 0.25, label: "\u00BC" },
+  { val: 0.5, label: "\u00BD" },
+  { val: 0.75, label: "\u00BE" },
+  { val: 1, label: "Full" }
+];
+
+// Sums a learner's per-Para fraction map for one grade back into a
+// single decimal, and writes it into journeyProgress[grade] so the
+// card's progress bar/percent and the Show/Edit Classlist table (which
+// only ever reads/writes that single number) stay in sync automatically.
+function syncJourneyProgressFromParas(r, grade) {
+  const map = (learners[r].journeyParas && learners[r].journeyParas[grade]) || {};
+  const sum = Object.values(map).reduce((a, b) => a + (Number(b) || 0), 0);
+  if (!learners[r].journeyProgress) learners[r].journeyProgress = {};
+  learners[r].journeyProgress[grade] = sum > 0 ? roundToQuarter(sum) : null;
+}
+
+function onJourneyParaSet(r, grade, juz, fraction) {
+  if (!learners[r].journeyParas) learners[r].journeyParas = {};
+  if (!learners[r].journeyParas[grade]) learners[r].journeyParas[grade] = {};
+  learners[r].journeyParas[grade][juz] = Number(fraction);
+  syncJourneyProgressFromParas(r, grade);
+  renderJourneyTab(r);
+  renderJourneyClasslist();
+}
+
+function onJourneyParaRemove(r, grade, juz) {
+  if (learners[r].journeyParas && learners[r].journeyParas[grade]) {
+    delete learners[r].journeyParas[grade][juz];
+  }
+  syncJourneyProgressFromParas(r, grade);
+  renderJourneyTab(r);
+  renderJourneyClasslist();
+}
+
+// Builds the Journey card's Para picker: a Juz dropdown (that grade's
+// slice only, in memorization order) + a quarter/half/three-quarter/full
+// dropdown, and the rounded pills below showing every Para recorded so
+// far - solid green once a Para is marked Full, outlined with its
+// fraction while it's still in progress.
+function buildJourneyParaPicker(r, grade, stage) {
+  const juzList = getStageJuzList(stage);
+  const map = (learners[r].journeyParas && learners[r].journeyParas[grade]) || {};
+
+  const juzOptions = juzList.map(j => `<option value="${j}">Juz ${j}</option>`).join("");
+  const fracOptions = PARA_FRACTIONS.map(f => `<option value="${f.val}">${f.label}</option>`).join("");
+  const picker = `<div class="journey-para-picker">
+    <select id="journey-para-juz-${r}-${grade}" class="journey-para-juz-select">${juzOptions}</select>
+    <select id="journey-para-frac-${r}-${grade}" class="journey-para-frac-select">${fracOptions}</select>
+    <button type="button" class="journey-para-add-btn" onclick="onJourneyParaSet(${r}, ${grade}, Number(document.getElementById('journey-para-juz-${r}-${grade}').value), document.getElementById('journey-para-frac-${r}-${grade}').value)">Add</button>
+  </div>`;
+
+  const pills = juzList
+    .filter(j => map[j] !== undefined && map[j] !== null)
+    .map(j => {
+      const frac = Number(map[j]);
+      const isFull = frac >= 1;
+      const fracObj = PARA_FRACTIONS.find(f => f.val === frac);
+      const label = isFull ? `${j}` : `${j} \u00B7 ${fracObj ? fracObj.label : frac}`;
+      return `<span class="journey-para-pill ${isFull ? "full" : "partial"}"
+        title="Click to remove" onclick="onJourneyParaRemove(${r}, ${grade}, ${j})">${label}</span>`;
+    }).join("");
+  const pillsRow = `<div class="journey-para-pills">${pills || '<span class="journey-para-pills-empty">No paras recorded yet</span>'}</div>`;
+
+  return `<div class="journey-para-block">${picker}${pillsRow}</div>`;
+}
+
+// Builds the "Paras completed" pill row for the top summary box - every
+// Para recorded across all grades, in memorization order (Juz 30 down
+// to 1), using the same pill styling as the per-grade card pickers.
+function buildAllParasPillsRow(r) {
+  const allParas = (learners[r].journeyParas) || {};
+  const pills = JOURNEY_STAGES.map(stage => {
+    const juzList = getStageJuzList(stage);
+    const map = allParas[stage.grade] || {};
+    return juzList
+      .filter(j => map[j] !== undefined && map[j] !== null)
+      .map(j => {
+        const frac = Number(map[j]);
+        const isFull = frac >= 1;
+        const fracObj = PARA_FRACTIONS.find(f => f.val === frac);
+        const label = isFull ? `${j}` : `${j} \u00B7 ${fracObj ? fracObj.label : frac}`;
+        return `<span class="journey-para-pill ${isFull ? "full" : "partial"}">${label}</span>`;
+      }).join("");
+  }).join("");
+  return `<div class="journey-para-summary">
+    <span class="journey-para-summary-label">Paras completed</span>
+    <div class="journey-para-pills">${pills || '<span class="journey-para-pills-empty">No paras recorded yet</span>'}</div>
+  </div>`;
 }
 
 // Expands/collapses the static "lines/pages per day, paras required"
@@ -2719,7 +2833,6 @@ function buildJourneyHtml(r) {
     <div class="journey-overview">
       <div class="journey-juz-row">
         <div class="journey-juz-stat"><span class="journey-juz-num">${formatQuarter(actualJuz)}</span><span class="journey-juz-label">Juz Memorized</span></div>
-        <div class="journey-juz-stat"><span class="journey-juz-num">${expectedJuz}</span><span class="journey-juz-label">Expected for ${escapeHtml(l.grade)}</span></div>
         <div class="journey-juz-status ${statusClass}">${statusText}</div>
       </div>
       <div class="journey-timeline">
@@ -2730,6 +2843,7 @@ function buildJourneyHtml(r) {
         </div>
         <div class="journey-timeline-labels">${labels}</div>
       </div>
+      ${buildAllParasPillsRow(r)}
     </div>`;
   } else {
     overview = `<div class="journey-overview"><p class="rc-empty" style="margin:0;">Set the learner's Grade (Summary tab) to compare his Juz progress against the expected pace.</p></div>`;
@@ -2765,12 +2879,11 @@ function buildJourneyHtml(r) {
 
     const progressRow = status === "joined-later"
       ? `<div class="journey-progress-row"><span>Not applicable - joined later</span></div>`
-      : `<div class="journey-progress-row">${buildJourneyParasSelect(r, stage.grade, progressVal)}</div>`;
+      : `<div class="journey-progress-row">${buildJourneyParaPicker(r, stage.grade, stage)}</div>`;
 
     return `<div class="journey-card ${status}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>
       <div class="journey-grade-label">GRADE ${stage.grade}</div>
-      <h4>${escapeHtml(stage.title)}</h4>
       ${progressBar}
       ${reqsToggle}
       ${reqsBody}
@@ -4003,7 +4116,7 @@ function clearRoster() {
   }
 
   for (let r = 0; r < NUM_LEARNERS; r++) {
-    learners[r] = { name: "", grade: "", termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null, totalParasMemorized: null, startGrade: "", startYear: "", journeyProgress: {}, notes: "" };
+    learners[r] = { name: "", grade: "", termSabaqTarget: null, yearJuzTarget: null, termJuzTarget: null, priorJuzMemorized: null, totalParasMemorized: null, startGrade: "", startYear: "", journeyProgress: {}, journeyParas: {}, notes: "" };
 
     const nameInput = document.querySelector(`.name-input[data-row="${r}"]`);
     const gradeInput = document.querySelector(`.grade-input[data-row="${r}"]`);
@@ -4787,6 +4900,7 @@ function applyLoadedState(state) {
       learners[r].startGrade = l.startGrade || "";
       learners[r].startYear = l.startYear || "";
       learners[r].journeyProgress = l.journeyProgress || {};
+      learners[r].journeyParas = l.journeyParas || {};
 
       const notesInput = document.querySelector(`.notes-input[data-row="${r}"]`);
       if (notesInput) notesInput.value = l.notes || "";
