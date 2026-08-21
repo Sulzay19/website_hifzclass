@@ -2702,6 +2702,10 @@ const PARA_FRACTIONS = [
 // Para, not just its usual slice, since some learners run ahead or
 // behind the standard pace and complete paras outside their own grade.
 const ALL_JUZ_NUMBERS = Array.from({ length: 30 }, (_, i) => 30 - i);
+// Pills are displayed in ascending Juz order (1, 2, 3 ... 30), separate
+// from ALL_JUZ_NUMBERS (which stays descending for the Juz dropdown, since
+// memorization traditionally starts from Juz 30).
+const ALL_JUZ_NUMBERS_ASC = Array.from({ length: 30 }, (_, i) => i + 1);
 
 // Sums a learner's per-Para fraction map for one grade back into a
 // single decimal, and writes it into journeyProgress[grade] so the
@@ -2748,7 +2752,7 @@ function buildJourneyParaPicker(r, grade, stage) {
     <button type="button" class="journey-para-add-btn" onclick="onJourneyParaSet(${r}, ${grade}, Number(document.getElementById('journey-para-juz-${r}-${grade}').value), document.getElementById('journey-para-frac-${r}-${grade}').value)">Add</button>
   </div>`;
 
-  const pills = ALL_JUZ_NUMBERS
+  const pills = ALL_JUZ_NUMBERS_ASC
     .filter(j => map[j] !== undefined && map[j] !== null)
     .map(j => {
       const frac = Number(map[j]);
@@ -2770,7 +2774,7 @@ function buildAllParasPillsRow(r) {
   const allParas = (learners[r].journeyParas) || {};
   const pills = JOURNEY_STAGES.map(stage => {
     const map = allParas[stage.grade] || {};
-    return ALL_JUZ_NUMBERS
+    return ALL_JUZ_NUMBERS_ASC
       .filter(j => map[j] !== undefined && map[j] !== null)
       .map(j => {
         const frac = Number(map[j]);
