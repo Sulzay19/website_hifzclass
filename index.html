@@ -3322,7 +3322,7 @@ function recalcExamRow(r) {
   const dhor10 = g(`exam-dhor10-${r}`);
   const tajweed = g(`exam-tajweed-${r}`);
   const dua = g(`exam-dua-${r}`);
-  const total = hifz70 + target20 + dhor10;
+  const total = round2(hifz70 + target20 + dhor10);
   document.getElementById(`exam-total-${r}`).textContent = blankIfZero(total);
 }
 function recalcAllExam() {
@@ -3355,6 +3355,7 @@ function recalcAllExam() {
 function computeExamTarget20(r) {
   let sabaqPages = 0;
   for (let w = 1; w <= NUM_WEEKS; w++) sabaqPages += sum5(data[w][r].sabaq);
+  sabaqPages = round2(sabaqPages);
   const termParasDoneNum = sabaqPages / 28;
   const yearTarget = learners[r].yearJuzTarget || 0;
   const earned = yearTarget > 0 ? (termParasDoneNum / yearTarget) * 20 : 0;
@@ -3368,6 +3369,7 @@ function computeExamTarget20(r) {
 function computeExamDhor10(r) {
   let dhorPages = 0;
   for (let w = 1; w <= NUM_WEEKS; w++) dhorPages += sum5(data[w][r].dhor);
+  dhorPages = round2(dhorPages);
   const dhorRounds = Math.floor(dhorPages / 84);
   return Math.min(10, dhorRounds);
 }
@@ -3459,7 +3461,14 @@ function onDayChange(week, row, cat, day, val) {
   recalcSummary();
 }
 
-function sum5(arr) { return arr.reduce((a,b) => a + b, 0); }
+// Rounds a number to 2 decimal places while avoiding binary floating-point
+// drift (e.g. 2.86 + 3 showing as 5.859999999999999 instead of 5.86).
+function round2(num) {
+  const n = Number(num);
+  if (isNaN(n)) return 0;
+  return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+function sum5(arr) { return round2(arr.reduce((a,b) => a + b, 0)); }
 
 // Show a computed number only once it's non-zero (i.e. something has
 // actually been entered); otherwise leave the cell blank instead of "0".
@@ -3495,8 +3504,8 @@ function recalcWeek(week) {
       const vals = data[week][r][cat];
       const t = sum5(vals);
       document.getElementById(`tot-w${week}-${r}-${cat}`).textContent = t;
-      catTotalSum[cat] += t;
-      vals.forEach((v, d) => colTotals[cat][d] += v);
+      catTotalSum[cat] = round2(catTotalSum[cat] + t);
+      vals.forEach((v, d) => { colTotals[cat][d] = round2(colTotals[cat][d] + (v || 0)); });
     });
   }
 
@@ -3546,6 +3555,8 @@ function computeClassListRow(r) {
     sabaqPages += sum5(data[w][r].sabaq);
     dhorPages += sum5(data[w][r].dhor);
   }
+  sabaqPages = round2(sabaqPages);
+  dhorPages = round2(dhorPages);
   const target = learners[r].termSabaqTarget || 0;
   const totalMemorized = learners[r].totalParasMemorized || 0;
   const termParasDone = sabaqPages / 28;
@@ -3556,7 +3567,7 @@ function computeClassListRow(r) {
   const dhorParasGiven = Math.floor(dhorPages / 28);
   const dhorRounds = Math.floor(dhorPages / 84);
   return {
-    termPagesDone: sabaqPages === 0 ? dash : String(sabaqPages),
+    termPagesDone: sabaqPages === 0 ? dash : String(round2(sabaqPages)),
     pctPagesDone: target > 0 ? `${pct.toFixed(1)}%` : dash,
     sabaqParasBehind: target > 0 ? behind.toFixed(0) : dash,
     termParasDone: termParasDone === 0 ? dash : formatQuarter(termParasDone),
@@ -3584,6 +3595,8 @@ function recalcClassList() {
       sabaqPages += sum5(data[w][r].sabaq);
       dhorPages += sum5(data[w][r].dhor);
     }
+    sabaqPages = round2(sabaqPages);
+    dhorPages = round2(dhorPages);
     const target = learners[r].termSabaqTarget || 0;
     const prior = learners[r].priorJuzMemorized || 0;
     const totalMemorized = learners[r].totalParasMemorized || 0;
@@ -3607,7 +3620,7 @@ function recalcClassList() {
     const dhorRounds = Math.floor(dhorPages / 84);
 
     const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    set(`cl-termPagesDone-${r}`, sabaqPages === 0 ? dash : sabaqPages);
+    set(`cl-termPagesDone-${r}`, sabaqPages === 0 ? dash : round2(sabaqPages));
     set(`cl-pctPagesDone-${r}`, target > 0 ? `${pct.toFixed(1)}%` : dash);
     set(`cl-sabaqParasBehind-${r}`, target > 0 ? behind.toFixed(0) : dash);
     set(`cl-termParasDone-${r}`, termParasDone === 0 ? dash : formatQuarter(termParasDone));
@@ -3626,6 +3639,7 @@ function recalcClassList() {
 function computeSummaryRow(r) {
   let sabaqGiven = 0;
   for (let w = 1; w <= NUM_WEEKS; w++) sabaqGiven += sum5(data[w][r].sabaq);
+  sabaqGiven = round2(sabaqGiven);
   const target = learners[r].termSabaqTarget || 0;
   // Use the same baseline as the Class List tab's "Total Quran Paras"
   // column (learners[r].totalParasMemorized, the manually-entered Class
@@ -3905,6 +3919,7 @@ function startNewTerm() {
   for (let r = 0; r < NUM_LEARNERS; r++) {
     let sabaqGiven = 0;
     for (let w = 1; w <= NUM_WEEKS; w++) sabaqGiven += sum5(data[w][r].sabaq);
+    sabaqGiven = round2(sabaqGiven);
 
     // Term progress rolls into Learners Total Paras Memorized (the running
     // cumulative count), not Starting Para - Starting Para is just the
@@ -4844,6 +4859,7 @@ function doShare() {
     if (!learners[r].name) continue;
     let sabaqGiven = 0;
     for (let w = 1; w <= NUM_WEEKS; w++) sabaqGiven += sum5(data[w][r].sabaq);
+    sabaqGiven = round2(sabaqGiven);
     const target = learners[r].termSabaqTarget || 0;
     const prior = learners[r].totalParasMemorized || 0;
     const memorized = prior + (sabaqGiven / 28);
