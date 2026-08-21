@@ -350,10 +350,10 @@ tfoot td { border: 1px solid #0f2e47; }
 #journey .journey-juz-status.behind { background:#fef3c7; color:#92400e; }
 
 #journey .journey-timeline { margin-top:18px; }
-#journey .journey-timeline-track { position:relative; height:10px; background:#e2e8f0; border-radius:999px; margin:0 2px; }
-#journey .journey-timeline-fill { position:absolute; left:0; top:0; height:100%; background:linear-gradient(90deg,#1F4E78,#3f77ab); border-radius:999px; transition:width 0.2s; }
-#journey .journey-timeline-tick { position:absolute; top:-3px; width:2px; height:16px; background:#fff; border-left:2px solid #cbd5e1; }
-#journey .journey-timeline-here { position:absolute; top:-11px; transform:translateX(-50%); font-size:16px; line-height:1; }
+#journey .journey-timeline-track { position:relative; height:5px; background:#e2e8f0; border-radius:999px; margin:0 2px; }
+#journey .journey-timeline-fill { position:absolute; left:0; top:0; height:100%; background:#1F4E78; border-radius:999px; transition:width 0.2s; }
+#journey .journey-timeline-tick { position:absolute; top:-3.5px; width:2px; height:12px; background:#fff; border-left:2px solid #cbd5e1; }
+#journey .journey-timeline-here { position:absolute; top:-9px; transform:translateX(-50%); font-size:14px; line-height:1; }
 #journey .journey-timeline-labels { display:flex; justify-content:space-between; margin-top:6px; font-size:10.5px; color:#64748b; padding:0 2px; }
 #journey .journey-timeline-labels span.is-current { color:#1F4E78; font-weight:bold; }
 
@@ -365,10 +365,17 @@ tfoot td { border: 1px solid #0f2e47; }
 /* Consistent color mapping across border + badge: green = completed,
    blue = in progress, gray = upcoming/not started, dashed gray = n/a. */
 #journey .journey-card { border:1px solid #dbe5f1; border-radius:6px; padding:14px 16px; background:#fff; border-top:5px solid #94a3b8; position:relative; }
-#journey .journey-card.completed { border-top-color:#059669; background:#f0fdf6; }
-#journey .journey-card.current { border-top-color:#1F4E78; background:#eef3fa; box-shadow:0 2px 8px rgba(31,78,120,0.25); }
-#journey .journey-card.upcoming { border-top-color:#cbd5e1; background:#fbfcfe; opacity:0.75; }
-#journey .journey-card.joined-later { opacity:0.55; border-top-style:dashed; border-top-color:#9ca3af; background:#f9fafb; }
+/* Each grade gets its own light pastel background/border, matching the
+   colours used on the progress timeline's grade ticks, so it's easy to
+   see at a glance which card belongs to which stage of the journey. */
+#journey .journey-card.grade-g4 { border-top-color:#378ADD; background:#E6F1FB; }
+#journey .journey-card.grade-g5 { border-top-color:#1D9E75; background:#E1F5EE; }
+#journey .journey-card.grade-g6 { border-top-color:#EF9F27; background:#FAEEDA; }
+#journey .journey-card.grade-g7 { border-top-color:#7F77DD; background:#EEEDFE; }
+#journey .journey-card.grade-g8 { border-top-color:#D85A30; background:#FAECE7; }
+#journey .journey-card.current { box-shadow:0 2px 8px rgba(31,78,120,0.25); }
+#journey .journey-card.upcoming { opacity:0.85; }
+#journey .journey-card.joined-later { opacity:0.55; border-top-style:dashed; }
 #journey .journey-card .journey-grade-label { font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#64748b; }
 #journey .journey-card h4 { margin:6px 0 8px; font-size:16px; color:#1F4E78; padding-right:70px; }
 #journey .journey-card ul { margin:0; padding-left:18px; font-size:12.5px; color:#333; }
@@ -1472,9 +1479,6 @@ select {
     <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
     <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Save/Download (PDF)</button>
     <p class="note">A summary of the Hifz journey: grade-by-grade progression. Select a learner to see when he started and what he has accomplished each year.</p>
-    <p class="note" style="margin-top:16px;">
-      <a href="#" id="journey-classlist-toggle" onclick="toggleJourneyClasslist(event)" style="color:#1F4E78; font-weight:bold; text-decoration:underline; cursor:pointer;">Show / Edit Classlist</a>
-    </p>
     <div id="journey-classlist-wrap" style="display:none;">
       <h3 style="margin-top:10px;">Grade-wise Paras Completed (Classlist)</h3>
       <p class="note">Names and grades sync automatically from the Exam tab. Enter each learner's completed Paras for the grade he is/was in — this feeds the cards below automatically.</p>
@@ -2876,19 +2880,16 @@ function buildJourneyHtml(r) {
       </div>`;
     }
 
-    const reqsId = `journey-reqs-${r}-${stage.grade}`;
-    const reqsToggle = `<a href="#" id="${reqsId}-toggle" class="journey-reqs-toggle" onclick="toggleJourneyReqs('${reqsId}', event)">Show requirements \u25BE</a>`;
-    const reqsBody = `<div id="${reqsId}" class="journey-reqs-body"><ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul></div>`;
+    const reqsBody = `<div class="journey-reqs-body open"><ul>${stage.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul></div>`;
 
     const progressRow = status === "joined-later"
       ? `<div class="journey-progress-row"><span>Not applicable - joined later</span></div>`
       : `<div class="journey-progress-row">${buildJourneyParaPicker(r, stage.grade, stage)}</div>`;
 
-    return `<div class="journey-card ${status}">
+    return `<div class="journey-card ${status} grade-g${stage.grade}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>
       <div class="journey-grade-label">GRADE ${stage.grade}</div>
       ${progressBar}
-      ${reqsToggle}
       ${reqsBody}
       ${progressRow}
     </div>`;
