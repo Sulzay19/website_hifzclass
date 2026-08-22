@@ -2736,22 +2736,43 @@ function onJourneyParaRemove(r, grade, juz) {
   renderJourneyClasslist();
 }
 
+// Tracks which completed-grade cards (keyed "r-grade") have been toggled
+// into edit mode via the "Edit" link, so their picker shows even though
+// the card's status is "completed". Cleared on toggle back to "Done".
+const journeyEditingCards = new Set();
+
+function toggleJourneyCardEdit(r, grade) {
+  const key = `${r}-${grade}`;
+  if (journeyEditingCards.has(key)) journeyEditingCards.delete(key);
+  else journeyEditingCards.add(key);
+  renderJourneyTab(r);
+}
+
 // Builds the Journey card's Para picker: a Juz dropdown (all 30, since
 // a learner can move faster/slower than the grade's usual slice) + a
 // quarter/half/three-quarter/full dropdown, and the rounded pills below
 // showing every Para recorded so far - solid green once a Para is
 // marked Full, outlined with its fraction while it's still in progress.
-function buildJourneyParaPicker(r, grade, stage) {
+function buildJourneyParaPicker(r, grade, stage, readOnly) {
+  // A completed card's readOnly is overridden while it's toggled into
+  // edit mode, so learners who were marked complete before any paras
+  // were logged can still have them added after the fact.
+  const editable = journeyEditingCards.has(`${r}-${grade}`);
+  const effectiveReadOnly = readOnly && !editable;
   const map = (learners[r].journeyParas && learners[r].journeyParas[grade]) || {};
 
   const juzOptions = ALL_JUZ_NUMBERS.map(j => `<option value="${j}">Juz ${j}</option>`).join("");
   const fracOptions = PARA_FRACTIONS.map(f => `<option value="${f.val}">${f.label}</option>`).join("");
-  const picker = `<div class="journey-para-picker">
+  // When read-only, the Juz/quarter dropdowns and Add button are skipped
+  // entirely - the card shows only the recorded pills below.
+  const picker = effectiveReadOnly ? "" : `<div class="journey-para-picker">
     <select id="journey-para-juz-${r}-${grade}" class="journey-para-juz-select">${juzOptions}</select>
     <select id="journey-para-frac-${r}-${grade}" class="journey-para-frac-select">${fracOptions}</select>
     <button type="button" class="journey-para-add-btn" onclick="onJourneyParaSet(${r}, ${grade}, Number(document.getElementById('journey-para-juz-${r}-${grade}').value), document.getElementById('journey-para-frac-${r}-${grade}').value)">Add</button>
   </div>`;
 
+  // Pills stay clickable-to-remove only when the picker is present; on a
+  // read-only card they're just a plain, non-interactive display.
   const pills = ALL_JUZ_NUMBERS_ASC
     .filter(j => map[j] !== undefined && map[j] !== null)
     .map(j => {
@@ -2759,12 +2780,19 @@ function buildJourneyParaPicker(r, grade, stage) {
       const isFull = frac >= 1;
       const fracObj = PARA_FRACTIONS.find(f => f.val === frac);
       const label = isFull ? `${j}` : `${j} \u00B7 ${fracObj ? fracObj.label : frac}`;
-      return `<span class="journey-para-pill ${isFull ? "full" : "partial"}"
-        title="Click to remove" onclick="onJourneyParaRemove(${r}, ${grade}, ${j})">${label}</span>`;
+      const removeAttrs = effectiveReadOnly ? "" : ` title="Click to remove" onclick="onJourneyParaRemove(${r}, ${grade}, ${j})"`;
+      return `<span class="journey-para-pill ${isFull ? "full" : "partial"}"${removeAttrs}>${label}</span>`;
     }).join("");
   const pillsRow = `<div class="journey-para-pills">${pills || '<span class="journey-para-pills-empty">No paras recorded yet</span>'}</div>`;
 
-  return `<div class="journey-para-block">${picker}${pillsRow}</div>`;
+  // Only cards passed readOnly=true (i.e. "completed" cards) get the
+  // Edit/Done toggle - in-progress/upcoming cards already show the
+  // picker plainly and don't need it.
+  const editToggle = readOnly
+    ? `<button type="button" class="journey-reqs-toggle" onclick="toggleJourneyCardEdit(${r}, ${grade})">${editable ? "Done" : "Edit"}</button>`
+    : "";
+
+  return `<div class="journey-para-block">${picker}${pillsRow}${editToggle}</div>`;
 }
 
 // Builds the "Paras completed" pill row for the top summary box - every
@@ -2888,7 +2916,7 @@ function buildJourneyHtml(r) {
 
     const progressRow = status === "joined-later"
       ? `<div class="journey-progress-row"><span>Not applicable - joined later</span></div>`
-      : `<div class="journey-progress-row">${buildJourneyParaPicker(r, stage.grade, stage)}</div>`;
+      : `<div class="journey-progress-row">${buildJourneyParaPicker(r, stage.grade, stage, status === "completed")}</div>`;
 
     return `<div class="journey-card ${status} grade-g${stage.grade}">
       <span class="journey-status-badge ${status}">${statusLabel}</span>

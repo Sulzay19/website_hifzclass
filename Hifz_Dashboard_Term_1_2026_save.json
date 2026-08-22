@@ -1,6 +1,6 @@
 {
   "meta": {
-    "date": "21 August 2026",
+    "date": "22 August 2026",
     "term": "Term 3"
   },
   "learners": [
@@ -17,8 +17,40 @@
       "journeyProgress": {
         "4": 2,
         "5": 2.75,
-        "6": 4,
-        "7": 5.5
+        "6": 4.25,
+        "7": 5.75,
+        "8": 1.5
+      },
+      "journeyParas": {
+        "4": {
+          "29": 1,
+          "30": 1
+        },
+        "5": {
+          "1": 1,
+          "2": 1,
+          "3": 0.75
+        },
+        "6": {
+          "3": 0.25,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1
+        },
+        "7": {
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "15": 0.5,
+          "16": 0.25
+        },
+        "8": {
+          "13": 0.5,
+          "17": 1
+        }
       },
       "notes": "",
       "clAttendance": ""
@@ -31,9 +63,49 @@
       "termJuzTarget": 2,
       "priorJuzMemorized": null,
       "totalParasMemorized": 23,
-      "startGrade": "",
-      "startYear": "",
-      "journeyProgress": {},
+      "startGrade": "Grade 6",
+      "startYear": "2024",
+      "journeyProgress": {
+        "4": 1,
+        "6": 3.5,
+        "7": 19,
+        "8": 1
+      },
+      "journeyParas": {
+        "4": {
+          "30": 1
+        },
+        "6": {
+          "26": 0.5,
+          "27": 1,
+          "28": 1,
+          "29": 1
+        },
+        "7": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "19": 1
+        },
+        "8": {
+          "20": 1
+        }
+      },
       "notes": "",
       "clAttendance": ""
     },
@@ -44,10 +116,52 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 22,
-      "startGrade": "",
-      "startYear": "",
-      "journeyProgress": {},
+      "totalParasMemorized": 22.5,
+      "startGrade": "Grade 4",
+      "startYear": "2022",
+      "journeyProgress": {
+        "4": 3,
+        "5": 5,
+        "6": 4,
+        "7": 7,
+        "8": 5
+      },
+      "journeyParas": {
+        "4": {
+          "28": 1,
+          "29": 1,
+          "30": 1
+        },
+        "5": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        },
+        "6": {
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1
+        },
+        "7": {
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1
+        },
+        "8": {
+          "17": 1,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1
+        }
+      },
       "notes": "",
       "clAttendance": ""
     },
@@ -58,14 +172,53 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 23.25,
+      "totalParasMemorized": 24,
       "startGrade": "Grade 4",
       "startYear": "2022",
       "journeyProgress": {
         "4": 3,
         "5": 4,
         "6": 5,
-        "7": 8
+        "7": 8,
+        "8": 6
+      },
+      "journeyParas": {
+        "4": {
+          "28": 1,
+          "29": 1,
+          "30": 1
+        },
+        "5": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1
+        },
+        "6": {
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1
+        },
+        "7": {
+          "10": 1,
+          "11": 1,
+          "12": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1,
+          "17": 1
+        },
+        "8": {
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1
+        }
       },
       "notes": "",
       "clAttendance": ""
@@ -77,7 +230,7 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 22.75,
+      "totalParasMemorized": 23.75,
       "startGrade": "Grade 4",
       "startYear": "2022",
       "journeyProgress": {
@@ -86,6 +239,7 @@
         "6": 4.5,
         "7": 7
       },
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -96,10 +250,11 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": 9,
-      "totalParasMemorized": 10.5,
+      "totalParasMemorized": 11,
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -110,10 +265,11 @@
       "yearJuzTarget": 8,
       "termJuzTarget": 2,
       "priorJuzMemorized": 7.5,
-      "totalParasMemorized": 9.25,
+      "totalParasMemorized": 8.5,
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -124,10 +280,11 @@
       "yearJuzTarget": 6,
       "termJuzTarget": 1.5,
       "priorJuzMemorized": 14,
-      "totalParasMemorized": 17.75,
+      "totalParasMemorized": 18.75,
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -138,10 +295,11 @@
       "yearJuzTarget": 6,
       "termJuzTarget": 1.5,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 8.25,
+      "totalParasMemorized": 9,
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -156,6 +314,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -171,7 +330,27 @@
       "startYear": "2025",
       "journeyProgress": {
         "4": 10,
-        "5": null
+        "5": 3.25
+      },
+      "journeyParas": {
+        "4": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "29": 1,
+          "30": 1
+        },
+        "5": {
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "12": 0.25
+        }
       },
       "notes": "",
       "clAttendance": ""
@@ -187,6 +366,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -197,13 +377,14 @@
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 5.25,
+      "totalParasMemorized": 5.5,
       "startGrade": "Grade 4",
       "startYear": "2025",
       "journeyProgress": {
         "4": 4.5,
         "5": 1.75
       },
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -214,12 +395,13 @@
       "yearJuzTarget": 5,
       "termJuzTarget": 1.25,
       "priorJuzMemorized": null,
-      "totalParasMemorized": 11.25,
+      "totalParasMemorized": 12,
       "startGrade": "Grade 4",
       "startYear": "2025",
       "journeyProgress": {
         "4": 9.5
       },
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -234,6 +416,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -248,6 +431,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -259,9 +443,18 @@
       "termJuzTarget": 0.75,
       "priorJuzMemorized": 30,
       "totalParasMemorized": 2.5,
-      "startGrade": "",
-      "startYear": "",
-      "journeyProgress": {},
+      "startGrade": "Grade 4",
+      "startYear": "2026",
+      "journeyProgress": {
+        "4": 2.5
+      },
+      "journeyParas": {
+        "4": {
+          "1": 0.5,
+          "29": 1,
+          "30": 1
+        }
+      },
       "notes": "",
       "clAttendance": ""
     },
@@ -276,6 +469,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -290,6 +484,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -304,6 +499,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -318,6 +514,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -332,6 +529,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -346,6 +544,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -360,6 +559,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     },
@@ -374,6 +574,7 @@
       "startGrade": "",
       "startYear": "",
       "journeyProgress": {},
+      "journeyParas": {},
       "notes": "",
       "clAttendance": ""
     }
@@ -475,7 +676,7 @@
       {
         "sabaq": [
           null,
-          16,
+          9,
           2,
           0,
           3.75
@@ -682,10 +883,10 @@
       {
         "sabaq": [
           null,
-          4,
-          7,
           1,
-          7
+          1,
+          1,
+          1
         ],
         "sabaqDhor": [
           null,
@@ -1258,11 +1459,11 @@
       },
       {
         "sabaq": [
-          4,
-          4,
-          4,
+          1,
+          1,
+          1,
           0.75,
-          2
+          1
         ],
         "sabaqDhor": [
           7,
@@ -2736,21 +2937,21 @@
       },
       {
         "sabaq": [
-          null,
+          3,
           null,
           null,
           0,
           0
         ],
         "sabaqDhor": [
-          null,
-          null,
+          7,
+          7,
           null,
           0,
           0
         ],
         "dhor": [
-          null,
+          7,
           null,
           null,
           0,
@@ -7332,7 +7533,7 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "3.17",
+      "target20": "3.44",
       "dhor10": "1",
       "tajweed": "",
       "dua": "",
@@ -7354,7 +7555,7 @@
       "grade": "Grade 8",
       "hifz100": "",
       "hifz70": "",
-      "target20": "4.96",
+      "target20": "4.33",
       "dhor10": "2",
       "tajweed": "",
       "dua": "",
@@ -7453,7 +7654,7 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "5.21",
+      "target20": "1.64",
       "dhor10": "0",
       "tajweed": "",
       "dua": "",
@@ -7684,8 +7885,8 @@
         ],
         "2": [
           "1 to 1½ pages daily",
-          "1.75",
-          "22",
+          "2.25",
+          "22.50",
           "2",
           "8",
           "3",
@@ -7695,14 +7896,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "1.25",
-          "23.25",
+          "1.5",
+          "24",
           "4",
           "",
           null,
           "",
           "",
-          "4.17"
+          "4.44"
         ]
       },
       "totals": [],
@@ -7710,7 +7911,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "3": {
       "terms": {
@@ -7727,8 +7929,8 @@
         ],
         "2": [
           "1 to 1½ pages daily",
-          "1.75",
-          "23.25",
+          "2.5",
+          "24",
           "8",
           "1",
           "3",
@@ -7739,7 +7941,7 @@
         "3": [
           "1 to 1½ pages daily",
           "2",
-          "25.25",
+          "26",
           "10",
           "",
           null,
@@ -7753,7 +7955,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "4": {
       "terms": {
@@ -7770,8 +7973,8 @@
         ],
         "2": [
           "1 to 1½ pages daily",
-          "1.5",
-          "22.75",
+          "2.5",
+          "23.75",
           "9",
           "2",
           "3",
@@ -7781,14 +7984,14 @@
         ],
         "3": [
           "1 to 1½ pages daily",
-          "2",
-          "24.75",
+          "1.75",
+          "25.5",
           "8",
           "",
           null,
           "",
           "",
-          "6.96"
+          "6.33"
         ]
       },
       "totals": [],
@@ -7796,7 +7999,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "5": {
       "terms": {
@@ -7813,8 +8017,8 @@
         ],
         "2": [
           "1 to 1½ pages daily",
-          "0.75",
-          "10.5",
+          "1.25",
+          "11",
           "11",
           "0",
           "3",
@@ -7825,7 +8029,7 @@
         "3": [
           "1 to 1½ pages daily",
           "1",
-          "11.5",
+          "12",
           "3",
           "",
           null,
@@ -7839,14 +8043,15 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "6": {
       "terms": {
         "1": [
           "1 to 1½ pages daily",
-          "0.75",
-          "8.75",
+          "0.25",
+          "8.25",
           "3",
           "18",
           "3",
@@ -7856,8 +8061,8 @@
         ],
         "2": [
           "1 to 1½ pages daily",
-          "0.5",
-          "9.25",
+          "0.25",
+          "8.5",
           "4",
           "22",
           "3",
@@ -7868,7 +8073,7 @@
         "3": [
           "1 to 1½ pages daily",
           "0.5",
-          "9.75",
+          "9",
           "3",
           "",
           null,
@@ -7882,7 +8087,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "7": {
       "terms": {
@@ -7899,8 +8105,8 @@
         ],
         "2": [
           "1 to 1¼ pages daily",
-          "1.5",
-          "17.75",
+          "2.5",
+          "18.75",
           "14",
           "0",
           "3",
@@ -7911,7 +8117,7 @@
         "3": [
           "1 to 1¼ pages daily",
           "1.5",
-          "19.25",
+          "20.25",
           "4",
           "",
           null,
@@ -7925,14 +8131,15 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "8": {
       "terms": {
         "1": [
           "1 to 1¼ pages daily",
           "0.75",
-          "7.25",
+          "7.75",
           "3",
           "1",
           "3",
@@ -7942,8 +8149,8 @@
         ],
         "2": [
           "1 to 1¼ pages daily",
-          "1",
-          "8.25",
+          "1.25",
+          "9",
           "6",
           "1",
           "3",
@@ -7954,7 +8161,7 @@
         "3": [
           "1 to 1¼ pages daily",
           "0.5",
-          "8.75",
+          "9.5",
           "4",
           "",
           null,
@@ -7968,7 +8175,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "9": {
       "terms": {
@@ -8103,8 +8311,8 @@
       "terms": {
         "1": [
           "10 to 13 lines daily",
-          "1",
-          "4.5",
+          "1.25",
+          "4.75",
           "9",
           "2",
           "3",
@@ -8115,7 +8323,7 @@
         "2": [
           "10 to 13 lines daily",
           "0.75",
-          "5.25",
+          "5.5",
           "7",
           "2",
           "3",
@@ -8126,7 +8334,7 @@
         "3": [
           "10 to 13 lines daily",
           "0.75",
-          "6",
+          "6.25",
           "2",
           "",
           null,
@@ -8140,7 +8348,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "13": {
       "terms": {
@@ -8157,8 +8366,8 @@
         ],
         "2": [
           "10 to 13 lines daily",
-          "0.75",
-          "11.25",
+          "1.5",
+          "12",
           "18",
           "1",
           "3",
@@ -8168,14 +8377,14 @@
         ],
         "3": [
           "10 to 13 lines daily",
-          "1.25",
+          "0.5",
           "12.5",
           "2",
           "",
           null,
           "",
           "",
-          "5.21"
+          "1.64"
         ]
       },
       "totals": [],
@@ -8183,7 +8392,8 @@
       "reopens": "",
       "sigUstaadh": "",
       "sigHod": "",
-      "sigParent": ""
+      "sigParent": "",
+      "_warnedTermMismatch": true
     },
     "14": {
       "terms": {
