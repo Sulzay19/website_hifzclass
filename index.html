@@ -459,6 +459,10 @@ tfoot td { border: 1px solid #0f2e47; }
 #learnerreport .lr-tag-unexcused { background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:3px; font-size:.7rem; font-weight:600; }
 #learnerreport .lr-serious-block { margin-top:10px; background:#fff7ed; border-left:3px solid #f59e0b; padding:8px 12px; border-radius:4px; font-size:.9rem; }
 #learnerreport .lr-notes-box { margin-top:10px; background:#fff; padding:10px; border-radius:4px; border:1px solid #e2e8f0; font-size:.85rem; max-height:150px; overflow-y:auto; }
+#learnerreport .lr-report-comments-list { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:6px 14px; margin-top:8px; }
+#learnerreport .lr-report-comment-item { display:flex; align-items:center; gap:7px; font-size:.85rem; cursor:pointer; }
+#learnerreport .lr-report-comment-item input { margin:0; }
+#learnerreport .lr-custom-comment-box { width:100%; min-height:60px; margin-top:12px; padding:8px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:.85rem; font-family:inherit; resize:vertical; box-sizing:border-box; }
 #learnerreport .lr-log-row { display:flex; justify-content:space-between; align-items:center; margin-top:3px; font-size:.82rem; gap:6px; }
 #learnerreport .lr-log-note { color:#334155; flex-grow:1; text-align:right; }
 #learnerreport .lr-log-remove { background:none; border:none; color:#cbd5e1; cursor:pointer; font-size:.85rem; line-height:1; padding:0 2px; }
@@ -1618,13 +1622,33 @@ let examLiveSnapshot = null;
 // time the report is rendered, so this store only holds the 3 Discipline
 // Logs, which have no other home in the dashboard.
 let learnerReportData = {};
+// Preset "Detailed Report Comments" - the same standard set of common-issue
+// notes previously typed by hand into printed reports. Selecting one adds
+// a ready-made sentence to the learner's Written Progress & Behavior Report;
+// a free-text box is also available for anything not covered by a preset.
+const LR_PRESET_COMMENTS = [
+  { key: "inconsistent-progress", label: "Inconsistent Daily Progress",
+    text: "struggles to meet the daily Sabaq requirements and often comes unprepared, which prevents him from moving forward with the new lesson." },
+  { key: "weak-dhor", label: "Weak Dhor",
+    text: "has difficulty retaining what he has memorized, suggesting a need for more intensive daily revision at home." },
+  { key: "frequent-mistakes", label: "Frequent Mistakes",
+    text: "makes frequent mistakes, does not correct marked mistakes, and requires constant prompting during recitation." },
+  { key: "neglecting-tajweed", label: "Neglecting Tajweed Rules",
+    text: "does not apply the marked Tajweed rules in his recitation." },
+  { key: "easily-distracted", label: "Easily Distracted",
+    text: "has difficulty concentrating during class sessions, often remaining quiet and not doing any work or reciting." },
+  { key: "attendance-issues", label: "Attendance Issues",
+    text: "has frequent absences." }
+];
 function getLearnerReportRow(r) {
-  if (!learnerReportData[r]) learnerReportData[r] = { behaviour: [], absence: [], work: [], contact: {} };
+  if (!learnerReportData[r]) learnerReportData[r] = { behaviour: [], absence: [], work: [], contact: {}, comments: [], customComment: "" };
   const row = learnerReportData[r];
   if (!row.behaviour) row.behaviour = [];
   if (!row.absence) row.absence = [];
   if (!row.work) row.work = [];
   if (!row.contact) row.contact = {};
+  if (!row.comments) row.comments = [];
+  if (row.customComment === undefined || row.customComment === null) row.customComment = "";
   ["behaviour", "absence", "work"].forEach(k => {
     if (!row.contact[k]) row.contact[k] = { status: "Not Contacted", date: "" };
   });
@@ -2005,7 +2029,7 @@ function getLearnerNarrativeData(r) {
   const missedWorkPoints = buildMissedWorkPoints(missedWork);
 
   return { name, grade, statusLabel, incidentCount, behaviour, absence, work, overall, disciplineLines,
-    contact: store.contact, sabaqGiven, pctToTarget, termJuzDone, totalJuzMemorized, remaining, termSabaqTarget,
+    contact: store.contact, comments: store.comments, customComment: store.customComment, sabaqGiven, pctToTarget, termJuzDone, totalJuzMemorized, remaining, termSabaqTarget,
     missedWork, missedWorkPoints, journey };
 }
 
@@ -2139,6 +2163,19 @@ function buildParagraphLine(pronoun, kind, d) {
   return `${pronoun} ${has} ${d.count} daily work issues logged this term. A parent/guardian meeting is recommended to address ongoing academic struggle.`;
 }
 
+// Turns a learner's selected preset comments + free-text note into one
+// paragraph, e.g. "He struggles to meet the daily Sabaq requirements...
+// He has frequent absences. <custom text>". Returns "" when nothing is set.
+function buildAdditionalCommentsParagraph(d) {
+  const parts = [];
+  (d.comments || []).forEach(key => {
+    const preset = LR_PRESET_COMMENTS.find(c => c.key === key);
+    if (preset) parts.push(`He ${preset.text}`);
+  });
+  if (d.customComment && d.customComment.trim()) parts.push(d.customComment.trim());
+  return parts.join(" ");
+}
+
 function buildWrittenReportHtml(d) {
   const seriousBlocks = [];
   let nameUsed = false;
@@ -2166,7 +2203,11 @@ function buildWrittenReportHtml(d) {
   // data (start grade/year and/or an expected-Juz comparison) to show.
   const journeyParagraph = buildJourneyParagraph(nextPronoun(), d);
 
-  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph]
+  // Paragraph 4: manually-selected preset/custom comments (Report Comments
+  // card below) - only appears once the teacher has picked at least one.
+  const additionalCommentsParagraph = buildAdditionalCommentsParagraph(d);
+
+  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph, additionalCommentsParagraph]
     .filter(Boolean)
     .map(p => `<p>${escapeHtml(p)}</p>`)
     .join("");
@@ -2196,8 +2237,9 @@ function buildWrittenReportPlainText(d) {
 
   const academicParagraph = buildAcademicParagraph(nextPronoun(), nextPronoun(), d);
   const journeyParagraph = buildJourneyParagraph(nextPronoun(), d);
+  const additionalCommentsParagraph = buildAdditionalCommentsParagraph(d);
 
-  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph].filter(Boolean).join("\n\n");
+  const paragraphs = [disciplineSentence, academicParagraph, journeyParagraph, additionalCommentsParagraph].filter(Boolean).join("\n\n");
 
   return `Progress Report for ${d.name} (${d.grade}) - Overall Discipline Status: ${d.overall.status}\n\n`
     + `${paragraphs}\n`
@@ -2346,7 +2388,45 @@ function buildLearnerReportHtml(r) {
           ${disciplineDetailHtml}
         </div>
       </div>
+      <div class="lr-card lr-report-comments-card" style="margin-top:14px;">
+        <h4>Report Comments</h4>
+        <p class="note" style="margin-top:-4px;">Tick any that apply - each adds a ready-made sentence to the Written Progress &amp; Behavior Report above. Add your own note in the box below if none of these fit.</p>
+        ${renderReportCommentsCheckboxes(r, store)}
+        <textarea class="lr-custom-comment-box" placeholder="Add a custom comment (optional)..."
+          onchange="updateCustomComment(${r}, this.value)">${escapeHtml(store.customComment || "")}</textarea>
+      </div>
     </div>`;
+}
+
+// Renders the checkbox list for LR_PRESET_COMMENTS, checked according to
+// this learner's saved selection.
+function renderReportCommentsCheckboxes(r, store) {
+  const selected = new Set(store.comments || []);
+  return `<div class="lr-report-comments-list">` +
+    LR_PRESET_COMMENTS.map(c => `
+      <label class="lr-report-comment-item">
+        <input type="checkbox" ${selected.has(c.key) ? "checked" : ""}
+          onchange="toggleReportComment(${r}, '${c.key}')">
+        ${escapeHtml(c.label)}
+      </label>`).join("") +
+    `</div>`;
+}
+
+// Toggles one preset comment on/off for a learner, then re-renders the
+// Learner Report tab so the Written Progress box reflects the change.
+function toggleReportComment(r, key) {
+  const store = getLearnerReportRow(r);
+  const idx = store.comments.indexOf(key);
+  if (idx === -1) store.comments.push(key); else store.comments.splice(idx, 1);
+  renderLearnerReport(r);
+}
+
+// Saves the free-text comment box and re-renders (fires on blur/change,
+// not on every keystroke, so typing isn't interrupted by the re-render).
+function updateCustomComment(r, val) {
+  const store = getLearnerReportRow(r);
+  store.customComment = val;
+  renderLearnerReport(r);
 }
 
 // Renders one log's entries (grouped by date, newest first) as HTML,
