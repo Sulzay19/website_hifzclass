@@ -3814,7 +3814,7 @@ function computeClassListRow(r) {
   const termParasDone = sabaqPages / 28;
   const totalQuranParas = totalMemorized + termParasDone;
   const remainingParas = 30 - totalQuranParas;
-  const pct = target > 0 ? (sabaqPages / target) * 100 : 0;
+  const pct = target > 0 ? Math.min((sabaqPages / target) * 100, 100) : 0;
   const behind = target > 0 ? (target - sabaqPages) : 0;
   const dhorParasGiven = Math.floor(dhorPages / 28);
   const dhorRounds = Math.floor(dhorPages / 84);
@@ -3863,7 +3863,7 @@ function recalcClassList() {
     // Quran Paras (Learners Total Paras Memorized + Term Paras Done this
     // term), i.e. how many of the 30 paras of the Quran are left.
     const remainingParas = 30 - totalQuranParas;
-    const pct = target > 0 ? (sabaqPages / target) * 100 : 0;
+    const pct = target > 0 ? Math.min((sabaqPages / target) * 100, 100) : 0;
     const behind = target > 0 ? (target - sabaqPages) : 0;
     // Dhor target is a fixed 3 paras (84 pages): every full 84 pages of Dhor
     // entered completes another round, so both figures are whole-number
@@ -3900,7 +3900,7 @@ function computeSummaryRow(r) {
   const prior = learners[r].totalParasMemorized || 0;
   const termJuzDone = sabaqGiven / 28;
   const memorized = prior + termJuzDone;
-  const pct = target > 0 ? (sabaqGiven / target) * 100 : 0;
+  const pct = target > 0 ? Math.min((sabaqGiven / target) * 100, 100) : 0;
   const remaining = 30 - memorized;
   return { sabaqGiven, termJuzDone, pct, memorized, remaining };
 }
@@ -5116,7 +5116,7 @@ function doShare() {
     const target = learners[r].termSabaqTarget || 0;
     const prior = learners[r].totalParasMemorized || 0;
     const memorized = prior + (sabaqGiven / 28);
-    const pct = target > 0 ? ((sabaqGiven / target) * 100).toFixed(1) : "0.0";
+    const pct = target > 0 ? Math.min((sabaqGiven / target) * 100, 100).toFixed(1) : "0.0";
     const remaining = 30 - memorized;
     text += `${learners[r].name}: ${sabaqGiven}/${target || "-"} pages (${pct}%), ${formatQuarter(memorized)}/30 Juz memorized, ${formatQuarter(remaining)} Juz remaining\n`;
   }
