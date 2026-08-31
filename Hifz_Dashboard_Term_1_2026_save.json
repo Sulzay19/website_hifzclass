@@ -4400,21 +4400,21 @@
       },
       {
         "sabaq": [
-          null,
+          0.75,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          6,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          "R",
           null,
           null,
           null,
@@ -4423,21 +4423,21 @@
       },
       {
         "sabaq": [
-          null,
+          1.25,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          7,
           null,
           null,
           null,
@@ -4446,21 +4446,21 @@
       },
       {
         "sabaq": [
-          null,
+          1.25,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          0.75,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          7,
           null,
           null,
           null,
@@ -4469,21 +4469,21 @@
       },
       {
         "sabaq": [
-          null,
+          1,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          7,
           null,
           null,
           null,
@@ -4492,21 +4492,21 @@
       },
       {
         "sabaq": [
-          null,
+          0,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          0,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          0,
           null,
           null,
           null,
@@ -7806,7 +7806,7 @@
       "grade": "Grade 7",
       "hifz100": "",
       "hifz70": "",
-      "target20": "2.63",
+      "target20": "2.7",
       "dhor10": "1",
       "tajweed": "",
       "dua": "",
@@ -7817,7 +7817,7 @@
       "grade": "Grade 7",
       "hifz100": "",
       "hifz70": "",
-      "target20": "1.12",
+      "target20": "1.23",
       "dhor10": "1",
       "tajweed": "",
       "dua": "",
@@ -7828,7 +7828,7 @@
       "grade": "Grade 6",
       "hifz100": "",
       "hifz70": "",
-      "target20": "5.98",
+      "target20": "6.13",
       "dhor10": "2",
       "tajweed": "",
       "dua": "",
@@ -7839,7 +7839,7 @@
       "grade": "Grade 6",
       "hifz100": "",
       "hifz70": "",
-      "target20": "2.05",
+      "target20": "2.17",
       "dhor10": "1",
       "tajweed": "",
       "dua": "",
@@ -8288,7 +8288,7 @@
           null,
           "",
           "",
-          "3.63"
+          "3.7"
         ]
       },
       "totals": [],
@@ -8332,7 +8332,7 @@
           null,
           "",
           "",
-          "2.12"
+          "2.23"
         ]
       },
       "totals": [],
@@ -8376,7 +8376,7 @@
           null,
           "",
           "",
-          "7.98"
+          "8.13"
         ]
       },
       "totals": [],
@@ -8413,14 +8413,14 @@
         ],
         "3": [
           "1 to 1¼ pages daily",
-          "0.5",
-          "9.5",
+          "0.75",
+          "9.75",
           "5",
           "",
           null,
           "",
           "",
-          "3.05"
+          "3.17"
         ]
       },
       "totals": [],
