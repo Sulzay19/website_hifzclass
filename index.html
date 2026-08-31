@@ -1040,10 +1040,12 @@ tfoot td { border: 1px solid #0f2e47; }
 .week-header-box .whb-label::after { content: ": "; }
 .week-header-box .whb-value {
   display: inline;
-  font-size: 13px;
-  color: #222;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
 }
 .whb-row {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1056,7 +1058,10 @@ tfoot td { border: 1px solid #0f2e47; }
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-left: auto;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .misc-table td { text-align: left; }
 .misc-table .num-col { text-align: center; }
