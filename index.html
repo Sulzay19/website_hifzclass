@@ -3868,7 +3868,7 @@ function recalcDuaTestTotals() {
     grandTotal += rowTotal;
   });
   const maxPossible = duaNames.length * 30;
-  const scaled = maxPossible > 0 ? round2((grandTotal / maxPossible) * 100) : 0;
+  const scaled = maxPossible > 0 ? Math.round((grandTotal / maxPossible) * 100) : 0;
   const finalEl = document.getElementById("duatest-final-total");
   if (finalEl) finalEl.textContent = scaled;
 }
