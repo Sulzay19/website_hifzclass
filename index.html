@@ -928,6 +928,11 @@ tfoot td { border: 1px solid #0f2e47; }
 .exam-table .exam-narrow { width: 62px; }
 .exam-table .exam-computed { font-weight: bold; background: #E2EFDA; color: #000; font-size: 15px; }
 .exam-table .exam-grand { font-weight: bold; background: #8E7CC3; color: #fff; }
+#tajweedtest-table .exam-narrow { width: 85px; min-width: 85px; }
+#tajweedtest-table .exam-computed { width: 120px; min-width: 120px; max-width: 120px; }
+#duatest-table .exam-name-col { width: 340px; min-width: 340px; max-width: 340px; text-align: left !important; }
+#duatest-table .exam-narrow { width: 90px; min-width: 90px; }
+#duatest-table .exam-computed { width: 120px; min-width: 120px; max-width: 120px; }
 .back-to-home {
   display: inline-block;
   margin-bottom: 0;
@@ -1111,7 +1116,7 @@ select {
   <div id="term-view-banner" class="term-view-banner" style="display:none;"></div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('home', this)">Home</button><button class="tab-btn" onclick="switchTab('classlist', this)">Class List</button><button class="tab-btn" onclick="switchTab('week1', this)">Week 1</button><button class="tab-btn" onclick="switchTab('week2', this)">Week 2</button><button class="tab-btn" onclick="switchTab('week3', this)">Week 3</button><button class="tab-btn" onclick="switchTab('week4', this)">Week 4</button><button class="tab-btn" onclick="switchTab('week5', this)">Week 5</button><button class="tab-btn" onclick="switchTab('week6', this)">Week 6</button><button class="tab-btn" onclick="switchTab('week7', this)">Week 7</button><button class="tab-btn" onclick="switchTab('week8', this)">Week 8</button><button class="tab-btn" onclick="switchTab('week9', this)">Week 9</button><button class="tab-btn" onclick="switchTab('week10', this)">Week 10</button><button class="tab-btn" onclick="switchTab('week11', this)">Week 11</button><button class="tab-btn" onclick="switchTab('week12', this)">Week 12</button>
-    <button class="tab-btn" onclick="switchTab('exam', this)">Exam Entry</button><button class="tab-btn" onclick="switchTab('examreport', this)">End of Term Certificate</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('graph', this)">Graph</button><button class="tab-btn" onclick="switchTab('journey', this)">Journey</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
+    <button class="tab-btn" onclick="switchTab('exam', this)">Exam Entry</button><button class="tab-btn" onclick="switchTab('tajweedtest', this)">Tajweed Test</button><button class="tab-btn" onclick="switchTab('duatest', this)">Dua Test</button><button class="tab-btn" onclick="switchTab('examreport', this)">End of Term Certificate</button><button class="tab-btn" onclick="switchTab('learnerreport', this)">Learner Report</button><button class="tab-btn" onclick="switchTab('graph', this)">Graph</button><button class="tab-btn" onclick="switchTab('journey', this)">Journey</button><button class="tab-btn" onclick="switchTab('misc', this)">Misc</button>
   </div>
   
   <div id="home" class="tab-content active">
@@ -1433,6 +1438,82 @@ select {
         </tr>
       </thead>
       <tbody><tr><td class="num-col">1</td><td class="exam-name-col"><input type="text" class="name-input" data-row="0" placeholder="Learner name" id="exam-name-0" oninput="onNameChange(0,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="0" placeholder="Grade" id="exam-grade-0" oninput="onGradeChange(0,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-0" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-0" oninput="onHifz100Change(0)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-0" oninput="recalcExamRow(0)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-0" oninput="recalcExamRow(0)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-0" oninput="recalcExamRow(0)"></td><td class="exam-computed" id="exam-total-0">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-0" oninput="recalcExamRow(0)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-0" oninput="recalcExamRow(0)"></td><td><select id="exam-status-0"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">2</td><td class="exam-name-col"><input type="text" class="name-input" data-row="1" placeholder="Learner name" id="exam-name-1" oninput="onNameChange(1,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="1" placeholder="Grade" id="exam-grade-1" oninput="onGradeChange(1,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-1" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-1" oninput="onHifz100Change(1)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-1" oninput="recalcExamRow(1)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-1" oninput="recalcExamRow(1)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-1" oninput="recalcExamRow(1)"></td><td class="exam-computed" id="exam-total-1">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-1" oninput="recalcExamRow(1)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-1" oninput="recalcExamRow(1)"></td><td><select id="exam-status-1"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">3</td><td class="exam-name-col"><input type="text" class="name-input" data-row="2" placeholder="Learner name" id="exam-name-2" oninput="onNameChange(2,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="2" placeholder="Grade" id="exam-grade-2" oninput="onGradeChange(2,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-2" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-2" oninput="onHifz100Change(2)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-2" oninput="recalcExamRow(2)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-2" oninput="recalcExamRow(2)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-2" oninput="recalcExamRow(2)"></td><td class="exam-computed" id="exam-total-2">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-2" oninput="recalcExamRow(2)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-2" oninput="recalcExamRow(2)"></td><td><select id="exam-status-2"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">4</td><td class="exam-name-col"><input type="text" class="name-input" data-row="3" placeholder="Learner name" id="exam-name-3" oninput="onNameChange(3,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="3" placeholder="Grade" id="exam-grade-3" oninput="onGradeChange(3,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-3" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-3" oninput="onHifz100Change(3)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-3" oninput="recalcExamRow(3)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-3" oninput="recalcExamRow(3)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-3" oninput="recalcExamRow(3)"></td><td class="exam-computed" id="exam-total-3">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-3" oninput="recalcExamRow(3)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-3" oninput="recalcExamRow(3)"></td><td><select id="exam-status-3"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">5</td><td class="exam-name-col"><input type="text" class="name-input" data-row="4" placeholder="Learner name" id="exam-name-4" oninput="onNameChange(4,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="4" placeholder="Grade" id="exam-grade-4" oninput="onGradeChange(4,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-4" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-4" oninput="onHifz100Change(4)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-4" oninput="recalcExamRow(4)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-4" oninput="recalcExamRow(4)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-4" oninput="recalcExamRow(4)"></td><td class="exam-computed" id="exam-total-4">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-4" oninput="recalcExamRow(4)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-4" oninput="recalcExamRow(4)"></td><td><select id="exam-status-4"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">6</td><td class="exam-name-col"><input type="text" class="name-input" data-row="5" placeholder="Learner name" id="exam-name-5" oninput="onNameChange(5,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="5" placeholder="Grade" id="exam-grade-5" oninput="onGradeChange(5,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-5" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-5" oninput="onHifz100Change(5)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-5" oninput="recalcExamRow(5)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-5" oninput="recalcExamRow(5)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-5" oninput="recalcExamRow(5)"></td><td class="exam-computed" id="exam-total-5">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-5" oninput="recalcExamRow(5)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-5" oninput="recalcExamRow(5)"></td><td><select id="exam-status-5"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">7</td><td class="exam-name-col"><input type="text" class="name-input" data-row="6" placeholder="Learner name" id="exam-name-6" oninput="onNameChange(6,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="6" placeholder="Grade" id="exam-grade-6" oninput="onGradeChange(6,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-6" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-6" oninput="onHifz100Change(6)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-6" oninput="recalcExamRow(6)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-6" oninput="recalcExamRow(6)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-6" oninput="recalcExamRow(6)"></td><td class="exam-computed" id="exam-total-6">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-6" oninput="recalcExamRow(6)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-6" oninput="recalcExamRow(6)"></td><td><select id="exam-status-6"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">8</td><td class="exam-name-col"><input type="text" class="name-input" data-row="7" placeholder="Learner name" id="exam-name-7" oninput="onNameChange(7,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="7" placeholder="Grade" id="exam-grade-7" oninput="onGradeChange(7,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-7" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-7" oninput="onHifz100Change(7)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-7" oninput="recalcExamRow(7)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-7" oninput="recalcExamRow(7)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-7" oninput="recalcExamRow(7)"></td><td class="exam-computed" id="exam-total-7">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-7" oninput="recalcExamRow(7)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-7" oninput="recalcExamRow(7)"></td><td><select id="exam-status-7"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">9</td><td class="exam-name-col"><input type="text" class="name-input" data-row="8" placeholder="Learner name" id="exam-name-8" oninput="onNameChange(8,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="8" placeholder="Grade" id="exam-grade-8" oninput="onGradeChange(8,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-8" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-8" oninput="onHifz100Change(8)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-8" oninput="recalcExamRow(8)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-8" oninput="recalcExamRow(8)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-8" oninput="recalcExamRow(8)"></td><td class="exam-computed" id="exam-total-8">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-8" oninput="recalcExamRow(8)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-8" oninput="recalcExamRow(8)"></td><td><select id="exam-status-8"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">10</td><td class="exam-name-col"><input type="text" class="name-input" data-row="9" placeholder="Learner name" id="exam-name-9" oninput="onNameChange(9,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="9" placeholder="Grade" id="exam-grade-9" oninput="onGradeChange(9,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-9" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-9" oninput="onHifz100Change(9)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-9" oninput="recalcExamRow(9)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-9" oninput="recalcExamRow(9)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-9" oninput="recalcExamRow(9)"></td><td class="exam-computed" id="exam-total-9">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-9" oninput="recalcExamRow(9)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-9" oninput="recalcExamRow(9)"></td><td><select id="exam-status-9"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">11</td><td class="exam-name-col"><input type="text" class="name-input" data-row="10" placeholder="Learner name" id="exam-name-10" oninput="onNameChange(10,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="10" placeholder="Grade" id="exam-grade-10" oninput="onGradeChange(10,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-10" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-10" oninput="onHifz100Change(10)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-10" oninput="recalcExamRow(10)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-10" oninput="recalcExamRow(10)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-10" oninput="recalcExamRow(10)"></td><td class="exam-computed" id="exam-total-10">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-10" oninput="recalcExamRow(10)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-10" oninput="recalcExamRow(10)"></td><td><select id="exam-status-10"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">12</td><td class="exam-name-col"><input type="text" class="name-input" data-row="11" placeholder="Learner name" id="exam-name-11" oninput="onNameChange(11,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="11" placeholder="Grade" id="exam-grade-11" oninput="onGradeChange(11,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-11" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-11" oninput="onHifz100Change(11)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-11" oninput="recalcExamRow(11)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-11" oninput="recalcExamRow(11)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-11" oninput="recalcExamRow(11)"></td><td class="exam-computed" id="exam-total-11">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-11" oninput="recalcExamRow(11)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-11" oninput="recalcExamRow(11)"></td><td><select id="exam-status-11"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">13</td><td class="exam-name-col"><input type="text" class="name-input" data-row="12" placeholder="Learner name" id="exam-name-12" oninput="onNameChange(12,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="12" placeholder="Grade" id="exam-grade-12" oninput="onGradeChange(12,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-12" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-12" oninput="onHifz100Change(12)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-12" oninput="recalcExamRow(12)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-12" oninput="recalcExamRow(12)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-12" oninput="recalcExamRow(12)"></td><td class="exam-computed" id="exam-total-12">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-12" oninput="recalcExamRow(12)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-12" oninput="recalcExamRow(12)"></td><td><select id="exam-status-12"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">14</td><td class="exam-name-col"><input type="text" class="name-input" data-row="13" placeholder="Learner name" id="exam-name-13" oninput="onNameChange(13,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="13" placeholder="Grade" id="exam-grade-13" oninput="onGradeChange(13,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-13" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-13" oninput="onHifz100Change(13)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-13" oninput="recalcExamRow(13)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-13" oninput="recalcExamRow(13)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-13" oninput="recalcExamRow(13)"></td><td class="exam-computed" id="exam-total-13">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-13" oninput="recalcExamRow(13)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-13" oninput="recalcExamRow(13)"></td><td><select id="exam-status-13"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">15</td><td class="exam-name-col"><input type="text" class="name-input" data-row="14" placeholder="Learner name" id="exam-name-14" oninput="onNameChange(14,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="14" placeholder="Grade" id="exam-grade-14" oninput="onGradeChange(14,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-14" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-14" oninput="onHifz100Change(14)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-14" oninput="recalcExamRow(14)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-14" oninput="recalcExamRow(14)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-14" oninput="recalcExamRow(14)"></td><td class="exam-computed" id="exam-total-14">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-14" oninput="recalcExamRow(14)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-14" oninput="recalcExamRow(14)"></td><td><select id="exam-status-14"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">16</td><td class="exam-name-col"><input type="text" class="name-input" data-row="15" placeholder="Learner name" id="exam-name-15" oninput="onNameChange(15,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="15" placeholder="Grade" id="exam-grade-15" oninput="onGradeChange(15,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-15" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-15" oninput="onHifz100Change(15)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-15" oninput="recalcExamRow(15)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-15" oninput="recalcExamRow(15)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-15" oninput="recalcExamRow(15)"></td><td class="exam-computed" id="exam-total-15">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-15" oninput="recalcExamRow(15)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-15" oninput="recalcExamRow(15)"></td><td><select id="exam-status-15"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">17</td><td class="exam-name-col"><input type="text" class="name-input" data-row="16" placeholder="Learner name" id="exam-name-16" oninput="onNameChange(16,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="16" placeholder="Grade" id="exam-grade-16" oninput="onGradeChange(16,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-16" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-16" oninput="onHifz100Change(16)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-16" oninput="recalcExamRow(16)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-16" oninput="recalcExamRow(16)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-16" oninput="recalcExamRow(16)"></td><td class="exam-computed" id="exam-total-16">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-16" oninput="recalcExamRow(16)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-16" oninput="recalcExamRow(16)"></td><td><select id="exam-status-16"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">18</td><td class="exam-name-col"><input type="text" class="name-input" data-row="17" placeholder="Learner name" id="exam-name-17" oninput="onNameChange(17,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="17" placeholder="Grade" id="exam-grade-17" oninput="onGradeChange(17,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-17" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-17" oninput="onHifz100Change(17)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-17" oninput="recalcExamRow(17)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-17" oninput="recalcExamRow(17)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-17" oninput="recalcExamRow(17)"></td><td class="exam-computed" id="exam-total-17">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-17" oninput="recalcExamRow(17)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-17" oninput="recalcExamRow(17)"></td><td><select id="exam-status-17"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">19</td><td class="exam-name-col"><input type="text" class="name-input" data-row="18" placeholder="Learner name" id="exam-name-18" oninput="onNameChange(18,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="18" placeholder="Grade" id="exam-grade-18" oninput="onGradeChange(18,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-18" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-18" oninput="onHifz100Change(18)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-18" oninput="recalcExamRow(18)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-18" oninput="recalcExamRow(18)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-18" oninput="recalcExamRow(18)"></td><td class="exam-computed" id="exam-total-18">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-18" oninput="recalcExamRow(18)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-18" oninput="recalcExamRow(18)"></td><td><select id="exam-status-18"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">20</td><td class="exam-name-col"><input type="text" class="name-input" data-row="19" placeholder="Learner name" id="exam-name-19" oninput="onNameChange(19,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="19" placeholder="Grade" id="exam-grade-19" oninput="onGradeChange(19,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-19" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-19" oninput="onHifz100Change(19)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-19" oninput="recalcExamRow(19)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-19" oninput="recalcExamRow(19)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-19" oninput="recalcExamRow(19)"></td><td class="exam-computed" id="exam-total-19">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-19" oninput="recalcExamRow(19)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-19" oninput="recalcExamRow(19)"></td><td><select id="exam-status-19"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">21</td><td class="exam-name-col"><input type="text" class="name-input" data-row="20" placeholder="Learner name" id="exam-name-20" oninput="onNameChange(20,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="20" placeholder="Grade" id="exam-grade-20" oninput="onGradeChange(20,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-20" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-20" oninput="onHifz100Change(20)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-20" oninput="recalcExamRow(20)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-20" oninput="recalcExamRow(20)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-20" oninput="recalcExamRow(20)"></td><td class="exam-computed" id="exam-total-20">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-20" oninput="recalcExamRow(20)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-20" oninput="recalcExamRow(20)"></td><td><select id="exam-status-20"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">22</td><td class="exam-name-col"><input type="text" class="name-input" data-row="21" placeholder="Learner name" id="exam-name-21" oninput="onNameChange(21,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="21" placeholder="Grade" id="exam-grade-21" oninput="onGradeChange(21,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-21" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-21" oninput="onHifz100Change(21)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-21" oninput="recalcExamRow(21)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-21" oninput="recalcExamRow(21)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-21" oninput="recalcExamRow(21)"></td><td class="exam-computed" id="exam-total-21">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-21" oninput="recalcExamRow(21)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-21" oninput="recalcExamRow(21)"></td><td><select id="exam-status-21"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">23</td><td class="exam-name-col"><input type="text" class="name-input" data-row="22" placeholder="Learner name" id="exam-name-22" oninput="onNameChange(22,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="22" placeholder="Grade" id="exam-grade-22" oninput="onGradeChange(22,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-22" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-22" oninput="onHifz100Change(22)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-22" oninput="recalcExamRow(22)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-22" oninput="recalcExamRow(22)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-22" oninput="recalcExamRow(22)"></td><td class="exam-computed" id="exam-total-22">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-22" oninput="recalcExamRow(22)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-22" oninput="recalcExamRow(22)"></td><td><select id="exam-status-22"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">24</td><td class="exam-name-col"><input type="text" class="name-input" data-row="23" placeholder="Learner name" id="exam-name-23" oninput="onNameChange(23,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="23" placeholder="Grade" id="exam-grade-23" oninput="onGradeChange(23,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-23" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-23" oninput="onHifz100Change(23)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-23" oninput="recalcExamRow(23)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-23" oninput="recalcExamRow(23)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-23" oninput="recalcExamRow(23)"></td><td class="exam-computed" id="exam-total-23">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-23" oninput="recalcExamRow(23)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-23" oninput="recalcExamRow(23)"></td><td><select id="exam-status-23"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr><tr><td class="num-col">25</td><td class="exam-name-col"><input type="text" class="name-input" data-row="24" placeholder="Learner name" id="exam-name-24" oninput="onNameChange(24,this.value)"></td><td class="grade-col"><input type="text" class="grade-input" data-row="24" placeholder="Grade" id="exam-grade-24" oninput="onGradeChange(24,this.value)"></td><td class="exam-att-col"><input type="text" id="exam-att-24" placeholder=""></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-hifz100-24" oninput="onHifz100Change(24)"></td><td class="exam-narrow"><input type="number" min="0" max="70" id="exam-hifz70-24" oninput="recalcExamRow(24)"></td><td class="exam-narrow"><input type="number" min="0" max="20" id="exam-target20-24" oninput="recalcExamRow(24)"></td><td class="exam-narrow"><input type="number" min="0" max="10" id="exam-dhor10-24" oninput="recalcExamRow(24)"></td><td class="exam-computed" id="exam-total-24">0</td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-tajweed-24" oninput="recalcExamRow(24)"></td><td class="exam-narrow"><input type="number" min="0" max="100" id="exam-dua-24" oninput="recalcExamRow(24)"></td><td><select id="exam-status-24"><option value="">--</option><option value="Excellent">Excellent</option><option value="Pass">Pass</option><option value="Needs Improvement">Needs Improvement</option><option value="Fail">Fail</option></select></td></tr></tbody>
+    </table>
+    </div>
+  </div>
+  <div id="tajweedtest" class="tab-content">
+    <h2>Tajweed Test</h2>
+    <div class="whb-row">
+    <div class="week-header-box">
+      <div class="whb-item"><span class="whb-label">Term</span><span class="whb-value whb-term-display">&nbsp;</span></div>
+      <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
+    </div>
+    <div class="whb-actions">
+    <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
+    </div>
+    </div>
+    <p class="note">Score each learner per criterion (max shown in the header). The Total (100) is calculated automatically and filled into the Tajweed (100) column on the Exam Entry tab.</p>
+    <div class="table-scroll">
+    <table class="week-table exam-table" id="tajweedtest-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Makhraj<br>(20)</th>
+          <th>Fluency<br>(20)</th>
+          <th>Nasal Sounds<br>(15)</th>
+          <th>Izhar, Ikhfa,<br>Iqlaab (15)</th>
+          <th>Madds<br>(15)</th>
+          <th>Stopping<br>(15)</th>
+          <th style="background:#548235;color:#fff;">Total<br>(100)</th>
+        </tr>
+      </thead>
+      <tbody id="tajweedtest-tbody"></tbody>
+    </table>
+    </div>
+  </div>
+  <div id="duatest" class="tab-content">
+    <h2>Dua Test</h2>
+    <div class="whb-row">
+    <div class="week-header-box">
+      <div class="whb-item"><span class="whb-label">Term</span><span class="whb-value whb-term-display">&nbsp;</span></div>
+      <div class="whb-item"><span class="whb-label">Date</span><span class="whb-value whb-date-display">&nbsp;</span></div>
+    </div>
+    <div class="whb-actions">
+    <button class="back-to-home" onclick="goHome()">&#8592; Back to Dashboard</button>
+    <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
+    </div>
+    </div>
+    <p class="note">Pick a learner, then score each dua out of 10 per criterion (Pronunciation, Fluency, Sharpness). Dua names can be edited and are shared across all learners. The average across all duas, scaled to 100, is filled into the Dua (100) column on the Exam Entry tab automatically.</p>
+    <div class="learner-select-row">
+      <label for="duatest-learner-select">Select Learner:</label>
+      <select id="duatest-learner-select" onchange="onDuaTestLearnerChange(this.value)">
+        <option value="">-- Choose a learner --</option>
+      </select>
+      <button class="action-btn" style="margin-left:10px;" onclick="addDuaRow()">&#10133; Add Dua</button>
+      <button class="action-btn" onclick="removeDuaRow()">&#10134; Remove Last Dua</button>
+    </div>
+    <div class="table-scroll">
+    <table class="week-table exam-table" id="duatest-table">
+      <thead>
+        <tr>
+          <th style="width:36px">#</th>
+          <th>Dua name</th>
+          <th>Pronunciation<br>(10)</th>
+          <th>Fluency<br>(10)</th>
+          <th>Sharpness<br>(10)</th>
+          <th>Total<br>(30)</th>
+        </tr>
+      </thead>
+      <tbody id="duatest-tbody"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" style="text-align:right;font-weight:bold;">Dua average (scaled to 100) - fills Dua (100) on Exam Entry</td>
+          <td class="exam-computed" id="duatest-final-total">0</td>
+        </tr>
+      </tfoot>
     </table>
     </div>
   </div>
@@ -3566,6 +3647,232 @@ function recalcAllExam() {
   for (let r = 0; r < NUM_EXAM_ROWS; r++) recalcExamRow(r);
 }
 
+// ===================== Tajweed Test =====================
+// tajweedTestData[r] = {makhraj, fluency, nasal, izhar, madds, stopping}
+let tajweedTestData = {};
+const TAJWEED_CRITERIA = [
+  { key: "makhraj", label: "Makhraj", max: 20 },
+  { key: "fluency", label: "Fluency", max: 20 },
+  { key: "nasal", label: "Nasal Sounds", max: 15 },
+  { key: "izhar", label: "Izhar, Ikhfa, Iqlaab", max: 15 },
+  { key: "madds", label: "Madds", max: 15 },
+  { key: "stopping", label: "Stopping", max: 15 }
+];
+
+function renderTajweedTestRows() {
+  const tbody = document.getElementById("tajweedtest-tbody");
+  if (!tbody) return;
+  let html = "";
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const name = (learners[r] && learners[r].name) || "";
+    const grade = (learners[r] && learners[r].grade) || "";
+    html += `<tr><td class="num-col">${r + 1}</td>`;
+    html += `<td class="exam-name-col"><span id="tajweedtest-name-${r}">${escapeHtml(name)}</span></td>`;
+    html += `<td class="grade-col"><span id="tajweedtest-grade-${r}">${escapeHtml(grade)}</span></td>`;
+    TAJWEED_CRITERIA.forEach(c => {
+      html += `<td class="exam-narrow"><input type="number" min="0" max="${c.max}" id="tt-${c.key}-${r}" oninput="recalcTajweedTestRow(${r})"></td>`;
+    });
+    html += `<td class="exam-computed" id="tt-total-${r}">0</td></tr>`;
+  }
+  tbody.innerHTML = html;
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) applyTajweedTestRow(r);
+}
+
+function applyTajweedTestRow(r) {
+  const d = tajweedTestData[r];
+  if (!d) return;
+  TAJWEED_CRITERIA.forEach(c => {
+    const el = document.getElementById(`tt-${c.key}-${r}`);
+    if (el && d[c.key] !== undefined && d[c.key] !== null) el.value = d[c.key];
+  });
+  recalcTajweedTestRow(r, true);
+}
+
+function recalcTajweedTestRow(r, skipStore) {
+  const g = id => {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    const n = parseFloat(el.value);
+    return isNaN(n) ? 0 : n;
+  };
+  const vals = {};
+  let total = 0;
+  TAJWEED_CRITERIA.forEach(c => {
+    const v = Math.max(0, Math.min(c.max, g(`tt-${c.key}-${r}`)));
+    vals[c.key] = v;
+    total += v;
+  });
+  total = round2(total);
+  const totalEl = document.getElementById(`tt-total-${r}`);
+  if (totalEl) totalEl.textContent = total;
+  if (!skipStore) tajweedTestData[r] = vals;
+
+  const examTajweedInput = document.getElementById(`exam-tajweed-${r}`);
+  if (examTajweedInput) {
+    examTajweedInput.value = total;
+    recalcExamRow(r);
+  }
+}
+
+// ===================== Dua Test =====================
+// duaNames: shared list of dua names being tested
+// duaTestData[r] = [{pron, flu, sharp}, ...] one entry per dua
+let duaNames = ["Dua 1","Dua 2","Dua 3","Dua 4","Dua 5","Dua 6","Dua 7","Dua 8","Dua 9","Dua 10"];
+let duaTestData = {};
+let duaTestCurrentRow = "";
+
+function renderDuaTestLearnerOptions() {
+  const select = document.getElementById("duatest-learner-select");
+  if (!select) return;
+  const prevValue = select.value;
+  let html = `<option value="">-- Choose a learner --</option>`;
+  for (let r = 0; r < NUM_EXAM_ROWS; r++) {
+    const name = (learners[r] && learners[r].name) || "";
+    if (!name.trim()) continue;
+    html += `<option value="${r}">${escapeHtml(name)}</option>`;
+  }
+  select.innerHTML = html;
+  if (prevValue && [...select.options].some(o => o.value === prevValue)) {
+    select.value = prevValue;
+  }
+}
+
+function renderDuaTestTable() {
+  const tbody = document.getElementById("duatest-tbody");
+  if (!tbody) return;
+  let html = "";
+  duaNames.forEach((name, i) => {
+    html += `<tr><td class="num-col">${i + 1}</td>`;
+    html += `<td class="exam-name-col"><input type="text" id="dt-name-${i}" value="${escapeHtml(name)}" oninput="onDuaNameChange(${i}, this.value)"></td>`;
+    html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-pron-${i}" oninput="onDuaTestCellInput()"></td>`;
+    html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-flu-${i}" oninput="onDuaTestCellInput()"></td>`;
+    html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-sharp-${i}" oninput="onDuaTestCellInput()"></td>`;
+    html += `<td class="exam-computed" id="dt-rowtotal-${i}">0</td></tr>`;
+  });
+  tbody.innerHTML = html;
+}
+
+function onDuaNameChange(i, val) {
+  duaNames[i] = val;
+}
+
+// Lets the number of duas being tested grow or shrink; the /100 average
+// formula already divides by (duaNames.length * 30), so it stays correct
+// automatically regardless of how many duas are being scored.
+function addDuaRow() {
+  duaNames.push(`Dua ${duaNames.length + 1}`);
+  Object.keys(duaTestData).forEach(r => {
+    duaTestData[r].push({ pron: 0, flu: 0, sharp: 0 });
+  });
+  const wasSelected = duaTestCurrentRow;
+  duaTestCurrentRow = "";
+  renderDuaTestTable();
+  if (wasSelected !== "" && wasSelected !== null && wasSelected !== undefined) {
+    onDuaTestLearnerChange(wasSelected);
+  }
+}
+
+function removeDuaRow() {
+  if (duaNames.length <= 1) {
+    alert("At least one dua is required.");
+    return;
+  }
+  duaNames.pop();
+  Object.keys(duaTestData).forEach(r => {
+    duaTestData[r].pop();
+  });
+  const wasSelected = duaTestCurrentRow;
+  duaTestCurrentRow = "";
+  renderDuaTestTable();
+  if (wasSelected !== "" && wasSelected !== null && wasSelected !== undefined) {
+    onDuaTestLearnerChange(wasSelected);
+  }
+}
+
+function onDuaTestLearnerChange(rowStr) {
+  // Save whatever is currently on screen for the previously selected learner.
+  if (duaTestCurrentRow !== "" && duaTestCurrentRow !== null && duaTestCurrentRow !== undefined) {
+    saveDuaTestScreenToData(duaTestCurrentRow);
+  }
+  duaTestCurrentRow = rowStr;
+  if (rowStr === "") {
+    duaNames.forEach((_, i) => {
+      const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`), s = document.getElementById(`dt-sharp-${i}`);
+      if (p) p.value = ""; if (f) f.value = ""; if (s) s.value = "";
+      const rt = document.getElementById(`dt-rowtotal-${i}`); if (rt) rt.textContent = "0";
+    });
+    const finalEl = document.getElementById("duatest-final-total");
+    if (finalEl) finalEl.textContent = "0";
+    return;
+  }
+  const r = parseInt(rowStr, 10);
+  const data = duaTestData[r] || duaNames.map(() => ({ pron: 0, flu: 0, sharp: 0 }));
+  duaNames.forEach((_, i) => {
+    const entry = data[i] || { pron: 0, flu: 0, sharp: 0 };
+    const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`), s = document.getElementById(`dt-sharp-${i}`);
+    if (p) p.value = entry.pron || "";
+    if (f) f.value = entry.flu || "";
+    if (s) s.value = entry.sharp || "";
+  });
+  recalcDuaTestTotals();
+}
+
+function saveDuaTestScreenToData(rowStr) {
+  if (rowStr === "" || rowStr === null || rowStr === undefined) return;
+  const r = parseInt(rowStr, 10);
+  if (isNaN(r)) return;
+  const g = id => {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    const n = parseFloat(el.value);
+    return isNaN(n) ? 0 : n;
+  };
+  const data = duaNames.map((_, i) => ({
+    pron: Math.max(0, Math.min(10, g(`dt-pron-${i}`))),
+    flu: Math.max(0, Math.min(10, g(`dt-flu-${i}`))),
+    sharp: Math.max(0, Math.min(10, g(`dt-sharp-${i}`)))
+  }));
+  duaTestData[r] = data;
+}
+
+function onDuaTestCellInput() {
+  recalcDuaTestTotals();
+  if (duaTestCurrentRow !== "" && duaTestCurrentRow !== null && duaTestCurrentRow !== undefined) {
+    saveDuaTestScreenToData(duaTestCurrentRow);
+    const r = parseInt(duaTestCurrentRow, 10);
+    const finalEl = document.getElementById("duatest-final-total");
+    const finalVal = finalEl ? parseFloat(finalEl.textContent) || 0 : 0;
+    const examDuaInput = document.getElementById(`exam-dua-${r}`);
+    if (examDuaInput) {
+      examDuaInput.value = finalVal;
+      recalcExamRow(r);
+    }
+  }
+}
+
+function recalcDuaTestTotals() {
+  const g = id => {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    const n = parseFloat(el.value);
+    return isNaN(n) ? 0 : n;
+  };
+  let grandTotal = 0;
+  duaNames.forEach((_, i) => {
+    const pron = Math.max(0, Math.min(10, g(`dt-pron-${i}`)));
+    const flu = Math.max(0, Math.min(10, g(`dt-flu-${i}`)));
+    const sharp = Math.max(0, Math.min(10, g(`dt-sharp-${i}`)));
+    const rowTotal = pron + flu + sharp;
+    const rt = document.getElementById(`dt-rowtotal-${i}`);
+    if (rt) rt.textContent = round2(rowTotal);
+    grandTotal += rowTotal;
+  });
+  const maxPossible = duaNames.length * 30;
+  const scaled = maxPossible > 0 ? round2((grandTotal / maxPossible) * 100) : 0;
+  const finalEl = document.getElementById("duatest-final-total");
+  if (finalEl) finalEl.textContent = scaled;
+}
+
 // Target(20): total paras done to date (Learners Total Paras Memorized +
 // paras done this term - the same "Total Quran Paras" figure Class List
 // shows) divided by the learner's Year Juz Target (which varies by grade,
@@ -3667,6 +3974,9 @@ function onNameChange(row, val) {
   if (sumEl) sumEl.textContent = val;
   const journeyEl = document.getElementById(`journey-name-${row}`);
   if (journeyEl) journeyEl.textContent = val;
+  const ttNameEl = document.getElementById(`tajweedtest-name-${row}`);
+  if (ttNameEl) ttNameEl.textContent = val;
+  renderDuaTestLearnerOptions();
 }
 
 function onGradeChange(row, val) {
@@ -3684,6 +3994,8 @@ function onGradeChange(row, val) {
   if (sumEl) sumEl.textContent = val;
   const journeyEl = document.getElementById(`journey-grade-${row}`);
   if (journeyEl) journeyEl.textContent = val;
+  const ttGradeEl = document.getElementById(`tajweedtest-grade-${row}`);
+  if (ttGradeEl) ttGradeEl.textContent = val;
   // If this learner's journey card view is currently open, refresh it so
   // the stage highlighting (Completed/In Progress/Upcoming) stays in sync
   // with the grade change.
@@ -4779,7 +5091,7 @@ async function doSave() {
   // saving, so Term 1-4 data keeps accumulating even if nobody opened the
   // Exam Term Report tab for a particular learner this session.
   captureAllCurrentTermAutoValues();
-  const state = { meta: getMeta(), learners, data, exam: collectExamData(), miscDocs, examReportData, learnerReportData, latestTermIdx, termArchive };
+  const state = { meta: getMeta(), learners, data, exam: collectExamData(), miscDocs, examReportData, learnerReportData, latestTermIdx, termArchive, tajweedTestData, duaNames, duaTestData };
   const content = JSON.stringify(state, null, 2);
   const filename = `${fileLabel()}_save.json`;
 
@@ -5076,6 +5388,13 @@ function applyLoadedState(state) {
     }
   }
   if (state.exam) applyExamData(state.exam);
+  tajweedTestData = state.tajweedTestData || {};
+  if (state.duaNames && state.duaNames.length) duaNames = state.duaNames;
+  duaTestData = state.duaTestData || {};
+  renderTajweedTestRows();
+  renderDuaTestTable();
+  renderDuaTestLearnerOptions();
+  duaTestCurrentRow = "";
   if (state.miscDocs) {
     miscDocs = state.miscDocs;
     renderMiscDocs();
@@ -5138,6 +5457,9 @@ window.addEventListener("DOMContentLoaded", () => {
   recalcSummary();
   loadExampleRow();
   recalcAllExam();
+  renderTajweedTestRows();
+  renderDuaTestLearnerOptions();
+  renderDuaTestTable();
 
   const MONTH_NAMES = ["January","February","March","April","May","June",
                         "July","August","September","October","November","December"];
