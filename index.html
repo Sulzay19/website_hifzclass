@@ -1463,10 +1463,9 @@ select {
           <th>Grade</th>
           <th>Makhraj<br>(20)</th>
           <th>Fluency<br>(20)</th>
-          <th>Nasal Sounds<br>(15)</th>
-          <th>Izhar, Ikhfa,<br>Iqlaab (15)</th>
-          <th>Madds<br>(15)</th>
-          <th>Stopping<br>(15)</th>
+          <th>Izhar, Ikhfa,<br>Iqlaab (20)</th>
+          <th>Madds<br>(20)</th>
+          <th>Stopping<br>(20)</th>
           <th style="background:#548235;color:#fff;">Total<br>(100)</th>
         </tr>
       </thead>
@@ -3648,15 +3647,14 @@ function recalcAllExam() {
 }
 
 // ===================== Tajweed Test =====================
-// tajweedTestData[r] = {makhraj, fluency, nasal, izhar, madds, stopping}
+// tajweedTestData[r] = {makhraj, fluency, izhar, madds, stopping}
 let tajweedTestData = {};
 const TAJWEED_CRITERIA = [
   { key: "makhraj", label: "Makhraj", max: 20 },
   { key: "fluency", label: "Fluency", max: 20 },
-  { key: "nasal", label: "Nasal Sounds", max: 15 },
-  { key: "izhar", label: "Izhar, Ikhfa, Iqlaab", max: 15 },
-  { key: "madds", label: "Madds", max: 15 },
-  { key: "stopping", label: "Stopping", max: 15 }
+  { key: "izhar", label: "Izhar, Ikhfa, Iqlaab", max: 20 },
+  { key: "madds", label: "Madds", max: 20 },
+  { key: "stopping", label: "Stopping", max: 20 }
 ];
 
 function renderTajweedTestRows() {
