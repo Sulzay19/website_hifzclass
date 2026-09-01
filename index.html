@@ -2066,6 +2066,7 @@ function buildDismissalLetterHtml(r) {
   const grade = escapeHtml(learners[r].grade || "-");
   const meta = getMeta();
   const dateText = escapeHtml(formatDateLong(meta.date) || "\u2014");
+  const journeyLine = buildDismissalJourneySentence(r);
   return `
     <div class="rc-sheet" style="max-width:800px; margin:20px auto; padding:10px 6px;">
       <div style="text-align:center; margin-bottom:8px;"><img src="${DISMISSAL_LOGO_URI}" alt="Central Islamic School Logo" style="width:90px; height:auto;"></div>
@@ -2073,7 +2074,7 @@ function buildDismissalLetterHtml(r) {
       <p style="margin:0 0 14px; text-align:right;">${dateText}</p>
       <p style="margin:0 0 10px;">Dear Parent/Guardian of ${name} (Grade ${grade}),</p>
       <p style="margin:0 0 10px;">This letter serves to inform you that, after careful review of your child's Hifz progress this year, the Hifz Department has taken the decision to remove your child from the Hifz program.</p>
-      <p style="margin:0 0 10px;">Despite ongoing support, including a reduced workload and parental consultations, the learner's pace and para count have consistently fallen below the program's requirements, due to difficulties of memorizing, retention and lack of preparation.</p>
+      <p style="margin:0 0 10px;">Despite ongoing support, including a reduced workload and parental consultations, the learner's pace and para count have consistently fallen below the program's requirements, due to difficulties of memorizing, retention and lack of preparation.${journeyLine ? " " + journeyLine : ""}</p>
       <p style="margin:0 0 18px;">We appreciate your cooperation and understanding.</p>
       <div style="display:flex; justify-content:space-between; margin-top:40px;">
         <div style="text-align:center;">
@@ -2085,6 +2086,17 @@ function buildDismissalLetterHtml(r) {
       </div>
     </div>
   `;
+}
+
+// Pulls the same start-grade/expected-vs-actual Juz figures shown on the
+// Journey tab (via getJourneySummaryData) and turns them into one sentence
+// for the dismissal letter. Only adds a sentence when the learner is
+// actually behind pace - being on-track or ahead isn't a dismissal reason.
+function buildDismissalJourneySentence(r) {
+  const j = getJourneySummaryData(r);
+  if (j.expectedJuz === null || j.paceStatus !== "behind") return "";
+  const juzStr = formatQuarter(j.actualJuz);
+  return `As of today, ${escapeHtml(learners[r].name || "the learner")} has memorized ${juzStr} Juz, ${j.paceDiff} Juz behind the ${j.expectedJuz} Juz expected for Grade ${escapeHtml(j.currentGrade || "-")}.`;
 }
 
 const LR_STATUS_LABELS = {

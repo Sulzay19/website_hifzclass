@@ -4515,21 +4515,21 @@
       },
       {
         "sabaq": [
-          null,
+          0.75,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          14,
           null,
           null,
           null,
@@ -4584,21 +4584,21 @@
       },
       {
         "sabaq": [
-          null,
+          0.75,
           null,
           null,
           null,
           null
         ],
         "sabaqDhor": [
-          null,
+          7,
           null,
           null,
           null,
           null
         ],
         "dhor": [
-          null,
+          7,
           null,
           null,
           null,
@@ -7861,8 +7861,8 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "5.79",
-      "dhor10": "2",
+      "target20": "5.89",
+      "dhor10": "3",
       "tajweed": "",
       "dua": "",
       "status": ""
@@ -7894,7 +7894,7 @@
       "grade": "Grade 5",
       "hifz100": "",
       "hifz70": "",
-      "target20": "2.29",
+      "target20": "2.39",
       "dhor10": "1",
       "tajweed": "",
       "dua": "",
@@ -8502,12 +8502,12 @@
           "10 to 13 lines daily",
           "1.5",
           "13.5",
-          "8",
+          "9",
           "",
           null,
           "",
           "",
-          "7.79"
+          "8.89"
         ]
       },
       "totals": [],
@@ -8637,7 +8637,7 @@
           null,
           "",
           "",
-          "3.29"
+          "3.39"
         ]
       },
       "totals": [],
