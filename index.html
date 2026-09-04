@@ -1494,7 +1494,7 @@ select {
     <button class="page-action-btn" onclick="printCurrentPage()">&#8681; Print/Download (PDF)</button>
     </div>
     </div>
-    <p class="note">Pick a learner, then score each dua out of 10 per criterion (Pronunciation, Fluency, Sharpness). Dua names can be edited and are shared across all learners. The average across all duas, scaled to 100, is filled into the Dua (100) column on the Exam Entry tab automatically.</p>
+    <p class="note">Pick a learner, then score each dua out of 10 per criterion (Pronunciation, Fluency). Dua names can be edited and are shared across all learners. The average across all duas, scaled to 100, is filled into the Dua (100) column on the Exam Entry tab automatically.</p>
     <div class="learner-select-row">
       <label for="duatest-learner-select">Select Learner:</label>
       <select id="duatest-learner-select" onchange="onDuaTestLearnerChange(this.value)">
@@ -1511,14 +1511,13 @@ select {
           <th>Dua name</th>
           <th>Pronunciation<br>(10)</th>
           <th>Fluency<br>(10)</th>
-          <th>Sharpness<br>(10)</th>
-          <th>Total<br>(30)</th>
+          <th>Total<br>(20)</th>
         </tr>
       </thead>
       <tbody id="duatest-tbody"></tbody>
       <tfoot>
         <tr>
-          <td colspan="5" style="text-align:right;font-weight:bold;">Dua average (scaled to 100) - fills Dua (100) on Exam Entry</td>
+          <td colspan="4" style="text-align:right;font-weight:bold;">Dua average (scaled to 100) - fills Dua (100) on Exam Entry</td>
           <td class="exam-computed" id="duatest-final-total">0</td>
         </tr>
       </tfoot>
@@ -3829,7 +3828,7 @@ function recalcTajweedTestRow(r, skipStore) {
 
 // ===================== Dua Test =====================
 // duaNames: shared list of dua names being tested
-// duaTestData[r] = [{pron, flu, sharp}, ...] one entry per dua
+// duaTestData[r] = [{pron, flu}, ...] one entry per dua
 let duaNames = ["Dua 1","Dua 2","Dua 3","Dua 4","Dua 5","Dua 6","Dua 7","Dua 8","Dua 9","Dua 10"];
 let duaTestData = {};
 let duaTestCurrentRow = "";
@@ -3859,7 +3858,6 @@ function renderDuaTestTable() {
     html += `<td class="exam-name-col"><input type="text" id="dt-name-${i}" value="${escapeHtml(name)}" oninput="onDuaNameChange(${i}, this.value)"></td>`;
     html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-pron-${i}" oninput="onDuaTestCellInput()"></td>`;
     html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-flu-${i}" oninput="onDuaTestCellInput()"></td>`;
-    html += `<td class="exam-narrow"><input type="number" min="0" max="10" id="dt-sharp-${i}" oninput="onDuaTestCellInput()"></td>`;
     html += `<td class="exam-computed" id="dt-rowtotal-${i}">0</td></tr>`;
   });
   tbody.innerHTML = html;
@@ -3870,12 +3868,12 @@ function onDuaNameChange(i, val) {
 }
 
 // Lets the number of duas being tested grow or shrink; the /100 average
-// formula already divides by (duaNames.length * 30), so it stays correct
+// formula already divides by (duaNames.length * 20), so it stays correct
 // automatically regardless of how many duas are being scored.
 function addDuaRow() {
   duaNames.push(`Dua ${duaNames.length + 1}`);
   Object.keys(duaTestData).forEach(r => {
-    duaTestData[r].push({ pron: 0, flu: 0, sharp: 0 });
+    duaTestData[r].push({ pron: 0, flu: 0 });
   });
   const wasSelected = duaTestCurrentRow;
   duaTestCurrentRow = "";
@@ -3910,8 +3908,8 @@ function onDuaTestLearnerChange(rowStr) {
   duaTestCurrentRow = rowStr;
   if (rowStr === "") {
     duaNames.forEach((_, i) => {
-      const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`), s = document.getElementById(`dt-sharp-${i}`);
-      if (p) p.value = ""; if (f) f.value = ""; if (s) s.value = "";
+      const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`);
+      if (p) p.value = ""; if (f) f.value = "";
       const rt = document.getElementById(`dt-rowtotal-${i}`); if (rt) rt.textContent = "0";
     });
     const finalEl = document.getElementById("duatest-final-total");
@@ -3919,13 +3917,12 @@ function onDuaTestLearnerChange(rowStr) {
     return;
   }
   const r = parseInt(rowStr, 10);
-  const data = duaTestData[r] || duaNames.map(() => ({ pron: 0, flu: 0, sharp: 0 }));
+  const data = duaTestData[r] || duaNames.map(() => ({ pron: 0, flu: 0 }));
   duaNames.forEach((_, i) => {
-    const entry = data[i] || { pron: 0, flu: 0, sharp: 0 };
-    const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`), s = document.getElementById(`dt-sharp-${i}`);
+    const entry = data[i] || { pron: 0, flu: 0 };
+    const p = document.getElementById(`dt-pron-${i}`), f = document.getElementById(`dt-flu-${i}`);
     if (p) p.value = entry.pron || "";
     if (f) f.value = entry.flu || "";
-    if (s) s.value = entry.sharp || "";
   });
   recalcDuaTestTotals();
 }
@@ -3942,8 +3939,7 @@ function saveDuaTestScreenToData(rowStr) {
   };
   const data = duaNames.map((_, i) => ({
     pron: Math.max(0, Math.min(10, g(`dt-pron-${i}`))),
-    flu: Math.max(0, Math.min(10, g(`dt-flu-${i}`))),
-    sharp: Math.max(0, Math.min(10, g(`dt-sharp-${i}`)))
+    flu: Math.max(0, Math.min(10, g(`dt-flu-${i}`)))
   }));
   duaTestData[r] = data;
 }
@@ -3974,13 +3970,12 @@ function recalcDuaTestTotals() {
   duaNames.forEach((_, i) => {
     const pron = Math.max(0, Math.min(10, g(`dt-pron-${i}`)));
     const flu = Math.max(0, Math.min(10, g(`dt-flu-${i}`)));
-    const sharp = Math.max(0, Math.min(10, g(`dt-sharp-${i}`)));
-    const rowTotal = pron + flu + sharp;
+    const rowTotal = pron + flu;
     const rt = document.getElementById(`dt-rowtotal-${i}`);
     if (rt) rt.textContent = round2(rowTotal);
     grandTotal += rowTotal;
   });
-  const maxPossible = duaNames.length * 30;
+  const maxPossible = duaNames.length * 20;
   const scaled = maxPossible > 0 ? Math.round((grandTotal / maxPossible) * 100) : 0;
   const finalEl = document.getElementById("duatest-final-total");
   if (finalEl) finalEl.textContent = scaled;
