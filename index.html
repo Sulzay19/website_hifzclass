@@ -3821,7 +3821,10 @@ function recalcTajweedTestRow(r, skipStore) {
 
   const examTajweedInput = document.getElementById(`exam-tajweed-${r}`);
   if (examTajweedInput) {
-    examTajweedInput.value = total;
+    // Marks entered here are deduction points out of 100 (e.g. entering 5
+    // means 5 points off), so the Exam tab's Tajweed (100) column shows
+    // 100 minus the total, not the total itself.
+    examTajweedInput.value = Math.max(0, Math.min(100, 100 - total));
     recalcExamRow(r);
   }
 }
@@ -3953,7 +3956,10 @@ function onDuaTestCellInput() {
     const finalVal = finalEl ? parseFloat(finalEl.textContent) || 0 : 0;
     const examDuaInput = document.getElementById(`exam-dua-${r}`);
     if (examDuaInput) {
-      examDuaInput.value = finalVal;
+      // Same deduction logic as Tajweed: the computed total here is
+      // treated as deduction points out of 100, so what lands in the
+      // Exam tab's Dua (100) column is 100 minus that total.
+      examDuaInput.value = Math.max(0, Math.min(100, 100 - finalVal));
       recalcExamRow(r);
     }
   }
